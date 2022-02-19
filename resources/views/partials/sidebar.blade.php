@@ -10,7 +10,7 @@
         </li>  
         <li class="menu-header">Master Data</li>
           <li class="nav-item">
-            <a href="#" class="nav-link "><i class="fas fa-file"></i><span>Data Kriteria</span></a>
+            <a href="#" class="nav-link"><i class="fas fa-file"></i><span>Data Kriteria</span></a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Sub Kriteria</span></a>
