@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <link rel="shortcut icon" type="image" href="../assets/img/product-1-50">
-  <title> Login &mdash; Stisla</title>
+  <title>{{ $title }}</title>
   
 
   <!-- General CSS Files -->
@@ -19,20 +19,22 @@
   <link rel="stylesheet" href="../assets/css/components.css">
 </head>
 
-<body>
+<body class="login">
   <div id="app">
     <section class="section">
       <div class="container mt-5">
         <div class="row">
-          <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-            <div class="customAlert+>
-              <p class="message"></p>
+          <div class="col-12 col-sm-6 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+            {{-- <div class="customAlert">
+              <p class= message></p>
               <input type='button' class='confirmButton' value='Ok'>
             </div>
-              
-            <input type='button' class='rab' value='Raise alert'>
+               --}}
+            {{-- <input type='button' class='rab' value='Raise alert'> --}}
             <div class="card card-primary">
-              <div class="card-header"><h3 class="mx-auto">Login</h3></div>
+              <div class="card-header">
+                <h3 class="mx-auto">Login</h3>
+              </div>
 
               <div class="card-body">
                 <form method="POST" action="" class="needs-validation" novalidate="">

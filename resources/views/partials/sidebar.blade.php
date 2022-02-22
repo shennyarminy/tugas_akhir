@@ -5,26 +5,26 @@
       </div>
       
       <ul class="sidebar-menu">
-        <li class="nav-item">
-          <a href="#" class="nav-link "><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <li class="nav-item {{ Request::is('home') ? 'active' : '' }}">
+          <a href="/home" class="nav-link "><i class="fas fa-home"></i><span>Dashboard</span></a>
         </li>  
         <li class="menu-header">Master Data</li>
-          <li class="nav-item">
-            <a href="#" class="nav-link"><i class="fas fa-file"></i><span>Data Kriteria</span></a>
+          <li class="nav-item {{ Request::is('kriteria') ? 'active' : '' }}">
+            <a href="/kriteria" class="nav-link"><i class="fas fa-file"></i><span>Data Kriteria</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ Request::is('subkriteria') ? 'active' : '' }}">
             <a href="#" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Sub Kriteria</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ Request::is('alternatif') ? 'active' : '' }}">
             <a href="#" class="nav-link"><i class="fas fa-users"></i><span>Data Alternatif</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ Request::is('penilaian') ? 'active' : '' }}">
             <a href="#" class="nav-link"><i class="fas fa-edit"></i><span>Data Penilaian</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ Request::is('perhitungan') ? 'active' : '' }}">
             <a href="#" class="nav-link"><i class="fas fa-calculator"></i><span>Data Perhitungan</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ Request::is('hasil') ? 'active' : '' }}">
             <a href="#" class="nav-link"><i class="fas fa-poll"></i><span>Data Hasil Akhir</span></a>
           </li>
 

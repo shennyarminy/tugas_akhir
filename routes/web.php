@@ -17,17 +17,28 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome',[ 
+        "title" => "Home"
+
+    ]) ;
 });
 
 Route::get('/home', function () {
-    return view('home');
+    return view('home', [
+        "title" => "Home",
+        "judul" => "Dasboard"
+    ]);
 });
 Route::get('/login', function () {
-    return view('login');
+    return view('login', [
+        "title" => "Login"
+    ]);
 });
 Route::get('/kriteria', function () {
-    return view('kriteria');
+    return view('kriteria', [
+        "title" => "Kriteria",
+        "judul" => "Data Kriteria"
+    ]);
 });
 
 
