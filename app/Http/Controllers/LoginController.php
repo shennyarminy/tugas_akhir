@@ -19,4 +19,13 @@ class LoginController extends Controller
             return redirect()-> intended('/home');
         }
     }
+    
+    public function login(){
+        return view('auth.login', [
+            "title" => "Login"
+           
+        ]);
+    }
 }
+
+

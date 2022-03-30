@@ -1,9 +1,11 @@
 <?php
+namespace App;
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\CriteriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,30 +18,26 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome',[ 
-        "title" => "Home"
-
-    ]) ;
-});
-
-Route::get('/home', function () {
-    return view('home', [
-        "title" => "Home",
-        "judul" => "Dasboard"
-    ]);
-});
-Route::get('/login', function () {
-    return view('login', [
-        "title" => "Login"
-    ]);
-});
-Route::get('/kriteria', function () {
-    return view('kriteria', [
-        "title" => "Kriteria",
-        "judul" => "Data Kriteria"
-    ]);
-});
-
-
+// LOGIN (AUTH)
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/login',  [LoginController::class, 'login']);
+
+// HOME (DASHBOARD)
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->name('home');
+
+
+// KRITERIA
+Route::resource('criteria', CriteriaController::class);
+
+
+
+
+
+ 
+
+// SUBKRITERIA 
+
+
+
+
