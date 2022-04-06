@@ -16,8 +16,8 @@
                 <a href="{{ route('criteria.index') }}" class="nav-link"><i class="fas fa-file"></i><span>Data Kriteria</span></a>
               </li>
              
-              <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Sub Kriteria</span></a>
+              <li class="nav-item @if($aktif == 'subcriteria') {{ 'active' }}@endif">
+                <a href="{{ route('subcriteria.index') }}" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Sub Kriteria</span></a>
               </li>
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Data Siswa</span></a>

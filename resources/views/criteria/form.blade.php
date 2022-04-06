@@ -73,14 +73,15 @@
             </div>
             <div class="card-footer text-right">
                 <a href="{{ url('criteria') }}" class="btn btn-danger float">Batal</a>
-                <button type="submit" class="btn btn-primary float ">Submit</button>
+                <button type="submit" class="btn btn-primary float success" data-nama="{{ $criteria->nama }}" >Submit</button>
             </div>
             </form>
-
-
+            
         </div>
+        
     </div>
+    
 </section>
 
-
 @endsection
+

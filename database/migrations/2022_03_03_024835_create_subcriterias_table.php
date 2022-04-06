@@ -15,6 +15,8 @@ class CreateSubcriteriasTable extends Migration
     {
         Schema::create('subcriterias', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->float('nilai');
             $table->timestamps();
         });
     }

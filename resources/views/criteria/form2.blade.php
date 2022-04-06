@@ -84,3 +84,48 @@
 
 
 @endsection
+
+<button type="button" title="Hapus Kriteria" class="btn btn-danger btn-sm " data-id="{{ $criteria->id}}" > <i class="fas fa-trash" ></i>
+</button>
+
+<form action="{{ url('criteria/'.$criteria->id) }}" method="POST" class="d-inline delete" >
+  @csrf
+  @method('DELETE')
+  
+  
+  </form>
+
+  <script>
+    $('.delete').click(function() {
+    
+          var criteriaid = $(this).attr('data-id');
+          swal({
+                  title: 'Are you sure?',
+                  text: 'Once deleted, you will not be able to recover this imaginary file! '+criteriaid+' ',
+                  icon: 'warning',
+                  buttons: true,
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                      // window.location = '/destroy/'+criteriaid+''
+                      swal('Poof! Your imaginary file has been deleted!', {
+                        icon: 'success',
+                      });
+                      $(`#delete${id}`)
+                  } else {
+                      swal('Your imaginary file is safe!');
+                      }
+            });
+    });
+    </script>
+
+
+<form action="#" method="POST" class="d-inline"  id="swal-6" data-id="{{ $criteria->id}}">
+    @csrf
+    @method('DELETE')
+        <button type="submit" title="Hapus Kriteria" class="btn btn-danger btn-sm"  > <i class="fas fa-trash" ></i>
+        </button>
+    
+    
+    </form>

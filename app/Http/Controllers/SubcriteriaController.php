@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subcriteria;
 use App\Http\Requests\StoreSubcriteriaRequest;
 use App\Http\Requests\UpdateSubcriteriaRequest;
+use App\Models\Criteria;
 
 class SubcriteriaController extends Controller
 {
@@ -15,7 +16,13 @@ class SubcriteriaController extends Controller
      */
     public function index()
     {
-        //
+        $subcriteria = Subcriteria::all();
+        return view('subcriteria.index',compact('subcriteria'),[
+            "aktif" => "subcriteria",
+            "judul" => "Data SubKriteria",
+            "title" => "SubKriteria",
+            "subcriterias" => Subcriteria::orderBy('nama', 'asc')->get()
+        ]);
     }
 
     /**
@@ -25,7 +32,15 @@ class SubcriteriaController extends Controller
      */
     public function create()
     {
-        //
+        $subcriteria = Subcriteria::all();
+        return view('subcriteria.index',compact('subcriteria'),[
+            "aktif" => "subcriteria",
+            "judul" => "Data SubKriteria",
+            "title" => "SubKriteria",
+            "subcriterias"=> Subcriteria::orderBy('nama', 'asc')->get()
+             
+
+        ]);
     }
 
     /**

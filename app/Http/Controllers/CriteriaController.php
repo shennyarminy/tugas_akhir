@@ -7,8 +7,10 @@ use App\Models\Criteria;
 
 use App\Models\Subcriteria;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdatecriteriaRequest;
+use UxWeb\SweetAlert\SweetAlert;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdatecriteriaRequest;
 
 class CriteriaController extends Controller
 {
@@ -25,7 +27,8 @@ class CriteriaController extends Controller
             "aktif" => "criteria",
             "judul" => "Data Kriteria",
             "title" => "Kriteria",
-            "criterias"=> Criteria::orderBy('created_at', 'asc')->get()
+            "criterias"=> Criteria::orderBy('kode', 'asc')->get()
+             
 
         ]);
     }
@@ -43,7 +46,9 @@ class CriteriaController extends Controller
              "aktif" => "criteria",
              "judul" => "Data Kriteria",
              "title" => "Kriteria Tambah",
-             "criterias"=> Criteria::orderBy('created_at', 'asc')->get()
+             "criterias"=> Criteria::orderBy ('kode', 'asc')->get()
+           
+        
            
             
              
@@ -66,7 +71,8 @@ class CriteriaController extends Controller
             "tipe" => "required",
        ]);
         Criteria::create($request->all());
-        return redirect()->route('criteria.index')->withSuccess("Berhasil menambahkan Kriteria: $request->nama");
+        Toastr::success("Anda berhasil menambahkan $request->nama");
+        return redirect()->route('criteria.index');
         
     }
 
@@ -124,7 +130,10 @@ class CriteriaController extends Controller
             "tipe" => $request->tipe,
 
         ]);
-        return redirect()->route('criteria.index')->withSuccess("Berhasil mengubah kriteria: $request->nama");
+        
+       
+        Toastr::success("Anda berhasil mengubah $criteria->nama");
+        return redirect()->route('criteria.index');
     }
 
     /**
@@ -137,6 +146,7 @@ class CriteriaController extends Controller
     {
         $criteria = Criteria::find($id);
         $criteria->delete();
+        
 
         return redirect()->route('criteria.index')->withSuccess("Berhasil menghapus kriteria: $id");
 

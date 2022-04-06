@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\SubcriteriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +32,7 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::resource('criteria', CriteriaController::class);
 
 
-
-
-
- 
-
 // SUBKRITERIA 
-
-
+Route::resource('subcriteria', SubcriteriaController::class);
 
 
