@@ -1,78 +1,98 @@
-
-@extends('layouts.main')
+@extends('layouts.app')
 @section('content')
-<section class="section">
-  <div class="section-header ">
-    <h1>{{ $judul }}</h1>
-  </div>
- 
 
-<div class="card">   
-  
-  {{-- CARD HEADER TAMBAH DATA KRITERIA--}}
-      <div class="card-header">
-        <i class="fas fa-plus"></i><h4> Data SubKriteria</h4>
-        <div class="card-header-action">
-        <a href=" {{ url('subcriteria/create') }}" title="Tambah Kriteria" class="btn btn-success col-auto"> Tambah SubKriteria</a>
+    <div class="row ">
+        <div class="col-12 ">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{route('borrow.store')}}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Murid</label>
+                                    <select class="form-control select2 @error('student_id') is-invalid @enderror" name="student_id">
+                                        @foreach ($students as $student)
+                                            <option value="{{$student->id}}">
+                                                {{$student->name}} <--> {{ $student->kelas->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                     @error('student_id')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Buku</label>
+                                    <select class="form-control select2 @error('book_id') is-invalid @enderror" name="book_id" id="book">
+                                        <option value="">-- Pilih Buku --</option>
+                                        @foreach ($books as $book)
+                                            <option value="{{$book->id}}">
+                                                {{$book->title}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                     @error('book_id')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Kode Buku</label>
+                                    <select class="form-control @error('book_code_id') is-invalid @enderror" name="book_code_id" id="book_code">
+                                       <option value=""></option>
+                                    </select>
+                                     @error('book_code_id')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 text-right">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-
-                                    
-    {{-- CARD BODY --}}
-      <div class="card-body">
-        <div class="table-responsive">
-          <table id="table-1" class="table table-striped">
-            <thead>
-              <tr>
-                <th class="col-1">No.</th>
-                <th class="col-2">Nama Sub Kriteria</th>
-                <th class="col-2">Nilai</th>
-                <th class="col-3">Aksi</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </div> 
     </div>
-  </div>
-
-</section>
-
-
-
-{{-- <script>
-$(document).ready(function() {
-    $('#table-1').DataTable( {
-        "order":[[ 1, "asc" ]] 
-    } );
-} );
-</script>
-
-<script>
-
-$(".delete").click(function() {
-
-  var id = $(this).attr('data-id');
-  var nama = $(this).attr('data-nama');
-  swal({
-      title: 'Hapus Data Kriteria '+nama,
-      // text: 'Once deleted, you will not be able to recover this imaginary file! ',
-      icon: 'warning',
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-        if (willDelete) {
-        swal('Berhasil dihapus', {
-          icon: 'success',
-        });
-        $(`#delete${id}`).submit();
-
-      } 
-    });
-});
-
-</script> --}}
-
-
+    
 @endsection
+
+@push('select2css')
+<link rel="stylesheet" href="{{asset('adminlte/plugins/select2/css/select2.min.css')}}">
+@endpush
+
+@push('script')
+    <script>
+        $('#book').change(function(){
+        var book_id = $(this).val();    
+        if(book_id){
+            $.ajax({
+            type:"GET",
+            url:"/get-book-code?book_id="+book_id,
+            dataType: 'JSON',
+            success:function(res){               
+                if(res){
+                    $("#book_code").empty();
+                    $.each(res, function(id, code){
+                        $("#book_code").append('<option value="'+id+'">'+code+'</option>');
+                    });
+                    }
+                }
+            });
+        }      
+        });
+    </script>
+
+    <script src="{{asset('adminlte/plugins/select2/js/select2.full.min.js')}}"></script>
+    <script >
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+    
+@endpush

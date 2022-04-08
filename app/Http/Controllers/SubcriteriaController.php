@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Subcriteria;
+use Brian2694\Toastr\Toastr;
+use App\Http\Controllers\Controller;
+use Doctrine\Inflector\Rules\Substitution;
+use Symfony\Component\HttpFoundation\Request;
 use App\Http\Requests\StoreSubcriteriaRequest;
 use App\Http\Requests\UpdateSubcriteriaRequest;
 use App\Models\Criteria;
@@ -16,12 +21,13 @@ class SubcriteriaController extends Controller
      */
     public function index()
     {
-        $subcriteria = Subcriteria::all();
-        return view('subcriteria.index',compact('subcriteria'),[
+        // $subcriteria = Subcriteria::all();
+        return view('subcriteria.index', [
             "aktif" => "subcriteria",
-            "judul" => "Data SubKriteria",
-            "title" => "SubKriteria",
-            "subcriterias" => Subcriteria::orderBy('nama', 'asc')->get()
+            "judul" => "Data Subkriteria",
+            "title" => "Subkriteria",
+            "subcriterias" => Subcriteria::all(),
+            "criterias" => Criteria::all()
         ]);
     }
 
@@ -32,15 +38,16 @@ class SubcriteriaController extends Controller
      */
     public function create()
     {
-        $subcriteria = Subcriteria::all();
-        return view('subcriteria.index',compact('subcriteria'),[
-            "aktif" => "subcriteria",
-            "judul" => "Data SubKriteria",
-            "title" => "SubKriteria",
-            "subcriterias"=> Subcriteria::orderBy('nama', 'asc')->get()
-             
+       
+           
+            return view('subcriteria.create',  [
+                "aktif" => "subcriteria", 
+                "judul" => "Data Subkriteria",
+                "title" => "tambah Subkriteria",
+                "subcriterias" => Subcriteria::all(),
+                "criterias" => Criteria::all(),
 
-        ]);
+            ]);
     }
 
     /**
@@ -49,9 +56,19 @@ class SubcriteriaController extends Controller
      * @param  \App\Http\Requests\StoreSubcriteriaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSubcriteriaRequest $request)
+    public function store(Request $request)
     {
-        //
+       $data = request()->validate([
+           "criteria_id" => "required",
+           "nama" => "required",
+           "nilai" => "required",
+       ]);
+       Subcriteria::create($request->all());
+
+       return redirect()->route('subcriteria.index')->withSuccess("Berhasil menambahkan murid: $request->nama");
+       
+
+       
     }
 
     /**
