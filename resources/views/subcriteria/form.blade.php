@@ -12,38 +12,37 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ url('subcriteria') }}" method="post">
+        <form action="{{ url('subcriteria/') }}" method="post">
         @csrf
 
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <label for="nama">Nama Subkriteria</label>
-                <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') ?? $subcriteria->nama ?? '' }}">
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <label for="namas">Nama Subkriteria</label>
+                        <input type="text" name="namas" id="namas" class="form-control @error('namas') is-invalid @enderror" value="{{ old('namas') ?? $subcriteria->namas ?? '' }}">
 
-                @error('nama')
-                <div class="invalid-feedback">
-                    {{ $message }}
+                        @error('namas')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <label for="nilai">Nilai Subkriteria</label>
+                        <input type="text" name="nilai" id="nilai" class="form-control @error('nilai') is-invalid @enderror" value="{{ old('nilai') ?? $subcriteria->nilai ?? '' }}">
+
+                        @error('nilai')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
-                @enderror
-            </div>
 
-            <div class="col-12 col-lg-6">
-                <label for="nilai">Nilai Subkriteria</label>
-                <input type="number" name="nilai" id="nilai" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') ?? $subcriteria->nilai ?? '' }}">
-
-                @error('nilai')
-                <div class="invalid-feedback">
-                    {{ $message }}
+                <div class="card-footer tet-right">
+                    <a href="{{ url('subcriteria') }}" class="btn btn-danger">Batal</a>
+                    <button type="submit" class="btn btn-primary success">Submit</button>
                 </div>
-                @enderror
-            </div>
-        </div>
-
-        <div class="card-footer tet-right">
-            <a href="{{ url('subcriteria') }}" class="btn btn-danger">Batal</a>
-            <button type="submit" class="btn btn-primary success">Submit</button>
-
-        </div>
         
         </form>
     </div>

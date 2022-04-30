@@ -22,12 +22,14 @@ class CriteriaController extends Controller
     public function index()
 
     {
+        
         $criteria = Criteria::all();
         return view('criteria.index',compact('criteria'),[
             "aktif" => "criteria",
             "judul" => "Data Kriteria",
             "title" => "Kriteria",
-            "criterias"=> Criteria::orderBy('kode', 'asc')->get()
+            "criterias"=> Criteria::orderBy('kode', 'asc')->get(),
+           
              
 
         ]);
@@ -42,7 +44,7 @@ class CriteriaController extends Controller
     {
        
         $criteria = new Criteria;
-        return view('criteria.form', compact('criteria'), [
+        return view('criteria.form', compact('criteria'),  [
              "aktif" => "criteria",
              "judul" => "Data Kriteria",
              "title" => "Kriteria Tambah",
@@ -64,13 +66,20 @@ class CriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
+        $data = $request->validate([
             "kode" => "required",
             "nama" => "required",
-            "bobot" => "required",
+            "bobot" => "required|numeric",
             "tipe" => "required",
-       ]);
-        Criteria::create($request->all());
+       ], 
+        [
+            "kode.required" => "Kode Kriteria tidak boleh kosong",
+            "nama.required" => "Nama Kriteria tidak boleh kosong", 
+            "bobot.required" => "Bobot Kriteria tidak boleh kosong", 
+            "tipe.required" => "Jenis Kriteria tidak boleh kosong"
+        ]);
+
+        Criteria::create($data);
         Toastr::success("Anda berhasil menambahkan $request->nama");
         return redirect()->route('criteria.index');
         
@@ -116,7 +125,7 @@ class CriteriaController extends Controller
     public function update(UpdatecriteriaRequest $request, criteria $criteria, $id)
     {
         $criteria =  Criteria::find($id);
-        $data     = request()->validate([
+        $data     = $request->validate([
             "kode" => "required",
             "nama" => "required",
             "bobot" => "required",

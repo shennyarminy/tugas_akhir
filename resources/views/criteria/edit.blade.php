@@ -11,7 +11,7 @@
         </div>
 
         <div class="card-body">
-            <form action="{{ url('criteria/'. $criteria->id) }}" method="POST">
+            <form action="{{ url('criteria/'.$criteria->id) }}" method="POST">
               @csrf
               @method('PUT')
                 <input type="hidden" name="method" value="PATCH">

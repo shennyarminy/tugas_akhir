@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Criteria;
 use App\Models\Subcriteria;
-use Brian2694\Toastr\Toastr;
+use PhpParser\Node\Expr\New_;
+use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
+use phpDocumentor\Reflection\Types\This;
 use Doctrine\Inflector\Rules\Substitution;
 use Symfony\Component\HttpFoundation\Request;
 use App\Http\Requests\StoreSubcriteriaRequest;
 use App\Http\Requests\UpdateSubcriteriaRequest;
-use App\Models\Criteria;
 
 class SubcriteriaController extends Controller
 {
@@ -21,14 +24,19 @@ class SubcriteriaController extends Controller
      */
     public function index()
     {
-        // $subcriteria = Subcriteria::all();
-        return view('subcriteria.index', [
+
+    
+        $subcriteria = Subcriteria::all();
+        return view('subcriteria.index2', compact('subcriteria'), [
             "aktif" => "subcriteria",
             "judul" => "Data Subkriteria",
             "title" => "Subkriteria",
-            "subcriterias" => Subcriteria::all(),
-            "criterias" => Criteria::all()
+            "criterias"=> Criteria::orderBy('kode', 'asc')->get(),
+            
+    
+
         ]);
+
     }
 
     /**
@@ -38,14 +46,15 @@ class SubcriteriaController extends Controller
      */
     public function create()
     {
-       
-           
-            return view('subcriteria.create',  [
+
+          
+            return view('subcriteria.create', [
                 "aktif" => "subcriteria", 
                 "judul" => "Data Subkriteria",
                 "title" => "tambah Subkriteria",
-                "subcriterias" => Subcriteria::all(),
+                // "subcriterias" => Subcriteria::all(),
                 "criterias" => Criteria::all(),
+                
 
             ]);
     }
@@ -56,17 +65,29 @@ class SubcriteriaController extends Controller
      * @param  \App\Http\Requests\StoreSubcriteriaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public  function store(Request $request)
     {
-       $data = request()->validate([
-           "criteria_id" => "required",
-           "nama" => "required",
-           "nilai" => "required",
-       ]);
-       Subcriteria::create($request->all());
-
-       return redirect()->route('subcriteria.index')->withSuccess("Berhasil menambahkan murid: $request->nama");
-       
+        $data = $request->validate( [
+      
+           "namas" => "required",
+           "nilai" => "required|numeric",
+           "criteria_id" => "required|numeric"
+         
+        ],
+        [
+            "namas.required" => "Nama Subkriteria tidak boleh kosong",
+            "nilai.required" => "Nilai Subkriteria tidak boleh kosong", 
+            "criteria_id.required" => "Kriteria tidak boleh kosong",
+            "criteria_id.numeric" => "Kriteria tidak boleh kosong",
+        
+        ]
+    
+    );
+       Subcriteria::create($data);
+       Toastr::success("Anda berhasil menambahkan $request->namas");
+    
+        
+       return redirect()->route('subcriteria.index');
 
        
     }
@@ -88,9 +109,15 @@ class SubcriteriaController extends Controller
      * @param  \App\Models\Subcriteria  $subcriteria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subcriteria $subcriteria)
+    public function edit($id)
     {
-        //
+        $subcriteria = Subcriteria::find($id);
+        return view('subcriteria.edit', compact('subcriteria'), [
+            "aktif" => "subcriteria", 
+            "judul" => "Ubah Subkriteria", 
+            "title" => "Ubah Subkriteria",
+            "criterias" => Criteria::all(),
+        ]);
     }
 
     /**
@@ -100,9 +127,23 @@ class SubcriteriaController extends Controller
      * @param  \App\Models\Subcriteria  $subcriteria
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSubcriteriaRequest $request, Subcriteria $subcriteria)
+    public function update(UpdateSubcriteriaRequest $request, Subcriteria $subcriteria, $id)
     {
-        //
+        $subcriteria = Subcriteria::find($id);
+        $data       = $request->validate([
+            "namas" => "required", 
+            "nilai" => "required",
+            // "criteria_id" => "required",
+        ]);
+
+        $subcriteria->update([
+            "namas" => $request->namas,
+            "nilai" => $request->nilai,
+            // "criteria_id" => $request->criteria_id,
+        ]);
+        Toastr::success("Anda berhasil mengubah $subcriteria->namas");
+        return redirect()->route('subcriteria.index');
+
     }
 
     /**
@@ -111,8 +152,11 @@ class SubcriteriaController extends Controller
      * @param  \App\Models\Subcriteria  $subcriteria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcriteria $subcriteria)
+    public function destroy(Subcriteria $subcriteria, $id)
     {
-        //
+        $subcriteria = Subcriteria::find($id);
+        $subcriteria->delete();
+
+        return redirect()->route('subcriteria.index');
     }
 }

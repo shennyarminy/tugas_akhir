@@ -8,10 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Subcriteria extends Model
 {
     use HasFactory;
-    protected $guarded = [];
-    
+
+    protected $guarded = ['id'];
+
     public function criteria(){
         return $this->belongsTo(Criteria::class);
     }
 
+
 }
+
+// public function criteria(){
+//     return $this->belongsTo(Criteria::class);
+// }

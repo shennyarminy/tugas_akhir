@@ -3059,3 +3059,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 
 }
 
+.ml-auto {
+  margin-right: 2rem;
+margin-top: 1rem;}
+

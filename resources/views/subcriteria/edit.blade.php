@@ -9,26 +9,22 @@
 
         {{-- CARD HEADER --}}
         <div class="card-header">
-            <i class="fas fa-plus-circle"></i><h4>Tambah Data Subriteria</h4>
+            <i class="fas fa-plus-circle"></i><h4>Ubah Data Subriteria</h4>
         </div>
 
 
         {{-- CARD BODY --}}
         <div class="card-body">
-            <form action="{{ url('subcriteria') }}" method="POST">
+            <form action="{{ url('subcriteria/'. $subcriteria->id) }}" method="POST">
             @csrf
-
+            @method('PUT')
+            <input type="hidden" name="method" value="PATCH">
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="namas">Nama Subkriteria</label>
-                        <input type="text" name="namas" id="namas" class="form-control @error('namas') is-invalid @enderror" value="{{ old('namas') }}">
+                        <input type="text" name="namas" id="namas" class="form-control"  value="{{ $subcriteria->namas }}">
 
-                        @error('namas')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
                     </div>
 
                 </div>
@@ -36,37 +32,29 @@
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="nilai">Nilai Subkriteria</label>
-                        <input type="number" name="nilai" id="nilai" class="form-control @error('nilai') is-invalid @enderror" value="{{ old('nilai') }}">
-
-                        @error('nilai')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
-                </div>
-
-                <div class="col-12 col-lg-6">
-                    <div class="form-group">
-                        <label for="criteria_id">Kriteria</label>
-                        <select name="criteria_id" id="criteria_id" class="form-control @error('criteria_id') is-invalid @enderror">
-                            <option value="">--Pilih Kriteria--</option>
-                            @foreach ($criterias as $criteria)
-                            <option value="{{ $criteria->id }}">{{ $criteria->nama }}</option>
-                            @endforeach
-
-                            @error('criteria_id')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </select>
+                        <input type="number" name="nilai" id="nilai" class="form-control" value="{{ $subcriteria->nilai }}">
 
                        
                     </div>
 
                 </div>
+
+                {{-- <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="criteria_id">Kriteria</label>
+                        <select name="criteria_id" id="criteria_id" class="form-control">
+                            <option value=""> --Pilih Kriteria--</option>
+
+                            @foreach ($criterias as $criteria)
+                            <option value="{{ $criteria->id }}">{{ $criteria->nama }}</option>
+                            @endforeach
+
+                        </select>
+
+                       
+                    </div>
+
+                </div> --}}
             </div>
 
             {{-- CARD-FOOTER --}}

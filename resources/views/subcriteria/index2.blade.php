@@ -1,98 +1,128 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
 
-    <div class="row ">
-        <div class="col-12 ">
-            <div class="card">
-                <div class="card-body">
-                    <form action="{{route('borrow.store')}}" method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="">Murid</label>
-                                    <select class="form-control select2 @error('student_id') is-invalid @enderror" name="student_id">
-                                        @foreach ($students as $student)
-                                            <option value="{{$student->id}}">
-                                                {{$student->name}} <--> {{ $student->kelas->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                     @error('student_id')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="">Buku</label>
-                                    <select class="form-control select2 @error('book_id') is-invalid @enderror" name="book_id" id="book">
-                                        <option value="">-- Pilih Buku --</option>
-                                        @foreach ($books as $book)
-                                            <option value="{{$book->id}}">
-                                                {{$book->title}}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                     @error('book_id')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="">Kode Buku</label>
-                                    <select class="form-control @error('book_code_id') is-invalid @enderror" name="book_code_id" id="book_code">
-                                       <option value=""></option>
-                                    </select>
-                                     @error('book_code_id')
-                                        <div class="invalid-feedback">{{$message}}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 text-right">
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+
+<section class="section">
+  <div class="section-header">
+    <h1>{{ $judul }}</h1>
+    <a href="{{ url('subcriteria/create') }}" title="Tambah Subkriteria" class="btn btn-success ml-auto">Tambah Subkriteria</a>
+
+  </div>
+
+ 
+
+  {{-- PENGULANGAN UNTUK CARD TABEL KRITERIA --}}
+  @foreach ($criterias as $criteria)
+ 
+  {{-- @foreach ($subcriterias as $subcriteria) --}}
+
+  <div class="card">
+    
+
+    {{-- CARD HEADER --}}
+    <div class="card-header">
+      <i class="fas fa-table"></i><h4>({{ $criteria->kode }}) {{ $criteria->nama }} </h4>
+      <div class="card-header-action">
+       
+      
+      
+
+      </div>
     </div>
     
+{{-- TABLE --}}
+    <div class="card-body">
+      <div class="table-responsive">
+        <table  id=""  class="table table-striped display">
+          <thead >
+            <tr  >
+              <th class="col-1">No.</th>
+              <th class="col-3">Nama Subkriteria</th>
+              <th class="col-2">Nilai Subkriteria</th>
+              <th class="col-2">Aksi</th>
+             
+            </tr>
+          </thead>
+          <tbody >
+            {{-- FOREACH UNTUK SUBCRITERIA --}}
+            @foreach ($criteria->subcriterias as $subcriteria)
+            {{-- <table > --}}
+
+              <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $subcriteria->namas}}</td>
+                <td>{{ $subcriteria->nilai }}</td>
+                <td >
+
+                  {{-- EDIT SUBKRITERIA --}}
+
+                  <a href="{{ url('subcriteria/'.$subcriteria->id.'/edit') }}" title="Ubah Subkriteria" 
+                    class="btn btn-primary btn-sm">
+                    <i class="fas fa-pen"></i>
+                  </a>
+
+                  {{-- HAPUS SUBKRITERIA --}}
+                  <a href="#" data-id ="{{ $subcriteria->id }}" data-nama="{{ $subcriteria->namas }}" class="btn btn-danger btn-sm delete">
+                  <form action="{{ url('subcriteria/'.$subcriteria->id) }}" id="delete{{ $subcriteria->id }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  </form>
+                  <i class="fas fa-trash"></i>
+                  </a>
+
+                    
+                </td>
+             
+              </tr>
+            {{-- </table> --}}
+            @endforeach
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+  @endforeach
+  {{-- @endforeach --}}
+</section>
+
+{{-- DATATABLE --}}
+<script>
+  $(document).ready(function(){
+    $('table.display').DataTable({
+    
+      "paging":   false,
+      "ordering": false,
+      "info":     false,
+      "searching" : false,
+    })
+  })
+</script>
+
+{{-- ALERT HAPUS --}}
+<script>
+ $(".delete").click(function(){
+
+  var id= $(this).attr('data-id');
+  var nama = $(this).attr('data-nama');
+  swal({
+    title: 'Hapus Data Subkriteria '+nama,
+    icon: 'warning', 
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete){
+      swal('Berhasil dihapus', {
+        icon: 'success',
+      });
+      $(`#delete${id}`).submit();
+    }
+  });
+ });
+
+</script>
+
 @endsection
 
-@push('select2css')
-<link rel="stylesheet" href="{{asset('adminlte/plugins/select2/css/select2.min.css')}}">
-@endpush
 
-@push('script')
-    <script>
-        $('#book').change(function(){
-        var book_id = $(this).val();    
-        if(book_id){
-            $.ajax({
-            type:"GET",
-            url:"/get-book-code?book_id="+book_id,
-            dataType: 'JSON',
-            success:function(res){               
-                if(res){
-                    $("#book_code").empty();
-                    $.each(res, function(id, code){
-                        $("#book_code").append('<option value="'+id+'">'+code+'</option>');
-                    });
-                    }
-                }
-            });
-        }      
-        });
-    </script>
-
-    <script src="{{asset('adminlte/plugins/select2/js/select2.full.min.js')}}"></script>
-    <script >
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
-    </script>
-    
-@endpush

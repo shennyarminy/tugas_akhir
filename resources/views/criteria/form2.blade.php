@@ -129,3 +129,11 @@
     
     
     </form>
+
+
+  Subcriteria::create([
+        'criteria_id' => '2',
+        'namas' => 'bagus',
+        'nilai' => 3, 
+       
+    ])

@@ -18,7 +18,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="kode">Kode Kriteria</label>
-                        <input type="text" name="kode" id="kode" class="form-control @error('kode') is-invalid @enderror" value="{{ old('kode')?? $criteria->kode ?? '' }}" >
+                        <input type="text" name="kode" id="kode" class="form-control @error('kode') is-invalid @enderror" value="{{ old('kode') }}" >
 
                         @error('kode')
                         <div class="invalid-feedback">
@@ -31,7 +31,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="nama">Nama Kriteria</label>
-                        <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama')?? $criteria->nama ?? '' }}" >
+                        <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" >
 
                         @error('nama')
                         <div class="invalid-feedback">
@@ -44,7 +44,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="bobot">Bobot Kriteria</label>
-                        <input type="number" name="bobot" id="bobot" class="form-control @error('bobot') is-invalid @enderror" value="{{ old('bobot')?? $criteria->bobot ?? '' }}" >
+                        <input type="number" name="bobot" id="bobot" class="form-control @error('bobot') is-invalid @enderror" value="{{ old('bobot')}}" >
 
                         @error('bobot')
                         <div class="invalid-feedback">
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label for="tipe">Jenis Kriteria</label>
                         <select name="tipe" id="tipe" class="form-control @error('tipe') is-invalid @enderror">
-                            <option value="{{ $criteria->tipe }} ? 'selected' : '' ">--Jenis Kriteria--</option>
+                            <option value="">--Jenis Kriteria--</option>
                             <option value="benefit"{{ $criteria->tipe=="benefit" ? 'selected' : '' }}>Benefit</option>
                             <option value="cost"{{ $criteria->tipe=="cost" ? 'selected' : '' }}>Cost</option>
                         </select>

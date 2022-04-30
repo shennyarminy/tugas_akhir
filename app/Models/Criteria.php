@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Criteria extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
-    public function subcriteria(){
+    public function subcriterias(){
         return $this->hasMany(Subcriteria::class);
     }
-
 }
