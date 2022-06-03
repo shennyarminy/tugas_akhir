@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Criteria;
+use App\Models\Subcriteria;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubcriteriasTable extends Migration
+class CreateAlternatifsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,9 @@ class CreateSubcriteriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('subcriterias', function (Blueprint $table) {
-            $table->id(); 
-            $table->foreignId('criteria_id')->references('id')->on('criterias')->onDelete('cascade');
-            $table->string('namas');
-            $table->float('nilai');
+        Schema::create('alternatifs', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateSubcriteriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subcriterias');
+        Schema::dropIfExists('alternatifs');
     }
 }

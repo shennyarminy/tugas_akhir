@@ -2,11 +2,6 @@
 @extends('layouts.main')
 @section('content')
 
-
-
-
-
-
 <section class="section">
   <div class="section-header ">
     <h1>{{ $judul }}</h1>
@@ -17,7 +12,7 @@
   
   {{-- CARD HEADER TAMBAH DATA KRITERIA--}}
       <div class="card-header">
-        <i class="fas fa-plus"></i><h4>Tambah Data Kriteria</h4>
+        <i class="fas fa-plus"></i><h4>Daftar Data Kriteria</h4>
         <div class="card-header-action">
         <a href=" {{ url('criteria/create') }}" title="Tambah Kriteria" class="btn btn-success col-auto"> Tambah Kriteria</a>
         </div>
@@ -133,7 +128,7 @@
                     </div>
   
                     {{-- EDIT KRITERIA --}}
-                    <a href="{{url('criteria/'.$criteria->id.'/edit')}}" title="Ubah Buku"
+                    <a href="{{url('criteria/'.$criteria->id.'/edit')}}" title="Ubah Kriteria"
                               class=" btn btn-primary btn-sm ">
                               <i class="fas fa-pen"></i>
                     </a>

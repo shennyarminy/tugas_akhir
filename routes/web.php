@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-
+use App\Http\Controllers\AlternatifController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -34,5 +34,8 @@ Route::resource('criteria', CriteriaController::class);
 
 // SUBKRITERIA 
 Route::resource('subcriteria', SubcriteriaController::class);
+
+// ALTERNATIF
+Route::resource('alternatif', AlternatifController::class);
 
 

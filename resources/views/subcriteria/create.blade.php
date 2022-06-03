@@ -20,19 +20,16 @@
 
             <div class="row">
                 <div class="col-12 col-lg-6">
-                    <div class="form-group">
-                        <label for="namas">Nama Subkriteria</label>
-                        <input type="text" name="namas" id="namas" class="form-control @error('namas') is-invalid @enderror" value="{{ old('namas') }}">
+                    <label for="namas">Nama Subkriteria</label>
+                    <input type="text" name="namas" id="namas" class="form-control @error('namas') is-invalid @enderror" value="{{ old('namas') ?? $subcriteria->namas ?? '' }}">
 
-                        @error('namas')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
+                    @error('namas')
+                    <div class="invalid-feedback">
+                        {{ $message }}
                     </div>
-
+                    @enderror
                 </div>
-
+                
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <label for="nilai">Nilai Subkriteria</label>
@@ -84,4 +81,3 @@
 
 </section>
 @endsection
-

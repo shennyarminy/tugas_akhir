@@ -133,13 +133,13 @@ class SubcriteriaController extends Controller
         $data       = $request->validate([
             "namas" => "required", 
             "nilai" => "required",
-            // "criteria_id" => "required",
+          
         ]);
 
         $subcriteria->update([
             "namas" => $request->namas,
             "nilai" => $request->nilai,
-            // "criteria_id" => $request->criteria_id,
+           
         ]);
         Toastr::success("Anda berhasil mengubah $subcriteria->namas");
         return redirect()->route('subcriteria.index');

@@ -13,4 +13,8 @@ class Criteria extends Model
     public function subcriterias(){
         return $this->hasMany(Subcriteria::class);
     }
+
+    public function alternatifs(){
+        return $this->hasManyThrough(Alternatif::class, Subcriteria::class); 
+    }
 }

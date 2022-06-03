@@ -24,7 +24,7 @@ class CriteriaController extends Controller
     {
         
         $criteria = Criteria::all();
-        return view('criteria.index',compact('criteria'),[
+        return view('criteria.form2',compact('criteria'),[
             "aktif" => "criteria",
             "judul" => "Data Kriteria",
             "title" => "Kriteria",
@@ -104,15 +104,15 @@ class CriteriaController extends Controller
      */
     public function edit($id)
     {
-        $criteria =  Criteria::find($id);
-        return view('criteria.edit', compact('criteria'), [
-             "aktif" => "criteria",
-             "judul" => "Ubah Kriteria",
-             "title" => "Ubah Kriteria",
+        // $criteria =  Criteria::find($id);
+        // return view('criteria.edit', compact('criteria'), [
+        //      "aktif" => "criteria",
+        //      "judul" => "Ubah Kriteria",
+        //      "title" => "Ubah Kriteria",
            
              
            
-         ]);
+        //  ]);
     }
 
     /**

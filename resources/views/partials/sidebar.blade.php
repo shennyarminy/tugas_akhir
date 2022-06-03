@@ -19,13 +19,27 @@
               <li class="nav-item @if($aktif == 'subcriteria') {{ 'active' }}@endif">
                 <a href="{{ route('subcriteria.index') }}" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Sub Kriteria</span></a>
               </li>
-              <li class="nav-item dropdown">
+
+              <li class="nav-item @if($aktif == 'alternatif') {{ 'active' }}@endif">
+                <a href="{{ route('alternatif.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Data Alternatif</span></a>
+              </li>
+
+
+              {{-- <li class="nav-item @if($aktif == 'alternatif') {{ 'active' }}@endif dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Data Siswa</span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><i class="fas fa-users"></i><span>Data Alternatif</span></a></li>
+
+                  <li class="nav-item @if($aktif == 'alternatif') {{ 'active' }}@endif">
+                    <a href="{{ route('alternatif.index') }}" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Alternatif</span></a>
+                  </li>
+
+                  <li class="nav-item @if($aktif == 'alternatif') {{ 'active' }}@endif">
+                    <a href="#" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Penilaian</span></a>
+                  </li>
+
                   <li><a href="#"><i class="fas fa-edit"></i><span>Data Penilaian</span></a></li>
                 </ul>
-              </li>
+              </li> --}}
       
               <li class="nav-item">
                 <a href="#" class="nav-link"><i class="fas fa-calculator"></i><span>Data Perhitungan</span></a>
