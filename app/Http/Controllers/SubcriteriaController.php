@@ -25,18 +25,14 @@ class SubcriteriaController extends Controller
     public function index()
     {
 
-    
+
         $subcriteria = Subcriteria::all();
-        return view('subcriteria.index2', compact('subcriteria'), [
+        return view('subcriteria.index', compact('subcriteria'), [
             "aktif" => "subcriteria",
             "judul" => "Data Subkriteria",
             "title" => "Subkriteria",
-            "criterias"=> Criteria::orderBy('kode', 'asc')->get(),
-            
-    
-
+            "criterias" => Criteria::orderBy('kode', 'asc')->get(),
         ]);
-
     }
 
     /**
@@ -47,16 +43,15 @@ class SubcriteriaController extends Controller
     public function create()
     {
 
-          
-            return view('subcriteria.create', [
-                "aktif" => "subcriteria", 
-                "judul" => "Data Subkriteria",
-                "title" => "tambah Subkriteria",
-                // "subcriterias" => Subcriteria::all(),
-                "criterias" => Criteria::all(),
-                
+        return view('subcriteria.create', [
+            "aktif" => "subcriteria",
+            "judul" => "Data Subkriteria",
+            "title" => "tambah Subkriteria",
+            "subcriterias" => Subcriteria::all(),
+            "criterias" => Criteria::all(),
 
-            ]);
+
+        ]);
     }
 
     /**
@@ -67,29 +62,28 @@ class SubcriteriaController extends Controller
      */
     public  function store(Request $request)
     {
-        $data = $request->validate( [
-      
-           "namas" => "required",
-           "nilai" => "required|numeric",
-           "criteria_id" => "required|numeric"
-         
-        ],
-        [
-            "namas.required" => "Nama Subkriteria tidak boleh kosong",
-            "nilai.required" => "Nilai Subkriteria tidak boleh kosong", 
-            "criteria_id.required" => "Kriteria tidak boleh kosong",
-            "criteria_id.numeric" => "Kriteria tidak boleh kosong",
-        
-        ]
-    
-    );
-       Subcriteria::create($data);
-       Toastr::success("Anda berhasil menambahkan $request->namas");
-    
-        
-       return redirect()->route('subcriteria.index');
+        $data = $request->validate(
+            [
 
-       
+                "namas" => "required",
+                "nilai" => "required|numeric",
+                "criteria_id" => "required|numeric"
+
+            ],
+            [
+                "namas.required" => "Nama Subkriteria tidak boleh kosong",
+                "nilai.required" => "Nilai Subkriteria tidak boleh kosong",
+                "criteria_id.required" => "Kriteria tidak boleh kosong",
+                "criteria_id.numeric" => "Kriteria tidak boleh kosong",
+
+            ]
+
+        );
+        Subcriteria::create($data);
+        Toastr::success("Anda berhasil menambahkan $request->namas");
+
+
+        return redirect()->route('subcriteria.index');
     }
 
     /**
@@ -113,8 +107,8 @@ class SubcriteriaController extends Controller
     {
         $subcriteria = Subcriteria::find($id);
         return view('subcriteria.edit', compact('subcriteria'), [
-            "aktif" => "subcriteria", 
-            "judul" => "Ubah Subkriteria", 
+            "aktif" => "subcriteria",
+            "judul" => "Ubah Subkriteria",
             "title" => "Ubah Subkriteria",
             "criterias" => Criteria::all(),
         ]);
@@ -131,19 +125,18 @@ class SubcriteriaController extends Controller
     {
         $subcriteria = Subcriteria::find($id);
         $data       = $request->validate([
-            "namas" => "required", 
+            "namas" => "required",
             "nilai" => "required",
-          
+
         ]);
 
         $subcriteria->update([
             "namas" => $request->namas,
             "nilai" => $request->nilai,
-           
+
         ]);
         Toastr::success("Anda berhasil mengubah $subcriteria->namas");
         return redirect()->route('subcriteria.index');
-
     }
 
     /**

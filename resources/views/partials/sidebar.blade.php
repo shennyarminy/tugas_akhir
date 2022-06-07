@@ -50,7 +50,7 @@
     
               
               <li class="menu-header">Master User</li>
-              <li class="nav-item dropdown">
+              {{-- <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-users-cog"></i><span>Data User</span></a>
                 <ul class="dropdown-menu">
                   <li><a href="auth-forgot-password.html">Forgot Password</a></li>
@@ -59,7 +59,11 @@
                   <li><a href="auth-register.html">Register</a></li>
                   <li><a href="auth-reset-password.html">Reset Password</a></li>
                 </ul>
+              </li> --}}
+              <li class="nav-item @if($aktif == 'user') {{ 'active' }}@endif">
+                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-users-cog"></i><span>Data User</span></a>
               </li>
+
               <li class="nav-item">
                 <a href="#" class="nav-link"> <i class="fas fa-user"></i> <span>Data Profil</span></a>
               </li>

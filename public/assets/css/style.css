@@ -1221,7 +1221,7 @@ h6 .badge {
     margin-left: 0 !important; }
   .btn.btn-lg {
     padding: .55rem 1.5rem;
-    font-size: 12px; }
+    font-size: 14px; }
     .btn.btn-lg.btn-icon-split i {
       line-height: 42px; }
     .btn.btn-lg.btn-icon-split div {
@@ -3061,5 +3061,8 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 
 .ml-auto {
   margin-right: 2rem;
-margin-top: 1rem;}
+  margin-top: 1rem;
+
+}
+
 

@@ -20,7 +20,7 @@ class AlternatifController extends Controller
    */
   public function index()
   {
-    return view('alternatif.index2', [
+    return view('alternatif.index', [
       "aktif" => "alternatif",
       "judul" => "Data alternatif",
       "title" => "Alternatif",
@@ -38,7 +38,7 @@ class AlternatifController extends Controller
   public function create()
   {
     $alternatif = new Alternatif;
-    return view('alternatif.create2', compact('alternatif'), [
+    return view('alternatif.create', compact('alternatif'), [
       "aktif" => "alternatif",
       "judul" => "Data Alternatif",
       "title" => "Tambah Alternatif",

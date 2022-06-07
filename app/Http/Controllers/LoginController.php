@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Brian2694\Toastr\Facades\Toastr;
 
 class LoginController extends Controller
 {
+
+    public function login(){
+        return view('auth.login', [
+            "title" => "Login"
+           
+        ]);
+    }
     public function authenticate(Request $request)
     {
        $credentials = $request->validate([
@@ -15,17 +23,27 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
-            $request->only('email', 'password');
+            $request->session()->regenerate();
             return redirect()-> intended('/home');
         }
+        Toastr::error("Anda gagal melakukan login!");
+        return back();
+            
+        
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+    
+        return redirect('/login');
     }
     
-    public function login(){
-        return view('auth.login', [
-            "title" => "Login"
-           
-        ]);
-    }
+    
+
+   
 }
 
 

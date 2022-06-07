@@ -6,7 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SubcriteriaController;
+use App\Http\Controllers\UserController;
+use Illuminate\Foundation\Auth\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +24,13 @@ use App\Http\Controllers\SubcriteriaController;
 
 // LOGIN (AUTH)
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/login',  [LoginController::class, 'login']);
+
+// REGISTER
+Route::get('/register',  [RegisterController::class, 'index']);
+Route::post('/register',  [RegisterController::class, 'store']);
+
 
 // HOME (DASHBOARD)
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -38,4 +47,6 @@ Route::resource('subcriteria', SubcriteriaController::class);
 // ALTERNATIF
 Route::resource('alternatif', AlternatifController::class);
 
+// USER
+Route::resource('user', UserController::class);
 
