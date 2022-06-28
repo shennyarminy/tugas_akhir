@@ -22,4 +22,9 @@ class Alternatif extends Model
         return $this->hasMany(AlternatifDetail::class); 
     }
 
+    public function counts()
+    {
+      return $this->belongsTo(Count::class);
+    }
+
 }

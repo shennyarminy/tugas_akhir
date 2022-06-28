@@ -1,15 +1,16 @@
 <?php
 namespace App;
 
-use App\Http\Controllers\AlternatifController;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\SubcriteriaController;
-use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Auth\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,7 @@ Route::resource('alternatif', AlternatifController::class);
 
 // USER
 Route::resource('user', UserController::class);
+
+// COUNT
+Route::resource('count', CountController::class);
 

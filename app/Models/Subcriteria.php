@@ -20,5 +20,10 @@ class Subcriteria extends Model
         return $this->belongsToMany(Alternatif::class, 'alternatif_details', 'alternatif_id', 'subcriteria_id');
     }
 
+    public function counts()
+    {
+      return $this->belongsTo(Count::class);
+    }
+
 
 }
