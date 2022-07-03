@@ -14,6 +14,7 @@ use Doctrine\Inflector\Rules\Substitution;
 use Symfony\Component\HttpFoundation\Request;
 use App\Http\Requests\StoreSubcriteriaRequest;
 use App\Http\Requests\UpdateSubcriteriaRequest;
+use Database\Seeders\SubcriteriaSeeder;
 
 class SubcriteriaController extends Controller
 {
@@ -25,14 +26,30 @@ class SubcriteriaController extends Controller
     public function index()
     {
 
-
-        $subcriteria = Subcriteria::all();
-        return view('subcriteria.index', compact('subcriteria'), [
+        $data = DB::table('subcriterias')
+        ->join('criterias', 'criterias.id', '=', 'subcriterias.criteria_id')
+        ->select('subcriterias.*', 'criterias.kode')
+        ->orderBy('criterias.kode', 'asc')
+        ->get();
+   
+        return view('subcriteria.index')->with([
+          
+            
+            "data" => $data,
             "aktif" => "subcriteria",
             "judul" => "Data Subkriteria",
             "title" => "Subkriteria",
-            "criterias" => Criteria::orderBy('kode', 'asc')->get(),
+        
         ]);
+
+      
+        // return view('subcriteria.index', compact('subcriteria'), [
+        //     "aktif" => "subcriteria",
+        //     "judul" => "Data Subkriteria",
+        //     "title" => "Subkriteria",
+        //     "criterias" => Criteria::orderBy('kode', 'asc')->get(),
+        //     "subcriterias" => Subcriteria::get(),
+        // ]);
     }
 
     /**
@@ -43,12 +60,14 @@ class SubcriteriaController extends Controller
     public function create()
     {
 
+        
         return view('subcriteria.create', [
             "aktif" => "subcriteria",
             "judul" => "Data Subkriteria",
             "title" => "tambah Subkriteria",
             "subcriterias" => Subcriteria::all(),
             "criterias" => Criteria::all(),
+            "data"=> Criteria::orderBy('kode', 'asc')->get(),
 
 
         ]);
@@ -65,14 +84,14 @@ class SubcriteriaController extends Controller
         $data = $request->validate(
             [
 
-                "namas" => "required",
-                "nilai" => "required|numeric",
+                "nama_subcriteria" => "required",
+                "nilai_subcriteria" => "required|numeric",
                 "criteria_id" => "required|numeric"
 
             ],
             [
-                "namas.required" => "Nama Subkriteria tidak boleh kosong",
-                "nilai.required" => "Nilai Subkriteria tidak boleh kosong",
+                "nama_subcriteria.required" => "Nama Subkriteria tidak boleh kosong",
+                "nilai_subcriteria.required" => "Nilai Subkriteria tidak boleh kosong",
                 "criteria_id.required" => "Kriteria tidak boleh kosong",
                 "criteria_id.numeric" => "Kriteria tidak boleh kosong",
 
@@ -125,14 +144,16 @@ class SubcriteriaController extends Controller
     {
         $subcriteria = Subcriteria::find($id);
         $data       = $request->validate([
-            "namas" => "required",
-            "nilai" => "required",
+            "nama_subcriteria" => "required",
+            "nilai_subcriteria" => "required",
+            "criteria_id" => "required",
 
         ]);
 
         $subcriteria->update([
-            "namas" => $request->namas,
-            "nilai" => $request->nilai,
+            "nama_subcriteria" => $request->nama_subcriteria,
+            "nilai_subcriteria" => $request->nilai_subcriteria,
+            "criteria_id" => $request->criteria_id,
 
         ]);
         Toastr::success("Anda berhasil mengubah $subcriteria->namas");

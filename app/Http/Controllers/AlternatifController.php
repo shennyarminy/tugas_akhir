@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\StoreAlternatifRequest;
 use App\Http\Requests\UpdateAlternatifRequest;
+use App\Models\AlternatifDetail;
 use phpDocumentor\Reflection\Types\Nullable;
 
 class AlternatifController extends Controller
@@ -20,13 +21,30 @@ class AlternatifController extends Controller
    */
   public function index()
   {
-    return view('alternatif.index', [
+    $detail = AlternatifDetail::select(
+      'alternatif_details.id as id',
+      'alternatifs.id as alt',
+      'criterias.id as cri',
+      'subcriterias.id as sub',
+      'alternatifs.nama_alternatif as alt_nama', 
+      'criterias.nama_criteria as cri_nama',
+      'subcriterias.nama_subcriteria as sub_nama')
+      ->leftJoin('alternatifs', 'alternatifs.id', '=', 'alternatif_details.alternatif_id')
+      ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
+      ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')
+      ->get();
+
+      $alternatifs = Alternatif::get();
+      $criterias = Criteria::get();
+     
+
+
+    return view('alternatif.index',compact('detail', 'alternatifs', 'criterias'), [
       "aktif" => "alternatif",
       "judul" => "Data alternatif",
       "title" => "Alternatif",
-      "alternatifs" => Alternatif::all(),
-      "criterias" => Criteria::all(),
-      "subcriteria" => Subcriteria::all(),
+    
+      "subcriterias" => Subcriteria::all(),
     ]);
   }
 
@@ -37,14 +55,15 @@ class AlternatifController extends Controller
    */
   public function create()
   {
-    $alternatif = new Alternatif;
-    return view('alternatif.create', compact('alternatif'), [
+    $criterias = Criteria::get();
+    $subcriterias = Subcriteria::get();
+  
+    return view('alternatif.create', compact('criterias', 'subcriterias'), [
       "aktif" => "alternatif",
       "judul" => "Data Alternatif",
       "title" => "Tambah Alternatif",
-      "criterias" => Criteria::get(),
-      "subcriterias" => Subcriteria::get(),
       "alternatifs" => Alternatif::get(),
+      // "subcriterias" => Subcriteria::get(),
 
     ]);
   }
@@ -57,27 +76,33 @@ class AlternatifController extends Controller
    */
   public function store(StoreAlternatifRequest $request)
   {
-    $data = $request->validate(
-      [
-        "nama" => "required",
-        "subcriteria_id" => "required",
-      ],
-      
-    );
+   $request->validate([
+    "nama_alternatif" => "required",
+   
+   ]);
+  //  save alternatif
+  $alt = New Alternatif;
+  $alt->nama_alternatif = $request->nama_alternatif;
+  $alt->save();
 
-    $alternatif = Alternatif::create($request->only('nama'));
-    $alternatif->subcriterias()->sync($request->subcriteria_id);
+  // save detail
+  $criterias = Criteria::get();
+  foreach ($criterias as $criteria) {
+    $detail = new AlternatifDetail();
+    $detail->alternatif_id = $alt->id;
+    $detail->criteria_id = $criteria->id;
+    $detail->subcriteria_id = $request->input('criteria')[$criteria->id];
+    $detail->save();
 
-    foreach($alternatif->alternatif_details as $detail) {
-      $detail->update([
-        'criteria_id' => $detail->subcriteria->criteria_id
-      ]);
-    }
+  }
 
-    Toastr::success("Anda berhasil menambahkan $request->nama");
+    Toastr::success("Anda berhasil menambahkan $request->nama_alternatif");
 
     return redirect()->route('alternatif.index');
-  }
+    }
+
+   
+  
 
   /**
    * Display the specified resource.
@@ -98,7 +123,15 @@ class AlternatifController extends Controller
    */
   public function edit(Alternatif $alternatif)
   {
-    //
+    $criterias = Criteria::get();
+    $subcriterias = Subcriteria::get();
+    $alternatif_details = AlternatifDetail::where('alternatif_id', $alternatif->id)->get();
+    return view('alternatif.edit', compact('alternatif', 'alternatif_details', 'criterias', 'subcriterias'),[
+      "aktif" => "alternatif",
+      "judul" => "Data alternatif",
+      "title" => "Alternatif",
+
+    ]);
   }
 
   /**
@@ -108,32 +141,20 @@ class AlternatifController extends Controller
    * @param  \App\Models\Alternatif  $alternatif
    * @return \Illuminate\Http\Response
    */
-  public function update(UpdateAlternatifRequest $request,  $id)
+  public function update(UpdateAlternatifRequest $request, Alternatif $alternatif   )
   {
-    $alternatif = Alternatif::find($id);
-    $data = $request->validate([
-      "nama" => "required",
-      "subcriteria_id" => "required",
-    ]);
+   $detail = AlternatifDetail::where('alternatif_id', $alternatif->id)->get();
+   $criteria = Criteria::get();
 
+   foreach ($criteria as $key => $cri) {
+    $detail[$key]->subcriteria_id = $request->input('criteria')[$cri->id];
+    $detail[$key]->save();
+   }
 
-    $alternatif->update([
-      $alternatif->update($request->only(['nama'])),
-      $alternatif->subcriterias()->sync($request->subcriteria_id),
-      
     
-    ]);
-    foreach($alternatif->alternatif_details as $detail) {
-      $detail->update([
-        'criteria_id' => $detail->subcriteria->criteria_id
-      ]);
-    }
-    
-    
-
-
-    Toastr::success("Anda Berhasil mengubah $alternatif->nama");
-    return redirect()->route('alternatif.index');
+  
+    Toastr::success("Anda Berhasil mengubah $alternatif->nama_alternatif");
+    return redirect()->route('alternatif.index')->with('Alternatif updated');
   }
 
   /**
@@ -142,12 +163,12 @@ class AlternatifController extends Controller
    * @param  \App\Models\Alternatif  $alternatif
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy(Alternatif $alternatif)
   {
-    $alternatif = Alternatif::find($id);
+    $detail = AlternatifDetail::where('alternatif_id', $alternatif->id)->delete();
     $alternatif->delete();
     
 
-    return redirect()->route('alternatif.index')->withSuccess("Berhasil menghapus alternatif: $id");
+    return redirect()->route('alternatif.index')->withSuccess("Berhasil menghapus alternatif: $alternatif");
   }
 }

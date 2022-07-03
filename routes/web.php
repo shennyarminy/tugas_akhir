@@ -52,5 +52,6 @@ Route::resource('alternatif', AlternatifController::class);
 Route::resource('user', UserController::class);
 
 // COUNT
-Route::resource('count', CountController::class);
+Route::get('count.matrix', [CountController::class, 'matrix']);
+Route::get('count.normalization', [CountController::class, 'normalization']);
 

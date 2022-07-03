@@ -9,12 +9,14 @@ class Criteria extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $fillable = [
+        'kode', 
+        'nama_criteria', 
+        'bobot_criteria', 
+        'tipe',
 
-    public function subcriterias(){
-        return $this->hasMany(Subcriteria::class);
-    }
+    ];
 
-    public function alternatifs(){
-        return $this->hasManyThrough(Alternatif::class, Subcriteria::class); 
-    }
+  
+
 }

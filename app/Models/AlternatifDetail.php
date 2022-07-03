@@ -11,13 +11,19 @@ class AlternatifDetail extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function alternatif(){
-        return $this->belongsTo(Alternatif::class);
-    }
+    public $fillable = [
+        'alternatif_id',
+        'criteria_id',
+        'subcriteria_id',
+    ];
 
-    public function subcriteria(){
-        return $this->belongsTo(Subcriteria::class); 
-    }
+    // public function alternatif(){
+    //     return $this->belongsTo(Alternatif::class);
+    // }
+
+    // public function subcriteria(){
+    //     return $this->belongsTo(Subcriteria::class); 
+    // }
 
 
 }

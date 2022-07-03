@@ -28,6 +28,7 @@ class CriteriaController extends Controller
             "aktif" => "criteria",
             "judul" => "Data Kriteria",
             "title" => "Kriteria",
+            // "criterias" => Criteria::all(),
             "criterias"=> Criteria::orderBy('kode', 'asc')->get(),
            
              
@@ -48,7 +49,8 @@ class CriteriaController extends Controller
              "aktif" => "criteria",
              "judul" => "Data Kriteria",
              "title" => "Kriteria Tambah",
-             "criterias"=> Criteria::orderBy ('kode', 'asc')->get()
+            
+            //  "criterias"=> Criteria::orderBy ('kode', 'asc')->get()
          ]);
         
     }
@@ -62,19 +64,19 @@ class CriteriaController extends Controller
     {
         $data = $request->validate([
             "kode" => "required",
-            "nama" => "required",
-            "bobot" => "required|numeric",
+            "nama_criteria" => "required",
+            "bobot_criteria" => "required|numeric",
             "tipe" => "required",
        ], 
         [
             "kode.required" => "Kode Kriteria tidak boleh kosong",
-            "nama.required" => "Nama Kriteria tidak boleh kosong", 
-            "bobot.required" => "Bobot Kriteria tidak boleh kosong", 
+            "nama_criteria.required" => "Nama Kriteria tidak boleh kosong", 
+            "bobot_criteria.required" => "Bobot Kriteria tidak boleh kosong", 
             "tipe.required" => "Jenis Kriteria tidak boleh kosong"
         ]);
 
         Criteria::create($data);
-        Toastr::success("Anda berhasil menambahkan $request->nama");
+        Toastr::success("Anda berhasil menambahkan $request->nama_criteria");
         return redirect()->route('criteria.index');
         
     }
@@ -113,21 +115,21 @@ class CriteriaController extends Controller
         $criteria =  Criteria::find($id);
         $data     = $request->validate([
             "kode" => "required",
-            "nama" => "required",
-            "bobot" => "required",
+            "nama_criteria" => "required",
+            "bobot_criteria" => "required",
             "tipe" => "required",
         ]);
 
         $criteria->update([
             "kode" => $request->kode,
-            "nama" => $request->nama,
-            "bobot" => $request->bobot,
+            "nama_criteria" => $request->nama_criteria,
+            "bobot_criteria" => $request->bobot_criteria,
             "tipe" => $request->tipe,
 
         ]);
         
        
-        Toastr::success("Anda berhasil mengubah $criteria->nama");
+        Toastr::success("Anda berhasil mengubah $criteria->nama_criteria");
         return redirect()->route('criteria.index');
     }
 

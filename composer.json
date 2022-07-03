@@ -33,7 +33,14 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
+       
     },
+
+    "files": [
+        "app/Helpers/helpers.php"
+      ],
+
+      
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
