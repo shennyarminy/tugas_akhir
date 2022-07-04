@@ -37,10 +37,10 @@
     },
 
     "files": [
-        "app/Helpers/helpers.php"
+        "app/Helpers/Helper.php"
       ],
 
-      
+
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

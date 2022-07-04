@@ -28,7 +28,7 @@
                 <a href="{{ url('count.matrix') }}" class="nav-link">
                   <i class="fas fa-calculator"></i><span>Data Perhitungan</span></a>
               </li>
-              <li class="nav-item @if($aktif== 'count') {{ 'active' }}@endif">
+              <li class="nav-item @if($aktif== 'normalization') {{ 'active' }}@endif">
                 <a href="{{ url('count.normalization') }}" class="nav-link">
                   <i class="fas fa-calculator"></i><span>Normalisasi</span></a>
               </li>

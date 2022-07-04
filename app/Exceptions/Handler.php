@@ -2,8 +2,24 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use ErrorException;
+use SebastianBergmann\Diff\Exception;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
+// // Set a safe environment:
+// error_reporting(-1);
+
+// // Maps errors to ErrorException.
+// function my_error_handler($errno, $message)
+// { throw new ErrorException($message); }
+
+// try {
+//     echo 1/0;
+// }
+// catch(ErrorException $e){
+//     echo "got $e";
+// }
 
 class Handler extends ExceptionHandler
 {
@@ -12,6 +28,8 @@ class Handler extends ExceptionHandler
      *
      * @var array<int, class-string<Throwable>>
      */
+
+    
     protected $dontReport = [
         //
     ];
@@ -38,4 +56,7 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    
+    
 }
