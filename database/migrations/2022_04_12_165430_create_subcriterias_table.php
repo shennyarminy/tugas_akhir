@@ -17,6 +17,7 @@ class CreateSubcriteriasTable extends Migration
         Schema::create('subcriterias', function (Blueprint $table) {
             $table->id(); 
             $table->foreignId('criteria_id')->references('id')->on('criterias')->onDelete('cascade');
+           
             $table->string('nama_subcriteria');
             $table->float('nilai_subcriteria');
             $table->timestamps();

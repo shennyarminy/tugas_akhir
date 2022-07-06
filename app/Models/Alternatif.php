@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Alternatif extends Model
 {
     use HasFactory;
-    protected $guarded = ['id', 'criteria_id'];
+
+    protected $table = 'alternatifs';
     protected $fillable = ['nama_alternatif'];
+    public $timestamps = false;
     
    
     // public function subcriterias()

@@ -34,12 +34,13 @@ class CountController extends Controller
             ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')
             ->get();
       
-            $alternatifs = Alternatif::get();
+            $alternatif = Alternatif::get();
             $criterias = Criteria::get();
+            $Matrix = Helper::Matrix();
            
       
       
-          return view('count.matrix',compact('detail', 'alternatifs', 'criterias'), [
+          return view('count.matrix',compact('detail', 'alternatif', 'criterias', 'Matrix'), [
             "aktif" => "count",
             "judul" => "Data Matrix",
             "title" => "Matrix",
@@ -51,37 +52,50 @@ class CountController extends Controller
 
 
     public function Normalization(){
-      $detail = AlternatifDetail::select(
-        'alternatif_details.id as id',
-        'alternatifs.id as alt',
-        'criterias.id as cri',
-        'subcriterias.id as sub',
-        'alternatifs.nama_alternatif as alt_nama', 
-        'criterias.nama_criteria as cri_nama',
-        'subcriterias.nilai_subcriteria as sub_nilai')
-        ->leftJoin('alternatifs', 'alternatifs.id', '=', 'alternatif_details.alternatif_id')
-        ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
-        ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')
-        ->get();
-  
+      
 
      
       $alternatifs = Alternatif::get();
       $criterias = Criteria::get();
-      $alternatif_detail = AlternatifDetail::get();
-
-      $normalization = Helper::Normalization(); 
      
+      $Matrix = Helper::Matrix();
+      $Normalization = Helper::Normalization(); 
 
-        
-
-          return view('count.normalization', compact('normalization','detail', 'alternatif_detail', 'criterias', 'alternatifs'),[
+          return view('count.normalization', compact('Normalization', 'criterias', 'alternatifs', 'Matrix'),[
             "aktif" => "normalization",
             "judul" => "Normalization",
             "title" => "Normalization",
           ]);
 
 
+        }
+
+        public function optimization(){
+          $alternatif = Helper::getAlternatif();
+          $optimization = Helper::optimization();
+
+          return view('count.optimization', compact( 'alternatif', 'optimization'),[
+            "aktif" => "optimization",
+            "judul" => "optimization",
+            "title" => "optimization",
+          ]);
+
+        }
+
+        public function ranking(){
+          $alternatif = Helper::getAlternatif();
+          $optimization = Helper::optimization();
+
+          // mengurutkan data secara desc dengan tetap mempertahankan key/index arraynya 
+          asort($optimization);
+          // mendapatkan key/index item array yang pertama
+          $index = key($optimization);
+          $rank = 1;
+          return view('count.ranking', compact('alternatif', 'optimization', 'rank'), [
+            "aktif" => "ranking",
+            "judul" => "ranking",
+            "title" => "ranking",
+          ]);
         }
     }
 

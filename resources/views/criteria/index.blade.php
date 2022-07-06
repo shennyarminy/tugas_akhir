@@ -28,12 +28,14 @@
         <tbody>
 
       @foreach ($criterias as $criteria)
+      
       <tr>
         <td>{{ $loop->iteration }}</td>
         <td>{{ $criteria->kode}}</td>
         <td>{{ $criteria->nama_criteria}}</td>
         <td>{{ $criteria->bobot_criteria}}</td>
         <td>{{ $criteria->tipe}}</td>
+        
         <td >
         <!-- Button trigger modal -->
         <button type="button" title="Detail Kriteria" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal{{ $criteria->id }}" >

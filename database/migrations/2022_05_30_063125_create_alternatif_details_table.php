@@ -21,7 +21,7 @@ class CreateAlternatifDetailsTable extends Migration
             $table->foreignId('alternatif_id')->references('id')->on('alternatifs')->onDelete('cascade'); 
             $table->foreignId('criteria_id')->references('id')->on('criterias')->onDelete('cascade');
             $table->foreignId('subcriteria_id')->references('id')->on('subcriterias')->onDelete('cascade');
-         ;
+         
           
 
             

@@ -32,6 +32,7 @@ class AlternatifController extends Controller
       ->leftJoin('alternatifs', 'alternatifs.id', '=', 'alternatif_details.alternatif_id')
       ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
       ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')
+      
       ->get();
 
       $alternatifs = Alternatif::get();
@@ -141,10 +142,24 @@ class AlternatifController extends Controller
    * @param  \App\Models\Alternatif  $alternatif
    * @return \Illuminate\Http\Response
    */
-  public function update(UpdateAlternatifRequest $request, Alternatif $alternatif   )
+  public function update( UpdateAlternatifRequest $request,  $id )
   {
+  $alternatif = Alternatif::find($id);
    $detail = AlternatifDetail::where('alternatif_id', $alternatif->id)->get();
    $criteria = Criteria::get();
+  
+
+   $request->validate([
+    "nama_alternatif" => "required",
+   ]);
+   $alternatif->update([
+    $alternatif->update($request->only(['nama_alternatif'])),
+  ]);
+  
+  
+   
+
+   
 
    foreach ($criteria as $key => $cri) {
     $detail[$key]->subcriteria_id = $request->input('criteria')[$cri->id];

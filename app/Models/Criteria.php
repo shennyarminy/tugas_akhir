@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Criteria extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $table = 'criterias';
     protected $fillable = [
         'kode', 
         'nama_criteria', 

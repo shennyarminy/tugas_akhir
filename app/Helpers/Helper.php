@@ -5,6 +5,8 @@ use App\Models\Criteria;
 
 use App\Models\Alternatif;
 use App\Models\AlternatifDetail;
+use App\Models\Subcriteria;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 
@@ -12,8 +14,37 @@ use Illuminate\Support\Facades\DB;
 class Helper
 
 {
-  public static function Normalization(){
 
+  public static function getCriteria(){
+    // supaya menghindari divinder from zero dan memberikan nilai satu saat di dd 
+    // membuat nilai criteria menjadi satu, memfilter data menggunakan array
+    $getCriteria = Criteria::all();
+    $arrayCriteria = json_decode(json_encode($getCriteria), true);
+    $criteria = array();
+
+    foreach ($arrayCriteria as $row){
+      $criteria[$row['id']] = array($row['nama_criteria'], $row['tipe'], $row['bobot_criteria']);
+    }
+  
+    return $criteria;
+  }
+
+  public static function getAlternatif(){
+
+    $getAlternatif = Alternatif::all();
+    $arrayAlternatif = json_decode(json_encode($getAlternatif), true);
+    $alternatif = array();
+
+    foreach ($arrayAlternatif as $row){
+      $alternatif[$row['id']] = array($row['nama_alternatif']);
+    }
+     
+    return $alternatif;
+  }
+
+
+
+  public static function Matrix(){
 
     $detail = AlternatifDetail::select(
       'alternatif_details.id as id',
@@ -22,7 +53,7 @@ class Helper
       'subcriterias.id as sub',
       'alternatifs.nama_alternatif as alt_nama', 
       'criterias.nama_criteria as cri_nama',
-      'subcriterias.nama_subcriteria as sub_nama')
+      'subcriterias.nilai_subcriteria as sub_nilai')
       ->leftJoin('alternatifs', 'alternatifs.id', '=', 'alternatif_details.alternatif_id')
       ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
       ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')
@@ -30,30 +61,104 @@ class Helper
 
     
 
+    
 
+      
       $criteria = Criteria::get();
       $alternatif = Alternatif::get();
-      $alternatif_detail = AlternatifDetail::get();
-
-      $normalization = $detail; 
-      
-      foreach($criteria as $cri => $c ){
-
-      
     
-          $divider = 0;
-            foreach ($alternatif as $alt => $a){
-              $divider+= pow($alternatif_detail[$alt][$cri], 2);
-            }
+    //  berguna untuk memberikan nilai unk result 
+      $result = $detail;
+      //membuat matrix menjadi array  
+      $Matrix = array();
+      
+
+      foreach ($result as $score) {
+        // memasukkan nilai alternatif ke dalam alt array assosiatif yg sudah di masukkan ke variabel detail 
+        $alternatif = $score['alt'];
+        $criteria = $score['cri'];
+        $sub = $score['sub_nilai'];
+        // untuk nilai matrix 
+        $Matrix[$alternatif][$criteria] = $sub;
+      }
+     
+      return $Matrix;
+      } 
+
+
+     
+
+  public static function  Normalization(){
+    
+      
+      $alternatif = Helper::getAlternatif();
+      $criteria = Helper::getCriteria();
+      $Matrix = Helper::Matrix();
+      $Normalization = $Matrix;
+      
+      
+      
+      foreach ($criteria as $cri => $c) {
+        
+        $divider = 0;
 
         foreach ($alternatif as $alt => $a){
-          $normalization[$alt][$cri] /= sqrt($divider);
+          $divider += pow($Matrix[$alt][$cri], 2);
+          
         }
+
+        foreach ($alternatif as $alt => $a){
+          $Normalization[$alt][$cri] /= sqrt($divider);
+        }
+
+
+      }
       
+      return $Normalization;
+      
+
+
+
+   
     
+
+  
+
+
   }
 
-    return  $normalization;
+  public static function  optimization(){
+
+    $criteria = Helper::getCriteria();
+    $alternatif = Helper::getAlternatif();
+    $Normalization = Helper::Normalization();
+
+    $optimization = array();
+    foreach ($alternatif as $alt => $a){
+      $optimization[$alt] = 0;
+      foreach ($criteria as $cri => $c){
+        $optimization[$alt] += $Normalization[$alt][$cri] * ($c[1] == 'benefit' ? 1 : -1) * $c[2];
+        
+      }
+    }
+   
+      return $optimization; 
+    
+    }
+    
+    
+    
+
+
+
+ 
+  
+
+
+
 
 }
-}
+
+
+     
+

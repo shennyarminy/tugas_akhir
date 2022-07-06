@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AlternatifDetail extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $table = 'alternatif_details';
     public $timestamps = false;
+    
 
     public $fillable = [
         'alternatif_id',

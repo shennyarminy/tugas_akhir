@@ -19,7 +19,8 @@
           <div class="col-12">
             <div class="form-group">
                 <label for="nama_alternatif">Nama Alternatif</label>
-                <input type="text" name="nama_alternatif" id="nama_alternatif" class="form-control" value="{{ $alternatif->nama_alternatif }}">
+                <input type="text" name="nama_alternatif" id="nama_alternatif" class="form-control"
+                 value="{{ $alternatif->nama_alternatif }}">
             </div>
           </div>
           {{-- LOOPING UNTUK CRITERIA DAN SUBCRITERIA --}}
@@ -36,8 +37,9 @@
              
               @foreach ($nilai as $item)
               <option value="{{ $item->id }}"
-                {{ $item->id == $alternatif_details[$key]->subcriteria_id }}
-                >{{ $item->nama_subcriteria }}</option>
+                
+                {{ $item->id == $alternatif_details[$key]->subcriteria_id ? "selected=selected" : "" }}>
+                {{ $item->nama_subcriteria }}</option>
               @endforeach
 
             </select>

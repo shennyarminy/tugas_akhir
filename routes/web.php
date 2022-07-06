@@ -54,4 +54,6 @@ Route::resource('user', UserController::class);
 // COUNT
 Route::get('count.matrix', [CountController::class, 'matrix']);
 Route::get('count.normalization', [CountController::class, 'normalization']);
+Route::get('count.optimization', [CountController::class, 'optimization']);
+Route::get('count.ranking', [CountController::class, 'ranking']);
 

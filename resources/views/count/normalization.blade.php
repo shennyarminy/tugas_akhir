@@ -4,12 +4,11 @@
 <section class="section">
   <div class="section-header ">
     <h1>{{ $judul }}</h1>
-  
   </div>
 
   <div class="card">
     <div class="card-header">
-      <i class="fas fa-table"></i><h4>Matrix MOORA</h4>
+      <i class="fas fa-table"></i><h4>NORMALISASI</h4>
     </div>
 
     <div class="card-body">
@@ -17,24 +16,22 @@
         <table id="table-1" class="table table-striped">
           <thead>
             <tr>
-                <th>#</th>
-                <th>Name</th>
-                @foreach ($criterias as $c)
-                <th>{{$c->kode}}</th>
+                <th>Alternatif</th>
+                {{-- <th>Name</th> --}}
+                @foreach (array_keys(current($Matrix)) as $indexCriteria )
+                <th>C{{$indexCriteria}}</th>
+                
+                
                 @endforeach
                
             </tr>
         </thead>
         <tbody>
-            @foreach ($alternatifs as $a)
+            @foreach (array_keys($Matrix) as $indexAlternatif)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $a->nama_alternatif}}</td>
-                @php
-                $scr = $detail->where('alt', $a->id)->all();
-                @endphp
-                @foreach ($scr as $s)
-                  <td>{{$s->sub_nilai}}</td>
+                <td>A{{$indexAlternatif}}</td>
+                @foreach (array_keys($Matrix[$indexAlternatif]) as $indexCriteria)
+                  <td>{{ number_format((float)$Normalization[$indexAlternatif][$indexCriteria], 4, '.', '') }}</td>
                 @endforeach
             </tr>
             @endforeach

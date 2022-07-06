@@ -14,7 +14,7 @@ class Subcriteria extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $table = 'subcriterias';
 
     protected $fillable = [
         'criteria_id', 
