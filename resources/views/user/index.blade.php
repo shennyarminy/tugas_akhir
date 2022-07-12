@@ -16,10 +16,11 @@
           <thead>
             <tr>
               <th class="col-1">No.</th>
-              <th class="col-3">Nama</th>
-              <th class="col-3"> Username</th>
+              <th class="col-2">Nama</th>
+              <th class="col-2"> Username</th>
               <th class="col-3"> Email</th>
-              <th class="col-2">Aksi</th>            
+              <th class="col-2"> Level</th>
+              <th class="col-3">Aksi</th>            
             </tr>
           </thead>
           <tbody >          
@@ -29,6 +30,7 @@
               <td>{{ $user->nama}}</td>
               <td>{{ $user->username }}</td>
               <td>{{ $user->email }}</td>
+              <td>{{ $user->roles }}</td>
               <td >
                 {{-- EDIT USER --}}
                 <a href="{{ url('user/'.$user->id.'/edit') }}" title="Ubah User" class="btn btn-primary btn-sm">

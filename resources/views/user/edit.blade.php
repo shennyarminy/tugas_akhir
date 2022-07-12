@@ -38,10 +38,27 @@
       <div class="col-12 col-lg-6">
         <div class="form-group">
           <label for="password">Password</label>
-          <input id="password" type="password" name="password" class="form-control" value="{{ $user->password }}"  >
-           
+          <input id="password" type="password" name="password" class="form-control" value="{{ $user->password }}"  >      
         </div>
       </div>
+      
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <label for="roles" class="form-label">Level</label>
+          <select name="roles" class="form-control">
+            <option value="" disabled selected>-- Pilih --</option>
+            <option value="ADMIN" {{ old('roles') && old('roles') == 'ADMIN' ? 'selected' : '' }}
+            {{ $data->roles == 'ADMIN' ? 'selected' : '' }}
+                >ADMIN
+            </option>
+            <option value="DM" {{ old('roles') && old('roles') == 'DM' ? 'selected' : '' }}
+            {{ $data->roles == 'DM' ? 'selected' : '' }}
+                >DM
+            </option>
+        </select>
+        </div>
+      </div>
+
       </div>
       <div class="card-footer text-right">
         <a href="{{ url('user') }}" class="btn btn-danger float">Batal</a>

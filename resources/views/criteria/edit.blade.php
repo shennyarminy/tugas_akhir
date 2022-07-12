@@ -1,4 +1,4 @@
-@extends('layouts.name')
+@extends('layouts.main')
 @section('content')
 <section class="section">
   <div class="section-header">
@@ -35,7 +35,7 @@
             <div class="col-12 col-lg-6">
                 <div class="form-group">
                     <label for="bobot_criteria">Bobot Kriteria</label>
-                    <input type="number" min="0.01"  max="1.00" step="0.01" value="0.00" name="bobot_criteria" id="bobot_criteria" class="form-control" 
+                    <input type="number" min="0.01"  max="1.00"  name="bobot_criteria" id="bobot_criteria" class="form-control" 
                     value="{{ $criteria->bobot_criteria  }}" >
                 </div>
             </div>

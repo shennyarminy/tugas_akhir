@@ -35,12 +35,13 @@ class AlternatifController extends Controller
       
       ->get();
 
-      $alternatifs = Alternatif::get();
+      $alternatif = Alternatif::get();
       $criterias = Criteria::get();
+      $alternatif_details = AlternatifDetail::get();
      
 
 
-    return view('alternatif.index',compact('detail', 'alternatifs', 'criterias'), [
+    return view('alternatif.index2',compact('detail', 'alternatif', 'criterias', 'alternatif_details'), [
       "aktif" => "alternatif",
       "judul" => "Data alternatif",
       "title" => "Alternatif",

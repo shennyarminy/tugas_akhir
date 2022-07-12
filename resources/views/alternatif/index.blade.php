@@ -18,7 +18,7 @@
           <thead>
             <tr>
                 <th>No.</th>
-                <th>Name</th>
+                <th>Nama Alternatif</th>
                 @foreach ($criterias as $c)
                 <th>{{$c->kode}}</th>
                 @endforeach

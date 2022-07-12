@@ -54,7 +54,8 @@ class UserController extends Controller
             'nama' => 'required|max:255', 
             'username' => 'required|min:3|max:255|unique:users',
             'email' => 'required|email|unique:users', 
-            'password' => 'required|min:5|max:255'
+            'password' => 'required|min:5|max:255',
+            'roles' => 'required'
        ]);
 
        User::create($data);
@@ -103,13 +104,15 @@ class UserController extends Controller
             'nama' => 'required|max:255', 
             'username' => 'required|min:3|max:255|unique:users',
             'email' => 'required|email|unique:users', 
-            'password' => 'required|min:5|max:255'
+            'password' => 'required|min:5|max:255',
+            'roles' => 'required',
        ]);
        $user->update([
         'nama' => 'required|max:255', 
         'username' => 'required|min:3|max:255|unique:users',
         'email' => 'required|email|unique:users', 
-        'password' => 'required|min:5|max:255'
+        'password' => 'required|min:5|max:255',
+        'roles' => 'required'
        ]);
 
        Toastr::success("Anda berhasil mengubah $user->nama");

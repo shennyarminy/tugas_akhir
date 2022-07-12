@@ -37,13 +37,17 @@
         <td>{{ $criteria->tipe}}</td>
         
         <td >
+          <a href="{{url('criteria/'.$criteria->id.'/edit')}}" title="Ubah Kriteria"
+            class=" btn btn-primary btn-sm ">
+            <i class="fas fa-pen"></i>
+          </a>
         <!-- Button trigger modal -->
         <button type="button" title="Detail Kriteria" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal{{ $criteria->id }}" >
           <i class="fas fa-eye"></i>
         </button>
-        <button type="button" title="Edit Kriteria" class="d-inline btn btn-primary btn-sm " data-toggle="modal" data-target="#Modal{{ $criteria->id }}" >
+        {{-- <button type="button" title="Edit Kriteria" class="d-inline btn btn-primary btn-sm " data-toggle="modal" data-target="#Modal{{ $criteria->id }}" >
             <i class="fas fa-edit"></i>
-        </button>
+        </button> --}}
 
         <!-- MODAL VIEW KRITERIA -->
         <div class="modal fade" id="exampleModal{{ $criteria->id }}" tabindex="-1"
@@ -116,79 +120,9 @@
           </div>
         </div>
 
-        {{-- EDIT KRITERIA --}}
-        <div class="modal fade" id="Modal{{ $criteria->id }}" tabindex="-1"
-            data-backdrop="static" data-keyboard="false" aria-labelledby="ModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title  w-100 text-center" id="ModalLabel">{{ $criteria->nama }}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="modal{{  $criteria->id }}" role="tabpanel" aria-labelledby="modal{{  $criteria->id }}">
 
-                        <form action="{{ url('criteria/'.$criteria->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                          <input type="hidden" name="method" value="PATCH">
-                          <div class="row">
-                              <div class="col-12">
-                                  <div class="form-group">
-                                      <label for="kode">Kode Kriteria</label>
-                                      <input type="text" name="kode" id="kode" class="form-control" 
-                                      value="{{ $criteria->kode }}">
-                                      
-                                  </div>
-                              </div>
-          
-                              <div class="col-12">
-                                  <div class="form-group">
-                                      <label for="nama_criteria">Nama Kriteria</label>
-                                      <input type="text" name="nama_criteria" id="nama_criteria" class="form-control"
-                                      value="{{ $criteria->nama_criteria }}" >
-                                  </div>
-                              </div>
-          
-                              <div class="col-12">
-                                  <div class="form-group">
-                                      <label for="bobot_criteria">Bobot Kriteria</label>
-                                      <input type="number" min="0.01"  max="1.00" step="0.01" value="0.00" name="bobot_criteria" id="bobot_criteria" class="form-control" 
-                                      value="{{ $criteria->bobot_criteria  }}" >
-          
-                                  </div>
-                              </div>
-          
-                              <div class="col-12">
-                                  <div class="form-group">
-                                      <label for="tipe">Jenis Kriteria</label>
-                                      <select name="tipe" id="tipe" class="form-control ">
-                                          <option value="{{ $criteria->tipe }} ">--Jenis Kriteria--</option>
-                                          <option value="benefit"{{ $criteria->tipe=="benefit" ? 'selected' : '' }}>Benefit</option>
-                                          <option value="cost"{{ $criteria->tipe=="cost" ? 'selected' : '' }}>Cost</option>
-                                      </select>
-                                  
-                                  </div>
-                              </div>
-                              
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                          </div>
-                          
-          
-                      </form>
-                      </div>
-                    </div>
-                  </div>                      
-                </div>
-              </div>
-            </div>
-      {{-- HAPUS KRITERIA --}}
+      
+            {{-- HAPUS KRITERIA --}}
       <a href="#" data-id = "{{ $criteria->id }}" data-nama="{{ $criteria->nama_criteria }}"  class="btn btn-danger btn-sm delete">
           <form action="{{ url('criteria/'.$criteria->id) }}" id="delete{{ $criteria->id }}" method="POST">
             @csrf

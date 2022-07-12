@@ -43,13 +43,7 @@ class SubcriteriaController extends Controller
         ]);
 
       
-        // return view('subcriteria.index', compact('subcriteria'), [
-        //     "aktif" => "subcriteria",
-        //     "judul" => "Data Subkriteria",
-        //     "title" => "Subkriteria",
-        //     "criterias" => Criteria::orderBy('kode', 'asc')->get(),
-        //     "subcriterias" => Subcriteria::get(),
-        // ]);
+      
     }
 
     /**

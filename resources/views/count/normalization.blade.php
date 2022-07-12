@@ -13,7 +13,7 @@
 
     <div class="card-body">
       <div class="table-responsive">
-        <table id="table-1" class="table table-striped">
+        <table id="table-1" class="table table-striped display">
           <thead>
             <tr>
                 <th>Alternatif</th>
@@ -43,6 +43,16 @@
   </div>
 
 </section>
+<script>
+  $(document).ready(function(){
+    $('table.display').DataTable({
+      "paging":   false,
+      // "ordering": false,
+      // "info":     false,
+      // "searching" : false,
+    })
+  })
+</script>
 
 
   

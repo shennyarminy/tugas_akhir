@@ -100,7 +100,13 @@ class CriteriaController extends Controller
      */
     public function edit($id)
     {
-        
+        $criteria =  Criteria::find($id);
+        return view('criteria.edit', compact('criteria'), [
+             "aktif" => "criteria",
+             "judul" => "Ubah Kriteria",
+             "title" => "Ubah Kriteria",
+
+         ]);
     }
 
     /**
