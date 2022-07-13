@@ -4,12 +4,12 @@
 <section class="section">
   <div class="section-header ">
     <h1>{{ $judul }}</h1>
-    <a href="{{ url('count.cetak') }}" title="Cetak Data" class="btn btn-primary ml-auto">Cetak Data</a>
+    <a href="{{ url('result.cetak') }}" target="_blank" title="Cetak Data" class="btn btn-primary ml-auto">Cetak Data</a>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <i class="fas fa-table"></i><h4>HASIL AKHIR</h4>
+      <i class="fas fa-table"></i><h4>DATA HASIL AKHIR</h4>
     </div>
 
     <div class="card-body">

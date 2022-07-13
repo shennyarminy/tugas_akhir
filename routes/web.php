@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AlternatifController;
@@ -55,5 +56,7 @@ Route::resource('user', UserController::class);
 Route::get('count.matrix', [CountController::class, 'matrix']);
 Route::get('count.normalization', [CountController::class, 'normalization']);
 Route::get('count.optimization', [CountController::class, 'optimization']);
-Route::get('count.ranking', [CountController::class, 'ranking']);
 
+// RESULT
+Route::get('result.hasil', [ResultController::class, 'ranking']);
+Route::get('result.cetak', [ResultController::class, 'cetak']);

@@ -45,11 +45,13 @@
                                     <a href="{{ url('count.optimization') }}" class="nav-link">
                                       <i class="fas fa-calculator"></i><span>Optimisasi</span></a>
                                   </li>
-                                  <li class="nav-item @if($aktif== 'ranking') {{ 'active' }}@endif">
-                                    <a href="{{ url('count.ranking') }}" class="nav-link">
-                                      <i class="fas fa-poll"></i><span>Data Hasil Akhir</span></a>
-                                  </li>
+                                  
                                 </ul>
+                        </li>
+
+                        <li class="nav-item @if($aktif== 'ranking') {{ 'active' }}@endif">
+                          <a href="{{ url('result.hasil') }}" class="nav-link">
+                            <i class="fas fa-poll"></i><span>Data Hasil Akhir</span></a>
                         </li>
       
             

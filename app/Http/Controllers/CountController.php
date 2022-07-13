@@ -80,23 +80,11 @@ class CountController extends Controller
 
         }
 
-        public function ranking(){
-          $alternatif = Helper::getAlternatif();
-          $optimization = Helper::optimization();
+      
 
-          // mengurutkan data secara desc dengan tetap mempertahankan key/index arraynya 
-          asort($optimization);
-          // mendapatkan key/index item array yang pertama
-          $index = key($optimization);
-          $rank = 1;
-          return view('count.ranking', compact('alternatif', 'optimization', 'rank'), [
-            "aktif" => "ranking",
-            "judul" => "ranking",
-            "title" => "ranking",
-          ]);
-        }
+       
     }
 
 
 
-
+    
