@@ -56,7 +56,7 @@
 <script>
   $(document).ready(function() {
       $('#table-1').DataTable( {
-          "order":[[ 1, "asc" ]] 
+          // "order":[[ 1, "asc" ]] 
       } );
   } );
   </script>
