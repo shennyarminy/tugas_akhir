@@ -32,6 +32,7 @@ class CountController extends Controller
             ->leftJoin('alternatifs', 'alternatifs.id', '=', 'alternatif_details.alternatif_id')
             ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
             ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')
+            
             ->get();
       
             $alternatif = Alternatif::get();

@@ -33,6 +33,7 @@ class AlternatifController extends Controller
       ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
       ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')
       
+      
       ->get();
 
       $alternatif = Alternatif::get();

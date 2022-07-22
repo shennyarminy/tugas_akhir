@@ -40,7 +40,7 @@
 <script>
   $(document).ready(function(){
     $('table.display').DataTable({
-      "paging":   false,
+      // "paging":   false,
       // "ordering": false,
       // "info":     false,
       // "searching" : false,

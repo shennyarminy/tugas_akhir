@@ -46,13 +46,17 @@
 <script>
   $(document).ready(function(){
     $('table.display').DataTable({
-      "paging":   false,
+      columnDefs: [
+          { 'natural', targets: [ 0, 1 ]}
+        ]
+      // "paging":   false,
       // "ordering": false,
       // "info":     false,
-      // "searching" : false,
+      "searching" : true,
     })
   })
 </script>
+
 
 
   

@@ -14,33 +14,21 @@
 
  <!-- Template CSS -->
  
- <link rel="stylesheet" href=" {{ asset('assets/css/style.css') }}">
+ <link rel="stylesheet" href=" {{ asset('assets/css/style2.css') }}">
  <link rel="stylesheet" href="{{ asset('/assets/css/components.css') }}">
  
  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800" type="text/css" media="all">
  
 
  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
- {{-- <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/1.12.1/sorting/natural.js"> --}}
- 
-  
 
-
- 
- 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
  
- 
- <script scr="https://cdn.datatables.net/plug-ins/1.12.1/sorting/natural.js"></script>
  {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> --}}
 
  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-
- 
- 
- 
-
+ <script scr="https://cdn.datatables.net/plug-ins/1.12.1/sorting/natural.js"></script>
 
 </head>
 

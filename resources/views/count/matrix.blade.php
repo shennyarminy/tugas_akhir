@@ -7,6 +7,10 @@
   
   </div>
 
+  
+   
+
+ 
   <div class="card">
     <div class="card-header">
       <i class="fas fa-table"></i><h4>Matrix MOORA</h4>
@@ -73,9 +77,11 @@
             </tr>
         </thead>
         <tbody>
+
             @foreach (array_keys($Matrix) as $indexAlternatif)
             <tr>
                 <td>A{{$indexAlternatif}}</td>
+               
                 
                 @foreach (array_keys($Matrix[$indexAlternatif]) as $indexCriteria)
                   <td>{{$Matrix[$indexAlternatif][$indexCriteria]}}</td>
@@ -92,14 +98,24 @@
 
   <script>
     $(document).ready(function(){
+      // $('table.display').DataTable({
+      //   "paging":   false,
+      //   // "ordering": false,
+      //   // "info":     false,
+      //   // "searching" : false,
+      // })
+  
       $('table.display').DataTable({
-        "paging":   false,
-        // "ordering": false,
-        // "info":     false,
-        // "searching" : false,
-      })
+        columnDefs: [
+          { 'natural', targets: [ 0, 1 ]}
+        ]
+         "ordering": true,
+         "info":     true,
+         "searching" : true,
+      });
     })
   </script>
+  
 </section>
 
 
