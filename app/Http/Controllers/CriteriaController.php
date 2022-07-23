@@ -50,7 +50,7 @@ class CriteriaController extends Controller
              "judul" => "Data Kriteria",
              "title" => "Kriteria Tambah",
             
-            //  "criterias"=> Criteria::orderBy ('kode', 'asc')->get()
+             "criterias"=> Criteria::orderBy ('kode', 'asc')->get()
          ]);
         
     }
@@ -65,7 +65,7 @@ class CriteriaController extends Controller
         $data = $request->validate([
             "kode" => "required",
             "nama_criteria" => "required",
-            "bobot_criteria" => "required|numeric",
+            "bobot_criteria" => "required",
             "tipe" => "required",
        ], 
         [

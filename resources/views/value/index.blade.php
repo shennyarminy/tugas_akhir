@@ -4,12 +4,12 @@
 <section class="section">
   <div class="section-header ">
     <h1>{{ $judul }}</h1>
-    <a href="{{ url('alternatif/create') }}" title="Tambah Siswa" class="btn btn-success ml-auto">Tambah Siswa</a>
+    <a href="{{ url('value/create') }}" title="Tambah Penilaian" class="btn btn-success ml-auto">Tambah Penilaian</a>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <i class="fas fa-table"></i><h4>Daftar Data Siswa</h4>
+      <i class="fas fa-table"></i><h4>Daftar Data Penilaian</h4>
     </div>
 
     <div class="card-body">
@@ -37,13 +37,13 @@
                   <td>{{$s->sub_nama}}</td>
                 @endforeach
                 <td>
-                  <a href="{{ url('alternatif/'.$a->id.'/edit') }}" title="Ubah Subkriteria" 
+                  <a href="{{ url('value/'.$a->id.'/edit') }}" title="Ubah Subkriteria" 
                     class="btn btn-primary btn-sm">
                     <i class="fas fa-pen"></i>
                   </a>
                   {{-- HAPUS SUBKRITERIA --}}
                   <a href="#" data-id = "{{ $a->id }}" data-nama="{{ $a->nama_alternatif }}"  class="btn btn-danger btn-sm delete">
-                    <form action="{{ route('alternatif.destroy',$a->id)  }}" id="delete{{ $a->id }}" method="POST">
+                    <form action="{{ route('value.destroy',$a->id)  }}" id="delete{{ $a->id }}" method="POST">
                       @csrf
                       @method('DELETE')
                     </form>
@@ -76,7 +76,7 @@
     var id = $(this).attr('data-id');
     var nama_alternatif = $(this).attr('data-nama');
     swal({
-        title: 'Hapus Data Alternatif '+nama_alternatif,
+        title: 'Hapus Data Penilaian '+nama_alternatif,
         // text: 'Once deleted, you will not be able to recover this imaginary file! ',
         icon: 'warning',
         buttons: true,

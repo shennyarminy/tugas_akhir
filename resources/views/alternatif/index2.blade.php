@@ -4,12 +4,12 @@
 <section class="section">
   <div class="section-header ">
     <h1>{{ $judul }}</h1>
-    <a href="{{ url('alternatif/create') }}" title="Tambah Alternatif" class="btn btn-success ml-auto">Tambah Alternatif</a>
+    <a href="{{ url('alternatif/create') }}" title="Tambah Siswa" class="btn btn-success ml-auto">Tambah Siswa</a>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <i class="fas fa-table"></i><h4>Daftar Data Alternatif</h4>
+      <i class="fas fa-table"></i><h4>Daftar Data Siswa</h4>
     </div>
 
     <div class="card-body">
@@ -18,7 +18,7 @@
           <thead>
             <tr>
                 <th>No.</th>
-                <th>Nama Alternatif</th>
+                <th>Nama Siswa</th>
                 {{-- @foreach ($criterias as $c)
                 <th>{{$c->kode}}</th>
                 @endforeach --}}
@@ -61,7 +61,7 @@
                                 <div class="row">
                                   <div class="col-12 ">
                                     <div class="form-group">
-                                        <label  for="nama_alternatif">Nama Alternatif</label>
+                                        <label  for="nama_alternatif">Nama Siswa</label>
                                         <input type="text" name="nama_alternatif" id="nama_alternatif" class="form-control"
                                          value="{{ $a->nama_alternatif }}">
                                     </div>

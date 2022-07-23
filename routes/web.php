@@ -14,6 +14,8 @@ use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\SubcriteriaController;
+use App\Http\Controllers\ValueController;
+use App\Models\Alternatif;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,21 +50,32 @@ Route::post('/register',  [AuthController::class, 'store']);
 // Route::get('/', [HomeController::class, 'home'])->name('home');
 
 
+
+
 Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('auth');
 
 
 // KRITERIA
-Route::resource('criteria', CriteriaController::class)->middleware('auth');
+Route::resource('criteria', CriteriaController::class);
 
 
 // SUBKRITERIA 
 Route::resource('subcriteria', SubcriteriaController::class);
 
-// ALTERNATIF
+// ALTERNATIF(DATA SISWA)
 Route::resource('alternatif', AlternatifController::class);
+
+// PENILAIAN
+Route::resource('value', ValueController::class);
+
+
+
+// PENILAIAN
+// Route::get('value.index', [ValueController::class, 'index'])->name('value.index');
 
 // USER
 Route::resource('user', UserController::class);
+
 
 // COUNT
 Route::get('count.matrix', [CountController::class, 'matrix']);

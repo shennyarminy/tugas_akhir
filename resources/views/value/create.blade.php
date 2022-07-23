@@ -8,16 +8,16 @@
     <div class="card">
         {{-- CARD HEADER --}}
         <div class="card-header">
-            <i class="fas fa-plus-circle"></i><h4>Tambah Data Alternatif</h4>
+            <i class="fas fa-plus-circle"></i><h4>Tambah Data Penilaian</h4>
         </div>
 
         <div class="card-body">
-            <form action="{{ route('alternatif.store') }}" method="POST">
+            <form action="{{ route('value.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="nama_alternatif">Nama Alternatif</label>
+                            <label for="nama_alternatif">Nama Siswa</label>
                             <input type="text" name="nama_alternatif" id="nama_alternatif" class="form-control @error('nama_alternatif') is-invalid @enderror" value="{{ old('nama_alternatif') }}">
 
                             @error('nama_alternatif')
@@ -40,7 +40,7 @@
                             @endphp
                             <option value="">--Pilih--</option>
                             @foreach ($nilai as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama_subcriteria }} ({{ $item->nilai_subcriteria }})</option>
+                            <option value="{{ $item->id }}">{{ $item->nama_subcriteria }}</option>
                             @endforeach
                         </select>
                         </div>   
@@ -50,7 +50,7 @@
                 {{-- CARD FOOTER SUBMIT --}}
 
                 <div class="card-footer text-right ml-auto">
-                    <a href="{{ url('alternatif') }}" class="btn btn-danger float">Batal</a>
+                    <a href="{{ url('value') }}" class="btn btn-danger float">Batal</a>
                     <button type="submit" class="btn btn-primary float success"> Submit</button>
 
                 </div>

@@ -8,11 +8,11 @@
   <div class="card">
     {{-- CARD HEADER --}}
     <div class="card-header">
-      <i class="fas fa-plus-circle"></i><h4>Tambah Data Alternatif</h4>
+      <i class="fas fa-plus-circle"></i><h4>Tambah Data Penilaian</h4>
     </div>
 
     <div class="card-body">
-      <form action="{{ route('alternatif.update', $alternatif->id) }}" method="POST">
+      <form action="{{ route('value.update', $value->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="row">
@@ -23,8 +23,8 @@
                  value="{{ $alternatif->nama_alternatif }}">
             </div>
           </div>
-
           {{-- LOOPING UNTUK CRITERIA DAN SUBCRITERIA --}}
+          
           @foreach ($criterias as $key => $cri)
           <div class="col-12 col-lg-6">
             <div class="form-group">
@@ -33,12 +33,11 @@
               name="criteria[{{ $cri->id }}]"> 
               @php
                   $nilai = $subcriterias->where('criteria_id', $cri->id)->all();
-                  // diambil dari sql
               @endphp
              
               @foreach ($nilai as $item)
               <option value="{{ $item->id }}"
-    
+                
                 {{ $item->id == $alternatif_details[$key]->subcriteria_id ? "selected=selected" : "" }}>
                 {{ $item->nama_subcriteria }}</option>
               @endforeach
@@ -51,7 +50,7 @@
         {{-- CARD FOOTER SUBMIT --}}
 
         <div class="card-footer text-right ml-auto">
-          <a href="{{ url('alternatif') }}" class="btn btn-danger float">Batal</a>
+          <a href="{{ url('value') }}" class="btn btn-danger float">Batal</a>
           <button type="submit" class="btn btn-primary float success"> Submit</button>
         </div>
       </form>

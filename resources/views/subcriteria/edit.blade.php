@@ -29,7 +29,7 @@
           <div class="col-12 ">
             <div class="form-group">
               <label for="nilai_subcriteria">NILAI SUBKRITERIA</label>
-              <input type="number" min="1" max="5" name="nilai_subcriteria" id="nilai_subcriteria" class="form-control" value="{{ $subcriteria->nilai_subcriteria }}">
+              <input type="number" min="10" max="50" step="10" name="nilai_subcriteria" id="nilai_subcriteria" class="form-control" value="{{ $subcriteria->nilai_subcriteria }}">
             </div>   
           </div>
           <div class="col-12 ">

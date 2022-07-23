@@ -39,13 +39,11 @@ class AlternatifController extends Controller
       $alternatif = Alternatif::get();
       $criterias = Criteria::get();
       $alternatif_details = AlternatifDetail::get();
-     
-
 
     return view('alternatif.index2',compact('detail', 'alternatif', 'criterias', 'alternatif_details'), [
       "aktif" => "alternatif",
-      "judul" => "Data alternatif",
-      "title" => "Alternatif",
+      "judul" => "Data Siswa",
+      "title" => "Data Siswa",
     
       "subcriterias" => Subcriteria::all(),
     ]);
