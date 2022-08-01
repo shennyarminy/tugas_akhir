@@ -28,7 +28,7 @@ class CriteriaSeeder extends Seeder
             'kode' => 'C2',
             'nama_criteria' => 'PEKERJAAN IBU',
             'bobot_criteria' => 0.15,
-            'tipe' => 'cost',
+            'tipe' => 'benefit',
         ]);
 
         Criteria::create([

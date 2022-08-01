@@ -14,12 +14,12 @@ class AlternatifDetailSeeder extends Seeder
      */
     public function run()
     {
-        // AlternatifDetail::create([
+        AlternatifDetail::create([
             
-        //     'alternatif_id' => 1,
-        //     'criteria_id' => 3,
-        //     'subcriteria_id' => 2,
+            'alternatif_id' => 1,
+            'criteria_id' => 3,
+            'subcriteria_id' => 2,
             
-        // ]);
+        ]);
     }
 }

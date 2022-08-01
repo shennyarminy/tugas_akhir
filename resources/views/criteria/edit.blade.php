@@ -18,7 +18,7 @@
           <div class="col-12 col-lg-6">
               <div class="form-group">
                   <label for="kode">Kode Kriteria</label>
-                  <input type="text" name="kode" id="kode" class="form-control" disabled
+                  <input type="text" name="kode" id="kode" class="form-control" readonly
                   value="{{ $criteria->kode }}">
                   
               </div>
@@ -27,7 +27,7 @@
           <div class="col-12 col-lg-6">
               <div class="form-group">
                   <label for="nama_criteria">Nama Kriteria</label>
-                  <input type="text" name="nama_criteria" id="nama_criteria" class="form-control" disabled
+                  <input type="text" name="nama_criteria" id="nama_criteria" class="form-control" readonly
                   value="{{ $criteria->nama_criteria }}" >
               </div>
           </div>

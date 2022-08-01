@@ -28,7 +28,7 @@
           @foreach ($criterias as $key => $cri)
           <div class="col-12 col-lg-6">
             <div class="form-group">
-              <label for="criteria[{{ $cri->id }}]">{{ $cri->nama_criteria }}</label>
+              <label for="criteria[{{ $cri->id }}]">{{ $cri->nama_criteria }}({{ $cri->kode }})</label>
               <select class="form-control" id="criteria[{{ $cri->id }}]"
               name="criteria[{{ $cri->id }}]"> 
               @php
@@ -40,7 +40,7 @@
               <option value="{{ $item->id }}"
     
                 {{ $item->id == $alternatif_details[$key]->subcriteria_id ? "selected=selected" : "" }}>
-                {{ $item->nama_subcriteria }}</option>
+                {{ $item->nama_subcriteria }}({{ $item->nilai_subcriteria }})</option>
               @endforeach
 
             </select>

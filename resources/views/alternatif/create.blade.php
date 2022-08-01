@@ -32,7 +32,7 @@
                     @foreach ($criterias as $criteria)
                     <div class="col-12 col-lg-6">
                         <div class="form-group">
-                            <label for="criteria[{{ $criteria->id }}]">{{ $criteria->nama_criteria }}</label>
+                            <label for="criteria[{{ $criteria->id }}]">{{ $criteria->nama_criteria }}({{ $criteria->kode }})</label>
                             <select class="form-control" id="criteria[{{ $criteria->id }}]"
                             name="criteria[{{ $criteria->id }}]"> 
                             @php
