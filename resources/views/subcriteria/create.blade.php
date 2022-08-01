@@ -13,9 +13,9 @@
       @csrf
       <div class="row">
           <div class="col-12 col-lg-6">
-              <label for="namas">Nama Subkriteria</label>
-              <input type="text" name="namas" id="namas" class="form-control @error('namas') is-invalid @enderror" value="{{ old('namas') ?? $subcriteria->namas ?? '' }}">
-              @error('namas')
+              <label for="nama_subcriteria">Nama Subkriteria</label>
+              <input type="text" name="nama_subcriteria" id="nama_subcriteria" class="form-control @error('nama_subcriteria') is-invalid @enderror" value="{{ old('nama_subcriteria') ?? $subcriteria->nama_subcriteria ?? '' }}">
+              @error('nama_subcriteria')
               <div class="invalid-feedback">
                   {{ $message }}
               </div>
@@ -24,9 +24,9 @@
       
           <div class="col-12 col-lg-6">
               <div class="form-group">
-                  <label for="nilai">Nilai Subkriteria</label>
-                  <input type="number" name="nilai" id="nilai" class="form-control @error('nilai') is-invalid @enderror" value="{{ old('nilai') }}">
-                  @error('nilai')
+                  <label for="nilai_subcriteria">Nilai Subkriteria</label>
+                  <input type="number" name="nilai_subcriteria" id="nilai_subcriteria" class="form-control @error('nilai_subcriteria') is-invalid @enderror" value="{{ old('nilai_subcriteria') }}">
+                  @error('nilai_subcriteria')
                   <div class="invalid-feedback">
                       {{ $message }}
                   </div>
@@ -40,7 +40,7 @@
                   <select name="criteria_id" id="criteria_id" class="form-control @error('criteria_id') is-invalid @enderror">
                       <option value="">--Pilih Kriteria--</option>
                       @foreach ($criterias as $criteria)
-                      <option value="{{ $criteria->id }}">{{ $criteria->nama }}</option>
+                      <option value="{{ $criteria->id }}">{{ $criteria->nama_criteria }}</option>
                       @endforeach
 
                       @error('criteria_id')

@@ -29,10 +29,10 @@
 
       <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label for="nama">Nama Kriteria</label>
-            <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" >
+            <label for="nama_criteria">Nama Kriteria</label>
+            <input type="text" name="nama_criteria" id="nama_criteria" class="form-control @error('nama_criteria') is-invalid @enderror" value="{{ old('nama_criteria') }}" >
 
-            @error('nama')
+            @error('nama_criteria')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
@@ -42,9 +42,9 @@
 
       <div class="col-12 col-lg-6">
         <div class="form-group">
-            <label for="bobot">Bobot Kriteria</label>
-            <input type="number" name="bobot" id="bobot" class="form-control @error('bobot') is-invalid @enderror" value="{{ old('bobot')}}" >       
-            @error('bobot')
+            <label for="bobot_criteria">Bobot Kriteria</label>
+            <input type="number" name="bobot_criteria" id="bobot_criteria" class="form-control @error('bobot_criteria') is-invalid @enderror" value="{{ old('bobot_criteria')}}" >       
+            @error('bobot_criteria')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>

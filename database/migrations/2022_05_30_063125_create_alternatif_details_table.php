@@ -19,6 +19,8 @@ class CreateAlternatifDetailsTable extends Migration
         Schema::create('alternatif_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('alternatif_id')->references('id')->on('alternatifs')->onDelete('cascade'); 
+           
+            
             $table->foreignIdFor(Criteria::class)->nullable(); 
             $table->foreignId('subcriteria_id')->nullable()->references('id')->on('subcriterias')->onDelete('cascade');
          ;

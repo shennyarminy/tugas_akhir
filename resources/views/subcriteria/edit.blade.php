@@ -16,15 +16,15 @@
           <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="form-group">
-                    <label for="namas">Nama Subkriteria</label>
-                    <input type="text" name="namas" id="namas" class="form-control"  value="{{ $subcriteria->namas }}">
+                    <label for="nama_subcriteria">Nama Subkriteria</label>
+                    <input type="text" name="nama_subcriteria" id="nama_subcriteria" class="form-control"  value="{{ $subcriteria->nama_subcriteria }}">
                 </div>
             </div>
 
             <div class="col-12 col-lg-6">
               <div class="form-group">
-                <label for="nilai">Nilai Subkriteria</label>
-                <input type="number" name="nilai" id="nilai" class="form-control" value="{{ $subcriteria->nilai }}">
+                <label for="nilai_subcriteria">Nilai Subkriteria</label>
+                <input type="number" name="nilai_subcriteria" id="nilai_subcriteria" class="form-control" value="{{ $subcriteria->nilai_subcriteria }}">
               </div>
             </div>
           </div>

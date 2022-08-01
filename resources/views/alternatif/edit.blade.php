@@ -11,44 +11,45 @@
             <i class="fas fa-plus-circle"></i><h4>Tambah Data Alternatif</h4>
         </div>
 
-        <div class="card-body">
-            <form action="{{ url('alternatif/') }}" method="POST">
+        <div class="card-body"> 
+            <form action="{{ url('alternatif/'.$alternatif->id) }}" method="POST">
             @csrf
-
             <div class="row">
-            
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="nama_alternatif">Nama Alternatif</label>
-                        <input type="text" name="nama_alternatif" id="nama_alternatif" class="form-control @error('nama_alternatif') is-invalid @enderror" value="{{ old('nama_alternatif') }}">
+                        <label for="nama">Nama Alternatif</label>
+                        <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}">
 
-                        @error('nama_alternatif')
+                        @error('nama')
                         {{ $message }}
                         <div class="invalid-feedback"> 
                         </div>
                         @enderror
                     </div>
+
                 </div>
+
+
+
+
+
                 {{-- LOOPING UNTUK CRITERIA DAN SUBCRITERIA --}}
-                
+
                 @foreach ($criterias as $criteria)
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
-                        <label for="criteria[{{ $criteria->id }}]">{{ $criteria->nama_criteria }}</label>
-                        <select class="form-control" id="criteria[{{ $criteria->id }}]"
-                        name="criteria[{{ $criteria->id }}]"> 
-                        @php
-                            $nilai = $subcriterias->where('criteria_id', $criteria->id)->all();
-                        @endphp
+                        <label for="criteria_id" name="criteria_id" >{{ $criteria->nama }}</label>
+
+                        <select class="form-control @error('subcriteria_id') is-invalid @enderror"
+                        name="subcriteria_id[]">
                         <option value="">--Pilih--</option>
-                        @foreach ($nilai as $item)
-                        <option value="{{ $item->id }}">{{ $item->nama_subcriteria }} ({{ $item->nilai_subcriteria }})</option>
+                        @foreach ($criteria->subcriterias as $subcriteria)
+                        <option value="{{ $subcriteria->id }}">{{ $subcriteria->namas }}</option>
                         @endforeach
                     </select>
-                    </div>   
+                    </div>
                 </div>
                 @endforeach
-            </div> 
 
                 {{-- CARD FOOTER SUBMIT --}}
 
@@ -62,6 +63,3 @@
     </div>
 
 </section>
-
-
-@endsection

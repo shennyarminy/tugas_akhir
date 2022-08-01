@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Criteria;
 use App\Models\Alternatif;
 use App\Models\Subcriteria;
+use App\Models\AlternatifDetail;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use phpDocumentor\Reflection\Types\Nullable;
 use App\Http\Requests\StoreAlternatifRequest;
 use App\Http\Requests\UpdateAlternatifRequest;
-use phpDocumentor\Reflection\Types\Nullable;
 
 class AlternatifController extends Controller
 {
@@ -19,8 +21,37 @@ class AlternatifController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function index()
+
   {
-    return view('alternatif.index', [
+    $detail = AlternatifDetail::select(
+      'alternatif_details.id as id',
+      'alternatifs.id as alt',
+      'criterias.id as cri',
+      'subcriterias.id as sub',
+      'alternatifs.nama_alternatif as alt_nama',
+      'criterias.nama_criteria as cri_nama',
+      'subcriterias.nama_subcriteria as sub_nama'
+    )
+      ->leftJoin('alternatifs', 'alternatifs.id', '=', 'alternatif_details.alternatif_id')
+      ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
+      ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')->get();
+
+
+    $alternatif = Alternatif::get();
+    $criterias = Criteria::get();
+    $alternatif_details = AlternatifDetail::get();
+
+    // foreach ($alternatif as $alternatif) {
+    //   foreach ($alternatif->subcriterias as $it) {
+    //     dd($it);
+    //   }
+    // }
+
+
+
+
+
+    return view('alternatif.index2', compact('detail', 'alternatif', 'criterias', 'alternatif_details'), [
       "aktif" => "alternatif",
       "judul" => "Data alternatif",
       "title" => "Alternatif",
@@ -57,24 +88,28 @@ class AlternatifController extends Controller
    */
   public function store(StoreAlternatifRequest $request)
   {
-    $data = $request->validate(
-      [
-        "nama" => "required",
-        "subcriteria_id" => "required",
-      ],
-      
-    );
+    $request->validate([
+      "nama_alternatif" => "required",
 
-    $alternatif = Alternatif::create($request->only('nama'));
-    $alternatif->subcriterias()->sync($request->subcriteria_id);
+    ]);
 
-    foreach($alternatif->alternatif_details as $detail) {
-      $detail->update([
-        'criteria_id' => $detail->subcriteria->criteria_id
-      ]);
+
+    //  save alternatif
+    $alt = new Alternatif;
+    $alt->nama_alternatif = $request->nama_alternatif;
+    $alt->save();
+
+    // save detail
+    $criterias = Criteria::get();
+    foreach ($criterias as $criteria) {
+      $detail = new AlternatifDetail();
+      $detail->alternatif_id = $alt->id;
+      $detail->criteria_id = $criteria->id;
+      $detail->subcriteria_id = $request->input('criteria')[$criteria->id];
+      $detail->save();
     }
 
-    Toastr::success("Anda berhasil menambahkan $request->nama");
+    Toastr::success("Anda berhasil menambahkan $request->nama_alternatif");
 
     return redirect()->route('alternatif.index');
   }
@@ -112,27 +147,24 @@ class AlternatifController extends Controller
   {
     $alternatif = Alternatif::find($id);
     $data = $request->validate([
-      "nama" => "required",
+      "nama_alternatif" => "required",
       "subcriteria_id" => "required",
     ]);
 
 
     $alternatif->update([
-      $alternatif->update($request->only(['nama'])),
+      $alternatif->update($request->only(['nama_alternatif'])),
       $alternatif->subcriterias()->sync($request->subcriteria_id),
-      
-    
     ]);
-    foreach($alternatif->alternatif_details as $detail) {
+
+    // UNTUK CRITERIA
+    foreach ($alternatif->alternatif_details as $detail) {
       $detail->update([
         'criteria_id' => $detail->subcriteria->criteria_id
       ]);
     }
-    
-    
 
-
-    Toastr::success("Anda Berhasil mengubah $alternatif->nama");
+    Toastr::success("Anda Berhasil mengubah $alternatif->nama_alternatif");
     return redirect()->route('alternatif.index');
   }
 
@@ -146,8 +178,6 @@ class AlternatifController extends Controller
   {
     $alternatif = Alternatif::find($id);
     $alternatif->delete();
-    
-
     return redirect()->route('alternatif.index')->withSuccess("Berhasil menghapus alternatif: $id");
   }
 }

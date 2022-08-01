@@ -65,14 +65,14 @@ class SubcriteriaController extends Controller
         $data = $request->validate(
             [
 
-                "namas" => "required",
-                "nilai" => "required|numeric",
+                "nama_subcriteria" => "required",
+                "nilai_subcriteria" => "required|numeric",
                 "criteria_id" => "required|numeric"
 
             ],
             [
-                "namas.required" => "Nama Subkriteria tidak boleh kosong",
-                "nilai.required" => "Nilai Subkriteria tidak boleh kosong",
+                "nama_subcriteria.required" => "Nama Subkriteria tidak boleh kosong",
+                "nilai_subcriteria.required" => "Nilai Subkriteria tidak boleh kosong",
                 "criteria_id.required" => "Kriteria tidak boleh kosong",
                 "criteria_id.numeric" => "Kriteria tidak boleh kosong",
 
@@ -80,7 +80,7 @@ class SubcriteriaController extends Controller
 
         );
         Subcriteria::create($data);
-        Toastr::success("Anda berhasil menambahkan $request->namas");
+        Toastr::success("Anda berhasil menambahkan $request->nama_subcriteria");
 
 
         return redirect()->route('subcriteria.index');
@@ -125,17 +125,17 @@ class SubcriteriaController extends Controller
     {
         $subcriteria = Subcriteria::find($id);
         $data       = $request->validate([
-            "namas" => "required",
-            "nilai" => "required",
+            "nama_subcriteria" => "required",
+            "nilai_subcriteria" => "required",
 
         ]);
 
         $subcriteria->update([
-            "namas" => $request->namas,
-            "nilai" => $request->nilai,
+            "nama_subcriteria" => $request->nama_subcriteria,
+            "nilai_subcriteria" => $request->nilai_subcriteria,
 
         ]);
-        Toastr::success("Anda berhasil mengubah $subcriteria->namas");
+        Toastr::success("Anda berhasil mengubah $subcriteria->nama_subcriteria");
         return redirect()->route('subcriteria.index');
     }
 

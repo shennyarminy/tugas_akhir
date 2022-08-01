@@ -1,4 +1,3 @@
-
 @extends('layouts.main')
 @section('content')
 
@@ -31,8 +30,8 @@
       <tr>
         <td>{{ $loop->iteration }}</td>
         <td>{{ $criteria->kode}}</td>
-        <td>{{ $criteria->nama}}</td>
-        <td>{{ $criteria->bobot}}</td>
+        <td>{{ $criteria->nama_criteria}}</td>
+        <td>{{ $criteria->bobot_criteria}}</td>
         <td>{{ $criteria->tipe}}</td>
         <td >
         <!-- Button trigger modal -->
@@ -49,7 +48,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title  w-100 text-center" id="exampleModalLabel">{{ $criteria->nama }}</h4>
+                <h4 class="modal-title  w-100 text-center" id="exampleModalLabel">{{ $criteria->nama_criteria }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -82,7 +81,7 @@
                           </div>
                           <div class="col-6">
                             <p class="card-text">
-                              : &nbsp; {{ $criteria->nama }}
+                              : &nbsp; {{ $criteria->nama_criteria }}
                             </p>
                           </div>
                           <div class="col-6">
@@ -90,7 +89,7 @@
                           </div>
                           <div class="col-6">
                             <p class="card-text">
-                              : &nbsp; {{ $criteria->bobot }}
+                              : &nbsp; {{ $criteria->bobot_criteria }}
                             </p>
                           </div>
                           <div class="col-6">
@@ -120,7 +119,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title  w-100 text-center" id="ModalLabel">{{ $criteria->nama }}</h4>
+                    <h4 class="modal-title  w-100 text-center" id="ModalLabel">{{ $criteria->nama_criteria }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -145,17 +144,17 @@
           
                               <div class="col-12">
                                   <div class="form-group">
-                                      <label for="nama">Nama Kriteria</label>
-                                      <input type="text" name="nama" id="nama" class="form-control"
-                                      value="{{ $criteria->nama }}" >
+                                      <label for="nama_criteria">Nama Kriteria</label>
+                                      <input type="text" name="nama_criteria" id="nama_criteria" class="form-control"
+                                      value="{{ $criteria->nama_criteria }}" >
                                   </div>
                               </div>
           
                               <div class="col-12">
                                   <div class="form-group">
-                                      <label for="bobot">Bobot Kriteria</label>
-                                      <input type="number" name="bobot" id="bobot" class="form-control" 
-                                      value="{{ $criteria->bobot  }}" >
+                                      <label for="bobot_criteria">Bobot Kriteria</label>
+                                      <input type="number" name="bobot_criteria" id="bobot_criteria" class="form-control" 
+                                      value="{{ $criteria->bobot_criteria  }}" >
           
                                   </div>
                               </div>
@@ -187,7 +186,7 @@
               </div>
             </div>
       {{-- HAPUS KRITERIA --}}
-      <a href="#" data-id = "{{ $criteria->id }}" data-nama="{{ $criteria->nama }}"  class="btn btn-danger btn-sm delete">
+      <a href="#" data-id = "{{ $criteria->id }}" data-nama="{{ $criteria->nama_criteria }}"  class="btn btn-danger btn-sm delete">
           <form action="{{ url('criteria/'.$criteria->id) }}" id="delete{{ $criteria->id }}" method="POST">
             @csrf
             @method('DELETE')
@@ -217,9 +216,9 @@ $(document).ready(function() {
 $(".delete").click(function() {
 
   var id = $(this).attr('data-id');
-  var nama = $(this).attr('data-nama');
+  var nama_criteria = $(this).attr('data-nama');
   swal({
-      title: 'Hapus Data Kriteria '+nama,
+      title: 'Hapus Data Kriteria '+nama_criteria,
       // text: 'Once deleted, you will not be able to recover this imaginary file! ',
       icon: 'warning',
       buttons: true,

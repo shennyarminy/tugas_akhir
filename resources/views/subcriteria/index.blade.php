@@ -13,7 +13,7 @@
   @foreach ($criterias as $criteria)
   <div class="card">
     <div class="card-header">
-      <i class="fas fa-table"></i><h4>({{ $criteria->kode }}) {{ $criteria->nama }} </h4>
+      <i class="fas fa-table"></i><h4>({{ $criteria->kode }}) {{ $criteria->nama_criteria }} </h4>
       <div class="card-header-action">
       </div>
     </div>
@@ -24,6 +24,7 @@
           <thead >
             <tr  >
               <th class="col-1">No.</th>
+              <th class="col-1"> Kode Kriteria</th>
               <th class="col-3">Nama Subkriteria</th>
               <th class="col-2">Nilai Subkriteria</th>
               <th class="col-2">Aksi</th>     
@@ -34,8 +35,9 @@
             @foreach ($criteria->subcriterias as $subcriteria)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $subcriteria->namas}}</td>
-                <td>{{ $subcriteria->nilai }}</td>
+                <td>{{ $subcriteria->criteria->kode }}</td>
+                <td>{{ $subcriteria->nama_subcriteria}}</td>
+                <td>{{ $subcriteria->nilai_subcriteria }}</td>
                 <td >
                   {{-- EDIT SUBKRITERIA --}}
                   <a href="{{ url('subcriteria/'.$subcriteria->id.'/edit') }}" title="Ubah Subkriteria" 
@@ -44,7 +46,7 @@
                   </a>
 
                   {{-- HAPUS SUBKRITERIA --}}
-                  <a href="#" data-id ="{{ $subcriteria->id }}" data-nama="{{ $subcriteria->namas }}" class="btn btn-danger btn-sm delete">
+                  <a href="#" data-id ="{{ $subcriteria->id }}" data-nama="{{ $subcriteria->nama_subcriteria }}" class="btn btn-danger btn-sm delete">
                   <form action="{{ url('subcriteria/'.$subcriteria->id) }}" id="delete{{ $subcriteria->id }}" method="POST">
                   @csrf
                   @method('DELETE')
@@ -66,10 +68,10 @@
 <script>
   $(document).ready(function(){
     $('table.display').DataTable({
-      "paging":   false,
+      // "paging":   false,
       "ordering": false,
       "info":     false,
-      "searching" : false,
+      // "searching" : false,
     })
   })
 </script>
@@ -79,9 +81,9 @@
  $(".delete").click(function(){
 
   var id= $(this).attr('data-id');
-  var nama = $(this).attr('data-nama');
+  var nama_subcriteria = $(this).attr('data-nama');
   swal({
-    title: 'Hapus Data Subkriteria '+nama,
+    title: 'Hapus Data Subkriteria '+nama_subcriteria,
     icon: 'warning', 
     buttons: true,
     dangerMode: true,

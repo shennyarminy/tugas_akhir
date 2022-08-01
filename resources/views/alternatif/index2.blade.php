@@ -19,6 +19,9 @@
             <tr>
               <th class="col-1">No.</th>
               <th class="col-4">Nama Alternatif</th>
+              @foreach ($criterias as $c)
+                <th>{{$c->kode}}</th>
+                @endforeach
               <th class="col-4">Aksi</th>
             </tr>
           </thead>
@@ -27,6 +30,15 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $alternatif->nama_alternatif }}</td>
+              @php
+               
+                // mengubahnya menjadi collection
+                $scr = $alternatif_details->where('alternatif_id', $alternatif->id)->sortBy('criteria_id');
+                
+                @endphp
+                @foreach ($scr as $s)
+                  <td>{{$s->subcriteria->nama_subcriteria}}</td>
+                @endforeach
               <td>
 
                 {{-- VIEW MODAL ALTERNATIF --}}
@@ -197,7 +209,7 @@
 <script>
   $(document).ready(function() {
       $('#table-1').DataTable( {
-          "order":[[ 1, "asc" ]] 
+          "order":[[ 0, "asc" ]] 
       } );
   } );
   </script>
