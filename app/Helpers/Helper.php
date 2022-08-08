@@ -1,0 +1,151 @@
+<?php
+namespace App\Helpers;
+
+use App\Models\Criteria;
+
+use App\Models\Alternatif;
+use App\Models\AlternatifDetail;
+use App\Models\Subcriteria;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+
+
+
+class Helper
+
+{
+
+  public static function getCriteria(){
+    // supaya menghindari divinder from zero dan memberikan nilai satu saat di dd 
+    // membuat nilai criteria menjadi satu, memfilter data menggunakan array
+    $getCriteria = Criteria::all();
+    $arrayCriteria = json_decode(json_encode($getCriteria), true);
+    $criteria = array();
+
+    foreach ($arrayCriteria as $row){
+      $criteria[$row['id']] = array($row['nama_criteria'], $row['tipe'], $row['bobot_criteria']);
+    }
+    
+    return $criteria;
+  }
+
+  public static function getAlternatif(){
+
+    $getAlternatif = Alternatif::all();
+    $arrayAlternatif = json_decode(json_encode($getAlternatif), true);
+    $alternatif = array();
+
+    foreach ($arrayAlternatif as $row){
+      $alternatif[$row['id']] = array($row['nama_alternatif']);
+    }
+    
+    return $alternatif;
+  }
+
+
+
+  public static function matrix(){
+
+    $detail = AlternatifDetail::select(
+      'alternatif_details.id as id',
+      'alternatifs.id as alt',
+      'criterias.id as cri',
+      'subcriterias.id as sub',
+      'alternatifs.nama_alternatif as alt_nama', 
+      'criterias.nama_criteria as cri_nama',
+      'subcriterias.nilai_subcriteria as sub_nilai')
+      ->leftJoin('alternatifs', 'alternatifs.id', '=', 'alternatif_details.alternatif_id')
+      ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
+      ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')
+      ->get();
+
+    
+
+    
+
+      
+      $criteria = Criteria::get();
+      $alternatif = Alternatif::get();
+    
+    //  berguna untuk memberikan nilai unk result 
+      $result = $detail;
+      //membuat matrix menjadi array  
+      $matrix = array();
+      
+
+      foreach ($result as $score) {
+        // memasukkan nilai alternatif ke dalam alt array assosiatif yg sudah di masukkan ke variabel detail 
+        $alternatif = $score['alt'];
+        $criteria = $score['cri'];
+
+       
+        $sub = $score['sub_nilai'];
+        // untuk nilai matrix 
+        $matrix[$alternatif][$criteria] = $sub;
+      }
+     
+      return $matrix;
+      } 
+
+
+     
+
+  public static function  normalization(){
+    
+      
+      $alternatif = Helper::getAlternatif();
+      $criteria = Helper::getCriteria();
+      $matrix = Helper::matrix();
+      $normalization = $matrix;
+      
+      
+      
+      foreach ($criteria as $cri => $c) {
+        
+        $divider = 0;
+
+        foreach ($alternatif as $alt => $a){
+          $divider += pow($matrix[$alt][$cri], 2);
+          // kudrat pangkat dua 
+          
+        }
+
+        foreach ($alternatif as $alt => $a){
+          $normalization[$alt][$cri] /= sqrt($divider);
+          // akar 
+        }
+
+
+      }
+      
+      return $normalization;
+
+  }
+
+  public static function  optimization(){
+
+    $criteria = Helper::getCriteria();
+    $alternatif = Helper::getAlternatif();
+    $normalization = Helper::normalization();
+
+    $optimization = array();
+    foreach ($alternatif as $alt => $a){
+      $optimization[$alt] = 0;
+      foreach ($criteria as $cri => $c){
+        $optimization[$alt] += $normalization[$alt][$cri] * ($c[1] == 'benefit' ? 1 : -1) * $c[2];
+
+       
+        // += adalah nilai yang lama ditambah dengan nilai yang baru 
+      }
+      
+    }
+   
+      return $optimization; 
+    
+    }
+    
+
+}
+
+
+

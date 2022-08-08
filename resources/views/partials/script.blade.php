@@ -8,6 +8,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="{{ asset('../assets/js/stisla.js') }}"></script>
+  <script src="{{ asset('assets/js/dependent.js') }}"></script>
 
   <!-- JS Libraies -->
   

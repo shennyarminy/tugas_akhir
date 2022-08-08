@@ -23,41 +23,15 @@ class AlternatifController extends Controller
   public function index()
 
   {
-    $detail = AlternatifDetail::select(
-      'alternatif_details.id as id',
-      'alternatifs.id as alt',
-      'criterias.id as cri',
-      'subcriterias.id as sub',
-      'alternatifs.nama_alternatif as alt_nama',
-      'criterias.nama_criteria as cri_nama',
-      'subcriterias.nama_subcriteria as sub_nama'
-    )
-      ->leftJoin('alternatifs', 'alternatifs.id', '=', 'alternatif_details.alternatif_id')
-      ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
-      ->leftJoin('subcriterias', 'subcriterias.id', '=', 'alternatif_details.subcriteria_id')->get();
-
-
-    $alternatif = Alternatif::get();
+    $alternatifs = Alternatif::get();
     $criterias = Criteria::get();
     $alternatif_details = AlternatifDetail::get();
 
-    // foreach ($alternatif as $alternatif) {
-    //   foreach ($alternatif->subcriterias as $it) {
-    //     dd($it);
-    //   }
-    // }
-
-
-
-
-
-    return view('alternatif.index2', compact('detail', 'alternatif', 'criterias', 'alternatif_details'), [
+    return view('alternatif.index', compact( 'alternatifs', 'criterias', 'alternatif_details'), [
       "aktif" => "alternatif",
       "judul" => "Data alternatif",
       "title" => "Alternatif",
-      "alternatifs" => Alternatif::all(),
-      "criterias" => Criteria::all(),
-      "subcriteria" => Subcriteria::all(),
+     
     ]);
   }
 

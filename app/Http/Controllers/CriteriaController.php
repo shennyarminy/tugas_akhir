@@ -8,6 +8,7 @@ use App\Models\Criteria;
 use App\Models\Subcriteria;
 use Illuminate\Http\Request;
 use UxWeb\SweetAlert\SweetAlert;
+use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdatecriteriaRequest;
@@ -22,9 +23,15 @@ class CriteriaController extends Controller
     public function index()
 
     {
+      
+
         
         $criteria = Criteria::all();
-        return view('criteria.index',compact('criteria'),[
+        // $criterias = DB::table('criterias')->sum('bobot_criteria');
+        $nilai = Criteria::sum('bobot_criteria');
+        
+        return view('criteria.index',compact('criteria', 'nilai'),[
+            
             "aktif" => "criteria",
             "judul" => "Data Kriteria",
             "title" => "Kriteria",

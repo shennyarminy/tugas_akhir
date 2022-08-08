@@ -37,7 +37,7 @@
                 
                 @endphp
                 @foreach ($scr as $s)
-                  <td>{{$s->subcriteria->nama_subcriteria}}</td>
+                  <td>{{$s->subcriteria->nilai_subcriteria}}</td>
                 @endforeach
               <td>
 

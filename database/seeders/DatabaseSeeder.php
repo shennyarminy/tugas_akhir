@@ -2,10 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Criteria;
 use App\Models\Subcriteria;
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\AlternatifDetail;
+use Database\Seeders\CriteriaSeeder;
+use Database\Seeders\AlternatifSeeder;
+use Database\Seeders\SubcriteriaSeeder;
+use Database\Seeders\AlternatifDetailSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,56 +22,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        // $this->call(UserSeeder::class);
+        // $this->call(CriteriaSeeder::class);
+        // $this->call(SubcriteriaSeeder::class);
+        // $this->call(AlternatifDetailSeeder::class);
 
-        User::create([
-            'nama' => 'Admin',
-            'username' => 'Admin1',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('12345')
+        $this->call([
+            // UserSeeder::class,
+            CriteriaSeeder::class,
+            SubcriteriaSeeder::class,
+            AlternatifSeeder::class,
+            AlternatifDetailSeeder::class,
+
         ]);
 
-        Criteria::create(
-            [
-                'kode' => 'C1',
-                'nama_criteria' => 'PEKERJAAN',
-                'bobot_criteria' => 3,
-                'tipe' => 'cost',
-
-            ],
-        );
-        Criteria::create([
-
-            'kode' => 'C2',
-            'nama_criteria' => 'PENGHASILAN',
-            'bobot_criteria' => 2,
-            'tipe' => 'cost',
-        ]);
-
-        Subcriteria::create(
-            [
-                'criteria_id' => 1,
-                'nama_subcriteria' => 'PNS',
-                'nilai_subcriteria' => 2,
-            ],
-
-        );
-        Subcriteria::create([
-            'criteria_id' => 2,
-            'nama_subcriteria' => 'UANG',
-            'nilai_subcriteria' => 3,
-        ]);
-        Subcriteria::create(
-            [
-                'criteria_id' => 1,
-                'nama_subcriteria' => 'SWASTA',
-                'nilai_subcriteria' => 3,
-            ],
-
-        );
-        Subcriteria::create([
-            'criteria_id' => 2,
-            'nama_subcriteria' => 'KEKAYAAN',
-            'nilai_subcriteria' => 3,
-        ]);
+       
     }
 }

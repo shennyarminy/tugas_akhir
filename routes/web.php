@@ -1,15 +1,19 @@
 <?php
 namespace App;
 
-use App\Http\Controllers\AlternatifController;
+use App\Models\Subcriteria;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CountController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ValueController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\SubcriteriaController;
-use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Auth\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +51,23 @@ Route::resource('subcriteria', SubcriteriaController::class);
 // ALTERNATIF
 Route::resource('alternatif', AlternatifController::class);
 
+// VALUE
+Route::resource('value', ValueController::class);
 // USER
 Route::resource('user', UserController::class);
+
+// COUNT
+Route::get('count.matrix', [CountController::class, 'matrix']);
+Route::get('count.normalization', [CountController::class, 'normalization']);
+Route::get('count.optimization', [CountController::class, 'optimization']);
+
+
+// RESULT
+Route::get('result.hasil', [ResultController::class, 'ranking']);
+Route::get('result.cetak', [ResultController::class, 'cetak']);
+
+
+Route::get('/list_subcriteria/{criteria_id}',[SubcriteriaController::class, 'listSubcriteria']);
+Route::get('/list_item/{subcriteria_id}',[SubcriteriaController::class, 'listItem']);
+
 

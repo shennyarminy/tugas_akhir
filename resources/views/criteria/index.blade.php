@@ -6,7 +6,31 @@
     <h1>{{ $judul }}</h1>
     <a href=" {{ url('criteria/create') }}" title="Tambah Kriteria" class="btn btn-success ml-auto"> Tambah Kriteria</a>
   </div>
- 
+@if ($nilai > 1.00)
+<div class="alert alert-danger alert-dismissible " role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+  </button>
+  <strong>Total Bobot Kriteria tidak boleh lebih dari 1! </strong>
+  <br>
+  <strong>Total Bobot {{ $nilai }}</strong>
+</div>
+@elseif ($nilai < 1.00)
+<div class="alert alert-danger alert-dismissible " role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+  </button>
+  <strong>Total Bobot Kriteria tidak boleh kurang dari 1!</strong>
+  <br>
+  <strong>Total Bobot {{ $nilai }}</strong>
+</div>
+@else
+<div class="alert alert-primary alert-dismissible " role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+  </button>
+  <strong>Penghitungan boleh dilanjutkan, bobot kriteria sama dengan 1.</strong>
+</div>
+@endif
+
+
 <div class="card">   
   <div class="card-header">
     <i class="fas fa-plus"></i><h4>Daftar Data Kriteria</h4>
@@ -153,7 +177,7 @@
                               <div class="col-12">
                                   <div class="form-group">
                                       <label for="bobot_criteria">Bobot Kriteria</label>
-                                      <input type="number" name="bobot_criteria" id="bobot_criteria" class="form-control" 
+                                      <input type="number" name="bobot_criteria" id="bobot_criteria" min="0.01" max="1.00" step="0.01" class="form-control" 
                                       value="{{ $criteria->bobot_criteria  }}" >
           
                                   </div>
