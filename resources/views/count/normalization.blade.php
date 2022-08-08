@@ -16,9 +16,10 @@
         <table id="table-1" class="table table-striped display">
           <thead>
             <tr>
+                <th>No</th>
                 <th>Alternatif</th>
                 {{-- <th>Name</th> --}}
-                @foreach (array_keys(current($Matrix)) as $indexCriteria )
+                @foreach (array_keys(current($matrix)) as $indexCriteria )
                 <th>C{{$indexCriteria}}</th>
                 
                 
@@ -27,11 +28,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (array_keys($Matrix) as $indexAlternatif)
+            @foreach (array_keys($matrix) as $indexAlternatif)
             <tr>
+                <td>{{ $loop->iteration }}</td>
                 <td>A{{$indexAlternatif}}</td>
-                @foreach (array_keys($Matrix[$indexAlternatif]) as $indexCriteria)
-                  <td>{{ number_format((float)$Normalization[$indexAlternatif][$indexCriteria], 4, '.', '') }}</td>
+                @foreach (array_keys($matrix[$indexAlternatif]) as $indexCriteria)
+                  <td>{{ number_format((float)$normalization[$indexAlternatif][$indexCriteria], 4, '.', '') }}</td>
                 @endforeach
             </tr>
             @endforeach
@@ -44,23 +46,12 @@
 
 </section>
 <script>
-  $(document).ready(function(){
-    $('table.display').DataTable({
-      columnDefs: [
-          { 'natural', targets: [ 0, 1 ]}
-        ]
-      // "paging":   false,
-      // "ordering": false,
-      // "info":     false,
-      "searching" : true,
-    })
-  })
-</script>
-
-
-
-  
- 
+  $(document).ready(function() {
+      $('table.display').DataTable( {
+          "order":[[ 0, "asc" ]] 
+      } );
+  } );
+  </script>
 
 
 

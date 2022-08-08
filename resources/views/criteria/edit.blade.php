@@ -15,10 +15,12 @@
       @method('PUT')
         <input type="hidden" name="method" value="PATCH">
         <div class="row">
+          @if (auth()->user()->roles == "ADMIN")
+              
           <div class="col-12 col-lg-6">
               <div class="form-group">
                   <label for="kode">Kode Kriteria</label>
-                  <input type="text" name="kode" id="kode" class="form-control" readonly
+                  <input type="text" name="kode" id="kode" class="form-control" 
                   value="{{ $criteria->kode }}">
                   
               </div>
@@ -27,11 +29,27 @@
           <div class="col-12 col-lg-6">
               <div class="form-group">
                   <label for="nama_criteria">Nama Kriteria</label>
-                  <input type="text" name="nama_criteria" id="nama_criteria" class="form-control" readonly
+                  <input type="text" name="nama_criteria" id="nama_criteria" class="form-control" 
                   value="{{ $criteria->nama_criteria }}" >
               </div>
           </div>
-          
+          @endif
+          @if (auth()->user()->roles == "DM")
+          <div class="col-12 col-lg-6">
+            <div class="form-group">
+                <label for="kode">Kode Kriteria</label>
+                <input type="text" name="kode" id="kode" class="form-control" 
+                value="{{ $criteria->kode }}" readonly>
+                
+            </div>
+        </div>
+          <div class="col-12 col-lg-6">
+            <div class="form-group">
+                <label for="nama_criteria">Nama Kriteria</label>
+                <input type="text" name="nama_criteria" id="nama_criteria" class="form-control" 
+                value="{{ $criteria->nama_criteria }}"  readonly>
+            </div>
+        </div>
             <div class="col-12 col-lg-6">
                 <div class="form-group">
                     <label for="bobot_criteria">Bobot Kriteria</label>
@@ -52,6 +70,8 @@
                   </select>
                 </div>
             </div> 
+          @endif
+
         </div>
         <div class="card-footer text-right">
           <a href="{{ url('criteria') }}" class="btn btn-danger float">Batal</a>

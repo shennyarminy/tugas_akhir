@@ -8,6 +8,7 @@ use App\Models\Criteria;
 use App\Models\Subcriteria;
 use Illuminate\Http\Request;
 use UxWeb\SweetAlert\SweetAlert;
+use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdatecriteriaRequest;
@@ -20,17 +21,16 @@ class CriteriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
     {
-        
-        $criteria = Criteria::all();
-        return view('criteria.index',compact('criteria'),[
+        $nilai = Criteria::sum('bobot_criteria');
+   
+        $criterias = DB::table('criterias')->orderByraw('CHAR_LENGTH(kode) ASC')->get();
+        // $criterias = Criteria::all();
+        return view('criteria.index',compact('criterias', 'nilai'),[
             "aktif" => "criteria",
             "judul" => "Data Kriteria",
             "title" => "Kriteria",
-            // "criterias" => Criteria::all(),
-            "criterias"=> Criteria::orderBy('kode', 'asc')->get(),
-           
+          
              
 
         ]);
@@ -65,14 +65,14 @@ class CriteriaController extends Controller
         $data = $request->validate([
             "kode" => "required",
             "nama_criteria" => "required",
-            "bobot_criteria" => "required",
-            "tipe" => "required",
+            // "bobot_criteria" => "required",
+            // "tipe" => "required",
        ], 
         [
             "kode.required" => "Kode Kriteria tidak boleh kosong",
             "nama_criteria.required" => "Nama Kriteria tidak boleh kosong", 
-            "bobot_criteria.required" => "Bobot Kriteria tidak boleh kosong", 
-            "tipe.required" => "Jenis Kriteria tidak boleh kosong"
+            // "bobot_criteria.required" => "Bobot Kriteria tidak boleh kosong", 
+            // "tipe.required" => "Jenis Kriteria tidak boleh kosong"
         ]);
 
         Criteria::create($data);
@@ -119,20 +119,43 @@ class CriteriaController extends Controller
     public function update(UpdatecriteriaRequest $request, criteria $criteria, $id)
     {
         $criteria =  Criteria::find($id);
-        $data     = $request->validate([
-            "kode" => "required",
-            "nama_criteria" => "required",
-            "bobot_criteria" => "required",
-            "tipe" => "required",
-        ]);
+        if (auth()->user()->roles == "DM") {
+            
+            $data     = $request->validate([
+                "kode" => "required",
+                "nama_criteria" => "required",
+                "bobot_criteria" => "required",
+                "tipe" => "required",
+               
+            ]);
+            $criteria->update([
+                "kode" => $request->kode,
+                "nama_criteria" => $request->nama_criteria,
+                "bobot_criteria" => $request->bobot_criteria,
+                "tipe" => $request->tipe,
+    
+            ]);
+        
+        }
+        else {
+       
+            $data     = $request->validate([
+                "kode" => "required",
+                "nama_criteria" => "required",
+                // "bobot_criteria" => "required",
+                // "tipe" => "required",
+               
+            ]);
+            $criteria->update([
+                "kode" => $request->kode,
+                "nama_criteria" => $request->nama_criteria,
+                // "bobot_criteria" => $request->bobot_criteria,
+                // "tipe" => $request->tipe,
+    
+            ]);
+        }
+        
 
-        $criteria->update([
-            "kode" => $request->kode,
-            "nama_criteria" => $request->nama_criteria,
-            "bobot_criteria" => $request->bobot_criteria,
-            "tipe" => $request->tipe,
-
-        ]);
         
        
         Toastr::success("Anda berhasil mengubah $criteria->nama_criteria");

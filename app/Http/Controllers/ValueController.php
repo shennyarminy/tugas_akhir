@@ -27,7 +27,8 @@ class ValueController extends Controller
       'subcriterias.id as sub',
       'alternatifs.nama_alternatif as alt_nama',
       'criterias.nama_criteria as cri_nama',
-      'subcriterias.nama_subcriteria as sub_nama'
+      'subcriterias.nama_subcriteria as sub_nama',
+      'subcriterias.nilai_subcriteria as sub_nilai'
     )
       ->leftJoin('alternatifs', 'alternatifs.id', '=', 'alternatif_details.alternatif_id')
       ->leftJoin('criterias', 'criterias.id', '=', 'alternatif_details.criteria_id')
@@ -60,9 +61,9 @@ class ValueController extends Controller
     $subcriterias = Subcriteria::get();
 
     return view('value.create', compact('criterias', 'subcriterias'), [
-      "aktif" => "alternatif",
-      "judul" => "Data Alternatif",
-      "title" => "Tambah Alternatif",
+      "aktif" => "penilaian",
+      "judul" => "Data Penilaian",
+      "title" => "Tambah Penilaian",
       "alternatifs" => Alternatif::get(),
       // "subcriterias" => Subcriteria::get(),
 
@@ -180,8 +181,6 @@ class ValueController extends Controller
    
     $alternatif = Alternatif::find($alternatif_id);
     $alternatif->delete();
-
-
     return redirect()->route('value.index')->withSuccess("Berhasil menghapus Penilaian: $alternatif");
   }
 }

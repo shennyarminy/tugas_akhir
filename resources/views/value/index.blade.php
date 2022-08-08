@@ -32,6 +32,7 @@
                 <td>{{ $a->nama_alternatif}}</td>
                 @php
                 $scr = $detail->where('alt', $a->id)->all();
+              
                 @endphp
                 @foreach ($scr as $s)
                   <td>{{$s->sub_nama}}</td>

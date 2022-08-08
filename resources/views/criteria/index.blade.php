@@ -5,10 +5,34 @@
 <section class="section">
   <div class="section-header ">
     <h1>{{ $judul }}</h1>
-    
-    {{-- <a href=" {{ url('criteria/create') }}" title="Tambah Kriteria" class="btn btn-success ml-auto"> Tambah Kriteria</a> --}}
-    
+    @if (auth()->user()->roles == "ADMIN")
+    <a href=" {{ url('criteria/create') }}" title="Tambah Kriteria" class="btn btn-success ml-auto"> Tambah Kriteria</a>
+    @endif
   </div>
+
+  @if ($nilai > 1.00)
+<div class="alert alert-danger alert-dismissible " role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+  </button>
+  <strong>Total Bobot Kriteria tidak boleh lebih dari 1! </strong>
+  <br>
+  <strong>Total Bobot {{ $nilai }}</strong>
+</div>
+@elseif ($nilai < 1.00)
+<div class="alert alert-danger alert-dismissible " role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+  </button>
+  <strong>Total Bobot Kriteria tidak boleh kurang dari 1!</strong>
+  <br>
+  <strong>Total Bobot {{ $nilai }}</strong>
+</div>
+@else
+<div class="alert alert-primary alert-dismissible " role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+  </button>
+  <strong>Penghitungan boleh dilanjutkan, bobot kriteria sama dengan 1.</strong>
+</div>
+@endif
  
 <div class="card">   
   <div class="card-header">
@@ -22,11 +46,11 @@
             <th class="col-1">No.</th>
             <th class="col-2">Kode Kriteria</th>
             <th class="col-2">Nama Kriteria</th>
+            @if (auth()->user()->roles == "DM")
             <th class="col-2">Bobot</th>
             <th class="col-2">Jenis</th>
-            @if (auth()->user()->roles == "DM")
-            <th class="col-3">Aksi</th>
             @endif
+            <th class="col-3">Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -37,9 +61,10 @@
         <td>{{ $loop->iteration }}</td>
         <td>{{ $criteria->kode}}</td>
         <td>{{ $criteria->nama_criteria}}</td>
+        @if (auth()->user()->roles == "DM")
         <td>{{ $criteria->bobot_criteria}}</td>
         <td>{{ $criteria->tipe}}</td>
-        @if (auth()->user()->roles == "DM")
+        @endif
         <td >
           <a href="{{url('criteria/'.$criteria->id.'/edit')}}" title="Ubah Kriteria"
             class=" btn btn-primary btn-sm ">
@@ -127,15 +152,50 @@
 
           
                 {{-- HAPUS KRITERIA --}}
-          <a href="#" data-id = "{{ $criteria->id }}" data-nama="{{ $criteria->nama_criteria }}"  class="btn btn-danger btn-sm delete">
+          {{-- <a href="#" data-id = "{{ $criteria->id }}" data-nama="{{ $criteria->nama_criteria }}"  class="btn btn-danger btn-sm delete">
               <form action="{{ url('criteria/'.$criteria->id) }}" id="delete{{ $criteria->id }}" method="POST">
                 @csrf
                 @method('DELETE')
               </form>
             <i class="fas fa-trash" ></i>
-          </a>
+          </a> --}}
+
+          <button class="btn btn-danger btn-sm delete" data-toggle="modal"
+          data-target="#modaldelete{{ $criteria->id }}"><i
+              class="fas fa-trash-alt"></i></button>
+           <div class="modal fade" id="modaldelete{{ $criteria->id }}" role="dialog">
+          <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                  <div class="modal-header text-center">
+                      <h5 class="modal-title  w-100">Delete Kriteria</h5>
+                  </div>
+                  <div class="modal-body">
+                      <h6 style="font-weight:normal">Apakah anda benar ingin menghapus
+                           {{ $criteria->nama_criteria }}?</h6>
+                      {{-- <div class="text-secondary" style="align-content: flex-start">
+                          Last
+                          updated:
+                          {{ $data->updated_at->format('d F Y') }}
+                      </div> --}}
+                  </div>
+                  <div class="modal-footer bg-whitesmoke br">
+                      <div style="display:none">
+                          <input type="text" name="id" value="{{ $criteria->id }}">
+                      </div>
+                      <button class="btn btn-md btn-default"
+                          data-dismiss="modal">No</button>
+                      <form action="{{ url('criteria/'.$criteria->id) }}"
+                          method="POST" class="form">
+                          @csrf
+                          @method('delete')
+                          <button class="btn btn-danger" type="submit">Yes</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
         </td>
-        @endif
+        
       </tr>         
       @endforeach
         </tbody> 
@@ -149,12 +209,12 @@
 <script>
 $(document).ready(function() {
     $('#table-1').DataTable( {
-        "order":[[ 1, "asc" ]] 
+        // "order":[[ 1, "asc" ]] 
     } );
 } );
 </script>
 
-<script>
+{{-- <script>
 $(".delete").click(function() {
 
   var id = $(this).attr('data-id');
@@ -164,7 +224,7 @@ $(".delete").click(function() {
       // text: 'Once deleted, you will not be able to recover this imaginary file! ',
       icon: 'warning',
       buttons: true,
-      dangerMode: true,
+      dangerMode: false,
     })
     .then((willDelete) => {
         if (willDelete) {
@@ -176,5 +236,5 @@ $(".delete").click(function() {
       } 
     });
 });
-</script>
+</script> --}}
 @endsection

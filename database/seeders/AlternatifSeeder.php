@@ -16,7 +16,43 @@ class AlternatifSeeder extends Seeder
     public function run()
     {
         Alternatif::create([
-            'nama_alternatif' => 'Ahsan',
+            'nama_alternatif' => 'Guntur',
+            
+        ]);
+        Alternatif::create([
+            'nama_alternatif' => 'Gilang',
+            
+        ]);
+        Alternatif::create([
+            'nama_alternatif' => 'Radit',
+            
+        ]);
+        Alternatif::create([
+            'nama_alternatif' => 'Lutfi',
+            
+        ]);
+        Alternatif::create([
+            'nama_alternatif' => 'Anggun',
+            
+        ]);
+        Alternatif::create([
+            'nama_alternatif' => 'Hanifa',
+            
+        ]);
+        Alternatif::create([
+            'nama_alternatif' => 'Auliyah',
+            
+        ]);
+        Alternatif::create([
+            'nama_alternatif' => 'Dicky',
+            
+        ]);
+        Alternatif::create([
+            'nama_alternatif' => 'Diva',
+            
+        ]);
+        Alternatif::create([
+            'nama_alternatif' => 'Yasir',
             
         ]);
 

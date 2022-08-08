@@ -38,6 +38,16 @@
               </div>
               @enderror
           </div>
+
+          <div class="col-12 ">
+            <label for="nama_subcriteria">Nama Subkriteria</label>
+            <input type="text" name="nama_subcriteria" id="nama_subcriteria" class="form-control @error('nama_subcriteria') is-invalid @enderror" value="{{ old('nama_subcriteria') ?? $subcriteria->nama_subcriteria ?? '' }}">
+            @error('nama_subcriteria')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
       
           <div class="col-12 ">
               <div class="form-group">

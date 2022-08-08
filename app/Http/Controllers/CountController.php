@@ -37,14 +37,14 @@ class CountController extends Controller
       
             $alternatif = Alternatif::get();
             $criterias = Criteria::get();
-            $Matrix = Helper::Matrix();
+            $matrix = Helper::matrix();
            
       
       
-          return view('count.matrix',compact('detail', 'alternatif', 'criterias', 'Matrix'), [
+          return view('count.matrix',compact('detail', 'alternatif', 'criterias', 'matrix'), [
             "aktif" => "matrix",
-            "judul" => "Data Matrix",
-            "title" => "Matrix",
+            "judul" => "Data matrix",
+            "title" => "matrix",
           
             "subcriterias" => Subcriteria::all(),
           ]);
@@ -52,18 +52,18 @@ class CountController extends Controller
     }
 
 
-    public function Normalization(){
+    public function normalization(){
 
       $alternatifs = Alternatif::get();
       $criterias = Criteria::get();
      
-      $Matrix = Helper::Matrix();
-      $Normalization = Helper::Normalization(); 
+      $matrix = Helper::matrix();
+      $normalization = Helper::normalization(); 
 
-          return view('count.normalization', compact('Normalization', 'criterias', 'alternatifs', 'Matrix'),[
+          return view('count.normalization', compact('normalization', 'criterias', 'alternatifs', 'matrix'),[
             "aktif" => "normalisasi",
-            "judul" => "Normalization",
-            "title" => "Normalization",
+            "judul" => "normalization",
+            "title" => "normalization",
           ]);
 
 

@@ -25,7 +25,7 @@ class Helper
     foreach ($arrayCriteria as $row){
       $criteria[$row['id']] = array($row['nama_criteria'], $row['tipe'], $row['bobot_criteria']);
     }
-  
+    
     return $criteria;
   }
 
@@ -38,13 +38,13 @@ class Helper
     foreach ($arrayAlternatif as $row){
       $alternatif[$row['id']] = array($row['nama_alternatif']);
     }
-     
+    
     return $alternatif;
   }
 
 
 
-  public static function Matrix(){
+  public static function matrix(){
 
     $detail = AlternatifDetail::select(
       'alternatif_details.id as id',
@@ -70,31 +70,33 @@ class Helper
     //  berguna untuk memberikan nilai unk result 
       $result = $detail;
       //membuat matrix menjadi array  
-      $Matrix = array();
+      $matrix = array();
       
 
       foreach ($result as $score) {
         // memasukkan nilai alternatif ke dalam alt array assosiatif yg sudah di masukkan ke variabel detail 
         $alternatif = $score['alt'];
         $criteria = $score['cri'];
+
+       
         $sub = $score['sub_nilai'];
         // untuk nilai matrix 
-        $Matrix[$alternatif][$criteria] = $sub;
+        $matrix[$alternatif][$criteria] = $sub;
       }
      
-      return $Matrix;
+      return $matrix;
       } 
 
 
      
 
-  public static function  Normalization(){
+  public static function  normalization(){
     
       
       $alternatif = Helper::getAlternatif();
       $criteria = Helper::getCriteria();
-      $Matrix = Helper::Matrix();
-      $Normalization = $Matrix;
+      $matrix = Helper::matrix();
+      $normalization = $matrix;
       
       
       
@@ -103,20 +105,20 @@ class Helper
         $divider = 0;
 
         foreach ($alternatif as $alt => $a){
-          $divider += pow($Matrix[$alt][$cri], 2);
+          $divider += pow($matrix[$alt][$cri], 2);
           // kudrat pangkat dua 
           
         }
 
         foreach ($alternatif as $alt => $a){
-          $Normalization[$alt][$cri] /= sqrt($divider);
+          $normalization[$alt][$cri] /= sqrt($divider);
           // akar 
         }
 
 
       }
       
-      return $Normalization;
+      return $normalization;
 
   }
 
@@ -124,13 +126,13 @@ class Helper
 
     $criteria = Helper::getCriteria();
     $alternatif = Helper::getAlternatif();
-    $Normalization = Helper::Normalization();
+    $normalization = Helper::normalization();
 
     $optimization = array();
     foreach ($alternatif as $alt => $a){
       $optimization[$alt] = 0;
       foreach ($criteria as $cri => $c){
-        $optimization[$alt] += $Normalization[$alt][$cri] * ($c[1] == 'benefit' ? 1 : -1) * $c[2];
+        $optimization[$alt] += $normalization[$alt][$cri] * ($c[1] == 'benefit' ? 1 : -1) * $c[2];
 
        
         // += adalah nilai yang lama ditambah dengan nilai yang baru 

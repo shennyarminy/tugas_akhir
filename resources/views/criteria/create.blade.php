@@ -19,20 +19,20 @@
       <div class="col-12 col-lg-6">
           <div class="form-group">
               <label for="kode">Kode Kriteria</label>
-              {{-- <input type="text" name="kode" id="kode"  class="form-control @error('kode') is-invalid @enderror" value="{{ old('kode') }}" > --}}
-              <input class="form-control" disabled type="text" name="kode" value="{{ $criteria->kode }}">
-              {{-- @error('kode')
+              <input type="text" name="kode" id="kode"  class="form-control @error('kode') is-invalid @enderror" value="{{ old('kode') }}" >
+              {{-- <input class="form-control" disabled type="text" name="kode" value="{{ $criteria->kode }}"> --}}
+              @error('kode')
               <div class="invalid-feedback">
                   {{ $message }}
               </div>
-              @enderror --}}
+              @enderror
           </div>
       </div>
 
       <div class="col-12 col-lg-6">
         <div class="form-group">
             <label for="nama_criteria">Nama Kriteria</label>
-            <input type="text" name="nama_criteria" id="nama_criteria"  class="form-control @error('nama_criteria') is-invalid @enderror" disabled value="{{ old('nama_criteria') }}" >
+            <input type="text" name="nama_criteria" id="nama_criteria"  class="form-control @error('nama_criteria') is-invalid @enderror" value="{{ old('nama_criteria') }}" >
 
             @error('nama_criteria')
             <div class="invalid-feedback">
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-6">
+      {{-- <div class="col-12 col-lg-6">
         <div class="form-group">
             <label for="bobot_criteria">Bobot Kriteria</label>
             <input type="number" min="0.01" max="1.00" step="0.01" placeholder="0.01" name="bobot_criteria" id="bobot_criteria"  class="form-control @error('bobot_criteria') is-invalid @enderror" value="{{ old('bobot_criteria')}}" >       
@@ -68,7 +68,7 @@
             </div>
             @enderror
         </div>
-      </div>
+      </div> --}}
 
     </div>
     <div class="card-footer text-right">

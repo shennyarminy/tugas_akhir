@@ -60,6 +60,7 @@ class SubcriteriaController extends Controller
             "judul" => "Data Subkriteria",
             "title" => "tambah Subkriteria",
             "subcriterias" => Subcriteria::all(),
+          
             "criterias" => Criteria::all(),
             "data"=> Criteria::orderBy('kode', 'asc')->get(),
 

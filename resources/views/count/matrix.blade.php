@@ -7,10 +7,6 @@
   
   </div>
 
-  
-   
-
- 
   <div class="card">
     <div class="card-header">
       <i class="fas fa-table"></i><h4>Matrix MOORA</h4>
@@ -23,7 +19,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama Alternatif</th>
-                @foreach (array_keys(current($Matrix)) as $indexCriteria )
+                @foreach (array_keys(current($matrix)) as $indexCriteria )
                 <th>C{{$indexCriteria}}</th>
                 
                 @endforeach
@@ -66,9 +62,11 @@
         <table id="table-1" class="table table-striped display">
           <thead>
             <tr>
+                <th>No</th>
                 <th>Alternatif</th>
                 {{-- <th>Name</th> --}}
-                @foreach (array_keys(current($Matrix)) as $indexCriteria )
+                
+                @foreach (array_keys(current($matrix)) as $indexCriteria )
                 <th>C{{$indexCriteria}}</th>
                 
                 
@@ -78,13 +76,17 @@
         </thead>
         <tbody>
 
-            @foreach (array_keys($Matrix) as $indexAlternatif)
+            
+            @foreach (array_keys($matrix) as $indexAlternatif)
+            
             <tr>
+                <td>{{ $loop->iteration }}</td>
                 <td>A{{$indexAlternatif}}</td>
                
+               
                 
-                @foreach (array_keys($Matrix[$indexAlternatif]) as $indexCriteria)
-                  <td>{{$Matrix[$indexAlternatif][$indexCriteria]}}</td>
+                @foreach (array_keys($matrix[$indexAlternatif]) as $indexCriteria)
+                  <td>{{$matrix[$indexAlternatif][$indexCriteria]}}</td>
                 @endforeach
             </tr>
             @endforeach
@@ -96,25 +98,16 @@
   </div>
 
 
-  <script>
-    $(document).ready(function(){
-      // $('table.display').DataTable({
-      //   "paging":   false,
-      //   // "ordering": false,
-      //   // "info":     false,
-      //   // "searching" : false,
-      // })
   
-      $('table.display').DataTable({
-        columnDefs: [
-          { 'natural', targets: [ 0, 1 ]}
-        ]
-         "ordering": true,
-         "info":     true,
-         "searching" : true,
-      });
-    })
-  </script>
+
+
+  <script>
+    $(document).ready(function() {
+        $('table.display').DataTable( {
+            "order":[[ 0, "asc" ]] 
+        } );
+    } );
+    </script>
   
 </section>
 
