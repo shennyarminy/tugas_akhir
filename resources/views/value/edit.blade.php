@@ -12,15 +12,15 @@
     </div>
 
     <div class="card-body">
-      <form action="{{ route('value.update', $alternatif->id) }}" method="POST">
+      <form action="{{ route('value.update', $siswa->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="row">
           <div class="col-12">
             <div class="form-group">
-                <label for="nama_alternatif">Nama Alternatif</label>
-                <input type="text" name="nama_alternatif" id="nama_alternatif" class="form-control"
-                 value="{{ $alternatif->nama_alternatif }}">
+                <label for="nama_siswa">Nama siswa</label>
+                <input type="text" name="nama_siswa" id="nama_siswa" class="form-control"
+                 value="{{ $siswa->nama_siswa }}">
             </div>
           </div>
           {{-- LOOPING UNTUK CRITERIA DAN SUBCRITERIA --}}
@@ -37,7 +37,7 @@
              
               @foreach ($nilai as $item)
               <option value="{{ $item->id }}"
-                {{ $item->id == $alternatif_details[$key]->subcriteria_id ? "selected=selected" : "" }}>
+                {{ $item->id == $siswa_details[$key]->subcriteria_id ? "selected=selected" : "" }}>
                 {{ $item->nama_subcriteria }}</option>
               @endforeach
 

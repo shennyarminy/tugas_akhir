@@ -8,16 +8,16 @@
     <div class="card">
         {{-- CARD HEADER --}}
         <div class="card-header">
-            <i class="fas fa-plus-circle"></i><h4>Tambah Data Alternatif</h4>
+            <i class="fas fa-plus-circle"></i><h4>Tambah Data siswa</h4>
         </div>
 
         <div class="card-body"> 
-            <form action="{{ url('alternatif/'.$alternatif->id) }}" method="POST">
+            <form action="{{ url('siswa/'.$siswa->id) }}" method="POST">
             @csrf
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="nama">Nama Alternatif</label>
+                        <label for="nama">Nama siswa</label>
                         <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}">
 
                         @error('nama')
@@ -34,9 +34,23 @@
 
 
                 {{-- LOOPING UNTUK CRITERIA DAN SUBCRITERIA --}}
+                
 
-                @foreach ($criterias as $criteria)
-                <div class="col-12 col-lg-6">
+                <div class="col-12 ">
+                  <div class="form-group">
+                    <label for="criteria_id" name="criteria_id" >Criteria</label>
+                    
+                    <select class="form-control @error('criteria_id') is-invalid @enderror"
+                    name="criteria_id[]">
+                    <option value="">--Pilih--</option>
+                    @foreach ($criterias as $criteria)
+                      <option value="{{ $criteria->id }}">{{ $criteria->namas }}</option>
+                      @endforeach
+                  </select>
+                  </div>
+              
+                </div>
+                <div class="col-12 ">
                     <div class="form-group">
                         <label for="criteria_id" name="criteria_id" >{{ $criteria->nama }}</label>
 
@@ -49,12 +63,13 @@
                     </select>
                     </div>
                 </div>
-                @endforeach
+          
+               
 
                 {{-- CARD FOOTER SUBMIT --}}
 
                 <div class="card-footer text-right ml-auto">
-                    <a href="{{ url('alternatif') }}" class="btn btn-danger float">Batal</a>
+                    <a href="{{ url('siswa') }}" class="btn btn-danger float">Batal</a>
                     <button type="submit" class="btn btn-primary float success"> Submit</button>
 
                 </div>

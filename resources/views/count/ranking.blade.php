@@ -18,7 +18,7 @@
           <thead>
             <tr>
                 <th>Rank</th>
-                <th>Alternatif</th>
+                <th>siswa</th>
                 <th>Optimasi</th>
                
             </tr>
@@ -27,7 +27,7 @@
             @foreach ($optimization as $opt => $val)
             <tr>
                 <td>{{ $rank++ }}</td>
-                <td>{{ $alternatif[$opt][0] }}</td>
+                <td>{{ $siswa[$opt][0] }}</td>
                 <td>{{ number_format((float)$optimization[$opt], 4, '.', '') }}</td>
             </tr>
             @endforeach

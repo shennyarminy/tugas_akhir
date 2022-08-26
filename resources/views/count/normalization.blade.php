@@ -17,7 +17,7 @@
           <thead>
             <tr>
                 <th>No</th>
-                <th>Alternatif</th>
+                <th>siswa</th>
                 {{-- <th>Name</th> --}}
                 @foreach (array_keys(current($matrix)) as $indexCriteria )
                 <th>C{{$indexCriteria}}</th>
@@ -28,12 +28,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (array_keys($matrix) as $indexAlternatif)
+            @foreach (array_keys($matrix) as $indexsiswa)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>A{{$indexAlternatif}}</td>
-                @foreach (array_keys($matrix[$indexAlternatif]) as $indexCriteria)
-                  <td>{{ number_format((float)$normalization[$indexAlternatif][$indexCriteria], 4, '.', '') }}</td>
+                <td>A{{$indexsiswa}}</td>
+                @foreach (array_keys($matrix[$indexsiswa]) as $indexCriteria)
+                  <td>{{ number_format((float)$normalization[$indexsiswa][$indexCriteria], 4, '.', '') }}</td>
                 @endforeach
             </tr>
             @endforeach

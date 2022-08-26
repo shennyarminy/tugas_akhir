@@ -1,18 +1,20 @@
 <?php
+
 namespace App;
 
 use App\Models\Subcriteria;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\siswaController;
 use App\Http\Controllers\ValueController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\AlternatifController;
 use App\Http\Controllers\SubcriteriaController;
 
 /*
@@ -27,18 +29,21 @@ use App\Http\Controllers\SubcriteriaController;
 */
 
 // LOGIN (AUTH)
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
-Route::get('/login',  [LoginController::class, 'login']);
+Route::post('/authenticate', [AuthController::class, 'authenticate']);
+Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/',  [AuthController::class, 'login'])->name('login');
+Route::get('/register',  [AuthController::class, 'register']);
+Route::post('/register',  [AuthController::class, 'store']);
+
 
 // REGISTER
-Route::get('/register',  [RegisterController::class, 'index']);
-Route::post('/register',  [RegisterController::class, 'store']);
+// Route::get('/register',  [RegisterController::class, 'index']);
+// Route::post('/register',  [RegisterController::class, 'store']);
 
 
 // HOME (DASHBOARD)
-Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/home', [HomeController::class, 'home'])->name('home');
+// Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/home', [HomeController::class, 'home'])->name('home')->middleware('auth');
 
 
 // KRITERIA
@@ -48,8 +53,8 @@ Route::resource('criteria', CriteriaController::class);
 // SUBKRITERIA 
 Route::resource('subcriteria', SubcriteriaController::class);
 
-// ALTERNATIF
-Route::resource('alternatif', AlternatifController::class);
+// siswa
+Route::resource('siswa', SiswaController::class);
 
 // VALUE
 Route::resource('value', ValueController::class);
@@ -67,7 +72,5 @@ Route::get('result.hasil', [ResultController::class, 'ranking']);
 Route::get('result.cetak', [ResultController::class, 'cetak']);
 
 
-Route::get('/list_subcriteria/{criteria_id}',[SubcriteriaController::class, 'listSubcriteria']);
-Route::get('/list_item/{subcriteria_id}',[SubcriteriaController::class, 'listItem']);
-
-
+Route::get('/list_subcriteria/{criteria_id}', [SubcriteriaController::class, 'listSubcriteria']);
+Route::get('/list_item/{subcriteria_id}', [SubcriteriaController::class, 'listItem']);

@@ -17,10 +17,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="nama_alternatif">Nama Siswa</label>
-                            <input type="text" name="nama_alternatif" id="nama_alternatif" class="form-control @error('nama_alternatif') is-invalid @enderror" value="{{ old('nama_alternatif') }}">
+                            <label for="nama_siswa">Nama Siswa</label>
+                            <input type="text" name="nama_siswa" id="nama_siswa" class="form-control @error('nama_siswa') is-invalid @enderror" value="{{ old('nama_siswa') }}">
 
-                            @error('nama_alternatif')
+                            @error('nama_siswa')
                             {{ $message }}
                             <div class="invalid-feedback"> 
                             </div>

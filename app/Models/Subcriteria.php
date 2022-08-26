@@ -11,14 +11,18 @@ class Subcriteria extends Model
 
     protected $guarded = ['id'];
 
-    public function criteria(){
+    public function criteria()
+    {
         return $this->belongsTo(Criteria::class);
     }
 
-    
-    public function alternatifs(){
-        return $this->belongsToMany(Alternatif::class, 'alternatif_details', 'alternatif_id', 'subcriteria_id');
+
+    // public function siswas(){
+    //     return $this->belongsToMany(siswa::class, 'siswa_details', 'siswa_id', 'subcriteria_id');
+    // }
+
+    public function siswas()
+    {
+        return $this->belongsToMany(Siswa::class, 'siswa_details', 'siswa_id', 'subcriteria_id');
     }
-
-
 }

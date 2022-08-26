@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AlternatifDetail extends Model
+class siswaDetail extends Model
 {
     use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
 
-    public function alternatif(){
-        return $this->belongsTo(Alternatif::class);
+    public function siswa()
+    {
+        return $this->belongsTo(siswa::class);
     }
 
-    public function subcriteria(){
-        return $this->belongsTo(Subcriteria::class); 
+    public function subcriteria()
+    {
+        return $this->belongsTo(Subcriteria::class);
     }
-
-
 }

@@ -20,23 +20,23 @@
                 <a href="{{ route('subcriteria.index') }}" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Subkriteria</span></a>
               </li>
 
-              <li class="nav-item @if($aktif == 'alternatif') {{ 'active' }}@endif">
-                <a href="{{ route('alternatif.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Data Siswa</span></a>
+              <li class="nav-item @if($aktif == 'siswa') {{ 'active' }}@endif">
+                <a href="{{ route('siswa.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Data Siswa</span></a>
               </li>
               <li class="nav-item @if($aktif == 'value') {{ 'active' }}@endif">
                 <a href="{{ route('value.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Data Penilaian</span></a>
               </li>
 
 
-              {{-- <li class="nav-item @if($aktif == 'alternatif') {{ 'active' }}@endif dropdown">
+              {{-- <li class="nav-item @if($aktif == 'siswa') {{ 'active' }}@endif dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i> <span>Data Siswa</span></a>
                 <ul class="dropdown-menu">
 
-                  <li class="nav-item @if($aktif == 'alternatif') {{ 'active' }}@endif">
-                    <a href="{{ route('alternatif.index') }}" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Alternatif</span></a>
+                  <li class="nav-item @if($aktif == 'siswa') {{ 'active' }}@endif">
+                    <a href="{{ route('siswa.index') }}" class="nav-link"><i class="fas fa-file-alt"></i><span>Data siswa</span></a>
                   </li>
 
-                  <li class="nav-item @if($aktif == 'alternatif') {{ 'active' }}@endif">
+                  <li class="nav-item @if($aktif == 'siswa') {{ 'active' }}@endif">
                     <a href="#" class="nav-link"><i class="fas fa-file-alt"></i><span>Data Penilaian</span></a>
                   </li>
 

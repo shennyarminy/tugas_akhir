@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Alternatif;
+use App\Models\siswa;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AlternatifPolicy
+class siswaPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class AlternatifPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Alternatif  $alternatif
+     * @param  \App\Models\siswa  $siswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Alternatif $alternatif)
+    public function view(User $user, siswa $siswa)
     {
         //
     }
@@ -48,10 +48,10 @@ class AlternatifPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Alternatif  $alternatif
+     * @param  \App\Models\siswa  $siswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Alternatif $alternatif)
+    public function update(User $user, siswa $siswa)
     {
         //
     }
@@ -60,10 +60,10 @@ class AlternatifPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Alternatif  $alternatif
+     * @param  \App\Models\siswa  $siswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Alternatif $alternatif)
+    public function delete(User $user, siswa $siswa)
     {
         //
     }
@@ -72,10 +72,10 @@ class AlternatifPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Alternatif  $alternatif
+     * @param  \App\Models\siswa  $siswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Alternatif $alternatif)
+    public function restore(User $user, siswa $siswa)
     {
         //
     }
@@ -84,10 +84,10 @@ class AlternatifPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Alternatif  $alternatif
+     * @param  \App\Models\siswa  $siswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Alternatif $alternatif)
+    public function forceDelete(User $user, siswa $siswa)
     {
         //
     }

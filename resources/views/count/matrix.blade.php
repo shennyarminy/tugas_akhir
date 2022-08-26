@@ -18,7 +18,7 @@
           <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Alternatif</th>
+                <th>Nama siswa</th>
                 @foreach (array_keys(current($matrix)) as $indexCriteria )
                 <th>C{{$indexCriteria}}</th>
                 
@@ -27,14 +27,14 @@
             </tr>
         </thead>
         <tbody>
-          @foreach ($alternatif as $a)
+          @foreach ($siswa as $a)
           
           <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $a->nama_alternatif}}</td>
+            <td>{{ $a->nama_siswa}}</td>
             @php
             // mengubahnya menjadi collection
-            $scr = $alternatif_details->where('alternatif_id', $a->id)->sortBy('criteria_id'); 
+            $scr = $siswa_details->where('siswa_id', $a->id)->sortBy('criteria_id'); 
             
             @endphp
 
@@ -65,7 +65,7 @@
         <table id="table-1" class="table table-striped display">
           <thead>
             <tr>
-                <th>Alternatif</th>
+                <th>siswa</th>
                 {{-- <th>Name</th> --}}
                 @foreach (array_keys(current($matrix)) as $indexCriteria )
                
@@ -78,13 +78,13 @@
         </thead>
         <tbody>
 
-            @foreach (array_keys($matrix) as $indexAlternatif)
+            @foreach (array_keys($matrix) as $indexsiswa)
             
             <tr>
-                <td>A{{$indexAlternatif}}</td>
+                <td>A{{$indexsiswa}}</td>
               
-                @foreach (array_keys($matrix[$indexAlternatif]) as $indexCriteria)
-                  <td>{{$matrix[$indexAlternatif][$indexCriteria]}}</td>
+                @foreach (array_keys($matrix[$indexsiswa]) as $indexCriteria)
+                  <td>{{$matrix[$indexsiswa][$indexCriteria]}}</td>
                 @endforeach
             </tr>
             @endforeach

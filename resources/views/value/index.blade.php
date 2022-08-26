@@ -26,12 +26,12 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($alternatif as $a)
+            @foreach ($siswa as $a)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $a->nama_alternatif}}</td>
+                <td>{{ $a->nama_siswa}}</td>
                 @php
-                 $scr = $alternatif_details->where('alternatif_id', $a->id)->sortBy('criteria_id');
+                 $scr = $siswa_details->where('siswa_id', $a->id)->sortBy('criteria_id');
                 @endphp
                 @foreach ($scr as $s)
                 
@@ -43,7 +43,7 @@
                     <i class="fas fa-pen"></i>
                   </a>
                   {{-- HAPUS SUBKRITERIA --}}
-                  <a href="#" data-id = "{{ $a->id }}" data-nama="{{ $a->nama_alternatif }}"  class="btn btn-danger btn-sm delete">
+                  <a href="#" data-id = "{{ $a->id }}" data-nama="{{ $a->nama_siswa }}"  class="btn btn-danger btn-sm delete">
                     <form action="{{ route('value.destroy',$a->id)  }}" id="delete{{ $a->id }}" method="POST">
                       @csrf
                       @method('DELETE')
@@ -75,9 +75,9 @@
   $(".delete").click(function() {
   
     var id = $(this).attr('data-id');
-    var nama_alternatif = $(this).attr('data-nama');
+    var nama_siswa = $(this).attr('data-nama');
     swal({
-        title: 'Hapus Data Penilaian '+nama_alternatif,
+        title: 'Hapus Data Penilaian '+nama_siswa,
         // text: 'Once deleted, you will not be able to recover this imaginary file! ',
         icon: 'warning',
         buttons: true,

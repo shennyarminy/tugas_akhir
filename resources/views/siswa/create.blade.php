@@ -8,21 +8,21 @@
     <div class="card">
         {{-- CARD HEADER --}}
         <div class="card-header">
-            <i class="fas fa-plus-circle"></i><h4>Tambah Data Alternatif</h4>
+            <i class="fas fa-plus-circle"></i><h4>Tambah Data siswa</h4>
         </div>
 
         <div class="card-body">
-            <form action="{{ url('alternatif/') }}" method="POST">
+            <form action="{{ url('siswa/') }}" method="POST">
             @csrf
 
             <div class="row">
             
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="nama_alternatif">Nama Alternatif</label>
-                        <input type="text" name="nama_alternatif" id="nama_alternatif" class="form-control @error('nama_alternatif') is-invalid @enderror" value="{{ old('nama_alternatif') }}">
+                        <label for="nama_siswa">Nama siswa</label>
+                        <input type="text" name="nama_siswa" id="nama_siswa" class="form-control @error('nama_siswa') is-invalid @enderror" value="{{ old('nama_siswa') }}">
 
-                        @error('nama_alternatif')
+                        @error('nama_siswa')
                         {{ $message }}
                         <div class="invalid-feedback"> 
                         </div>
@@ -53,7 +53,7 @@
                 {{-- CARD FOOTER SUBMIT --}}
 
                 <div class="card-footer text-right ml-auto">
-                    <a href="{{ url('alternatif') }}" class="btn btn-danger float">Batal</a>
+                    <a href="{{ url('siswa') }}" class="btn btn-danger float">Batal</a>
                     <button type="submit" class="btn btn-primary float success"> Submit</button>
 
                 </div>

@@ -10,11 +10,17 @@ class Criteria extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function subcriterias(){
+    public function subcriterias()
+    {
         return $this->hasMany(Subcriteria::class);
     }
 
-    public function alternatifs(){
-        return $this->hasManyThrough(Alternatif::class, Subcriteria::class); 
+    // public function siswas(){
+    //     return $this->hasManyThrough(siswa::class, Subcriteria::class); 
+    // }
+
+    public function siswas()
+    {
+        return $this->hasManyThrough(Siswa::class, Subcriteria::class);
     }
 }
