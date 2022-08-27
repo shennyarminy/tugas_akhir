@@ -6,7 +6,7 @@ use App\Models\Criteria;
 use App\Models\siswa;
 use App\Models\Subcriteria;
 use Illuminate\Http\Request;
-use App\Models\siswaDetail;
+use App\Models\perhitungan;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -22,10 +22,10 @@ class ValueController extends Controller
 
     $siswa = siswa::get();
     $criterias = Criteria::get();
-    $siswa_details = siswaDetail::get();
+    $perhitungans = perhitungan::get();
 
 
-    return view('value.index', compact('siswa', 'criterias', 'siswa_details'), [
+    return view('value.index', compact('siswa', 'criterias', 'perhitungans'), [
       "aktif" => "value",
       "judul" => "Data Penilaian",
       "title" => "Data Penilaian",
@@ -74,7 +74,7 @@ class ValueController extends Controller
     // save detail
     $criterias = Criteria::get();
     foreach ($criterias as $criteria) {
-      $detail = new siswaDetail();
+      $detail = new perhitungan();
       $detail->siswa_id = $alt->id;
       $detail->criteria_id = $criteria->id;
       $detail->subcriteria_id = $request->input('criteria')[$criteria->id];
@@ -109,8 +109,8 @@ class ValueController extends Controller
     // untuk mencari id siswa
     $criterias = Criteria::get();
     $subcriterias = Subcriteria::get();
-    $siswa_details = siswaDetail::where('siswa_id', $siswa_id)->get();
-    return view('value.edit', compact('siswa', 'siswa_details', 'criterias', 'subcriterias'), [
+    $perhitungans = perhitungan::where('siswa_id', $siswa_id)->get();
+    return view('value.edit', compact('siswa', 'perhitungans', 'criterias', 'subcriterias'), [
       "aktif" => "penilaian",
       "judul" => "Data Penilaian",
       "title" => "Penilaian",
@@ -127,7 +127,7 @@ class ValueController extends Controller
   public function update(Request $request, siswa $siswa, $id)
   {
     $siswa = siswa::find($id);
-    $detail = siswaDetail::where('siswa_id', $siswa->id)->get();
+    $detail = perhitungan::where('siswa_id', $siswa->id)->get();
     $criteria = Criteria::get();
 
 

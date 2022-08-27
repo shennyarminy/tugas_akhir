@@ -6,11 +6,11 @@ use App\Models\User;
 use App\Models\Criteria;
 use App\Models\Subcriteria;
 use Illuminate\Database\Seeder;
-use App\Models\siswaDetail;
+use App\Models\perhitungan;
 use Database\Seeders\CriteriaSeeder;
 use Database\Seeders\siswaSeeder;
 use Database\Seeders\SubcriteriaSeeder;
-use Database\Seeders\siswaDetailSeeder;
+use Database\Seeders\perhitunganSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,14 +25,14 @@ class DatabaseSeeder extends Seeder
         // $this->call(UserSeeder::class);
         // $this->call(CriteriaSeeder::class);
         // $this->call(SubcriteriaSeeder::class);
-        // $this->call(siswaDetailSeeder::class);
+        // $this->call(perhitunganSeeder::class);
 
         $this->call([
             UserSeeder::class,
             CriteriaSeeder::class,
             SubcriteriaSeeder::class,
             siswaSeeder::class,
-            siswaDetailSeeder::class,
+            perhitunganSeeder::class,
 
         ]);
     }

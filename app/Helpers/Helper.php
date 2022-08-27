@@ -5,7 +5,7 @@ namespace App\Helpers;
 use App\Models\Criteria;
 
 use App\Models\siswa;
-use App\Models\siswaDetail;
+use App\Models\perhitungan;
 use App\Models\Subcriteria;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -50,8 +50,8 @@ class Helper
   public static function matrix()
   {
 
-    $detail = siswaDetail::select(
-      'siswa_details.id as id',
+    $detail = perhitungan::select(
+      'perhitungans.id as id',
       'siswas.id as alt',
       'criterias.id as cri',
       'subcriterias.id as sub',
@@ -59,9 +59,9 @@ class Helper
       'criterias.nama_criteria as cri_nama',
       'subcriterias.nilai_subcriteria as sub_nilai'
     )
-      ->leftJoin('siswas', 'siswas.id', '=', 'siswa_details.siswa_id')
-      ->leftJoin('criterias', 'criterias.id', '=', 'siswa_details.criteria_id')
-      ->leftJoin('subcriterias', 'subcriterias.id', '=', 'siswa_details.subcriteria_id')
+      ->leftJoin('siswas', 'siswas.id', '=', 'perhitungans.siswa_id')
+      ->leftJoin('criterias', 'criterias.id', '=', 'perhitungans.criteria_id')
+      ->leftJoin('subcriterias', 'subcriterias.id', '=', 'perhitungans.subcriteria_id')
       ->get();
 
 
@@ -137,7 +137,6 @@ class Helper
       $optimization[$alt] = 0;
       foreach ($criteria as $cri => $c) {
         $optimization[$alt] += $normalization[$alt][$cri] * ($c[1] == 'benefit' ? 1 : -1) * $c[2];
-
 
         // += adalah nilai yang lama ditambah dengan nilai yang baru 
       }

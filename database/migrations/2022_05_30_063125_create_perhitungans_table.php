@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatesiswaDetailsTable extends Migration
+class CreateperhitungansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreatesiswaDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('siswa_details', function (Blueprint $table) {
+        Schema::create('perhitungans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->references('id')->on('siswas')->onDelete('cascade');
             $table->foreignIdFor(Criteria::class)->nullable();
@@ -31,6 +31,6 @@ class CreatesiswaDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('siswa_details');
+        Schema::dropIfExists('perhitungans');
     }
 }

@@ -8,7 +8,7 @@ use App\Models\siswa;
 use App\Models\Subcriteria;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\siswaDetail;
+use App\Models\perhitungan;
 
 class CountController extends Controller
 {
@@ -16,9 +16,9 @@ class CountController extends Controller
   {
     $siswa = siswa::get();
     $criterias = Criteria::get();
-    $siswa_details = siswaDetail::get();
+    $perhitungans = perhitungan::get();
     $matrix = Helper::matrix();
-    return view('count.matrix', compact('siswa_details', 'siswa', 'criterias', 'matrix'), [
+    return view('count.matrix', compact('perhitungans', 'siswa', 'criterias', 'matrix'), [
       "aktif" => "matrix",
       "judul" => "Data matrix",
       "title" => "matrix",

@@ -13,12 +13,12 @@ class siswa extends Model
 
   public function subcriterias()
   {
-    return $this->belongsToMany(Subcriteria::class, 'siswa_details', 'siswa_id', 'subcriteria_id');
+    return $this->belongsToMany(Subcriteria::class, 'perhitungans', 'siswa_id', 'subcriteria_id');
   }
 
 
-  public function siswa_details()
+  public function perhitungans()
   {
-    return $this->hasMany(siswaDetail::class);
+    return $this->hasMany(Perhitungan::class);
   }
 }

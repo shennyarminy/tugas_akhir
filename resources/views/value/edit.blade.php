@@ -37,7 +37,7 @@
              
               @foreach ($nilai as $item)
               <option value="{{ $item->id }}"
-                {{ $item->id == $siswa_details[$key]->subcriteria_id ? "selected=selected" : "" }}>
+                {{ $item->id == $perhitungans[$key]->subcriteria_id ? "selected=selected" : "" }}>
                 {{ $item->nama_subcriteria }}</option>
               @endforeach
 

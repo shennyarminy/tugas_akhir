@@ -33,7 +33,7 @@
               @php
                
                 // mengubahnya menjadi collection
-                $scr = $siswa_details->where('siswa_id', $siswa->id)->sortBy('criteria_id');
+                $scr = $perhitungans->where('siswa_id', $siswa->id)->sortBy('criteria_id');
                 
                 @endphp
                 @foreach ($scr as $s)
@@ -85,7 +85,7 @@
                                             value="{{ $subcriteria->id }}" 
                                             {{-- untuk membuat subcriteria mempunyai dropdown --}}
                                             <?php
-                                                $cek = $siswa->siswa_details()->where('subcriteria_id', $subcriteria->id)->first();
+                                                $cek = $siswa->perhitungans()->where('subcriteria_id', $subcriteria->id)->first();
                                                 if ($cek) echo "selected";
                                             ?>
 
@@ -158,7 +158,7 @@
                                                 <option
                                                   value="{{ $subcriteria->id }}"
                                                   <?php
-                                                  $cek = $siswa->siswa_details()->where('subcriteria_id', $subcriteria->id)->first();
+                                                  $cek = $siswa->perhitungans()->where('subcriteria_id', $subcriteria->id)->first();
                                                   if ($cek) echo "selected";
                                                   ?>
                                                  >{{ $subcriteria->nama_subcriteria }}

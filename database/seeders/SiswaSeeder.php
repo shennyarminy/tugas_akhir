@@ -1,8 +1,9 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\siswa;
-use App\Models\siswaDetail;
+use App\Models\perhitungan;
 use Illuminate\Database\Seeder;
 
 class SiswaSeeder extends Seeder

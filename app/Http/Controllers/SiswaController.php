@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Criteria;
 use App\Models\siswa;
 use App\Models\Subcriteria;
-use App\Models\siswaDetail;
+use App\Models\perhitungan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -25,9 +25,9 @@ class siswaController extends Controller
   {
     $siswas = siswa::get();
     $criterias = Criteria::get();
-    $siswa_details = siswaDetail::get();
+    $perhitungans = perhitungan::get();
 
-    return view('siswa.index', compact('siswas', 'criterias', 'siswa_details'), [
+    return view('siswa.index', compact('siswas', 'criterias', 'perhitungans'), [
       "aktif" => "siswa",
       "judul" => "Data siswa",
       "title" => "siswa",
@@ -76,7 +76,7 @@ class siswaController extends Controller
     // save detail
     $criterias = Criteria::get();
     foreach ($criterias as $criteria) {
-      $detail = new siswaDetail();
+      $detail = new perhitungan();
       $detail->siswa_id = $alt->id;
       $detail->criteria_id = $criteria->id;
       $detail->subcriteria_id = $request->input('criteria')[$criteria->id];
@@ -132,7 +132,7 @@ class siswaController extends Controller
     ]);
 
     // UNTUK CRITERIA
-    foreach ($siswa->siswa_details as $detail) {
+    foreach ($siswa->perhitungans as $detail) {
       $detail->update([
         'criteria_id' => $detail->subcriteria->criteria_id
       ]);

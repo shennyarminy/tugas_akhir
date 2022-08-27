@@ -31,7 +31,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $a->nama_siswa}}</td>
                 @php
-                 $scr = $siswa_details->where('siswa_id', $a->id)->sortBy('criteria_id');
+                 $scr = $perhitungans->where('siswa_id', $a->id)->sortBy('criteria_id');
                 @endphp
                 @foreach ($scr as $s)
                 
