@@ -85,4 +85,7 @@ Route::get('count.optimization', [CountController::class, 'optimization']);
 
 // RESULT
 Route::get('result.hasil', [ResultController::class, 'ranking']);
+
+// export pdf
 Route::get('result.cetak', [ResultController::class, 'cetak']);
+Route::get('result.pdf', [ResultController::class, 'pdf']);

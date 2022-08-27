@@ -4,7 +4,7 @@
 <section class="section">
   <div class="section-header ">
     <h1>{{ $judul }}</h1>
-    <a href="{{ url('result.cetak') }}" target="_blank" title="Cetak Data" class="btn btn-primary ml-auto">Cetak Data</a>
+    <a href="{{ url('result.pdf') }}" target="_blank" title="Cetak Data" class="btn btn-primary ml-auto">Cetak Data</a>
   </div>
 
   <div class="card">

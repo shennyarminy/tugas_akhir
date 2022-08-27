@@ -6,7 +6,7 @@
   </div>
   <div class="card">
     <div class="card-header">
-        <i class="fas fa-plus-circle"></i><h4>Tambah Data Subriteria</h4>
+        <i class="fas fa-plus-circle"></i><h4>Tambah Data Subkriteria</h4>
     </div>
   <div class="card-body">
     <form action="{{ url('subcriteria') }}" method="POST">
@@ -30,24 +30,18 @@
             </div>
         </div>
           <div class="col-12 ">
-              <label for="nama_subcriteria">Nama Subkriteria</label>
-              <input type="text" name="nama_subcriteria" id="nama_subcriteria" class="form-control @error('nama_subcriteria') is-invalid @enderror" value="{{ old('nama_subcriteria') ?? $subcriteria->nama_subcriteria ?? '' }}">
-              @error('nama_subcriteria')
-              <div class="invalid-feedback">
-                  {{ $message }}
+              <div class="form-group">
+                <label for="nama_subcriteria">Nama Subkriteria</label>
+                <input type="text" name="nama_subcriteria" id="nama_subcriteria" class="form-control @error('nama_subcriteria') is-invalid @enderror" value="{{ old('nama_subcriteria') ?? $subcriteria->nama_subcriteria ?? '' }}">
+                @error('nama_subcriteria')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
               </div>
-              @enderror
           </div>
 
-          <div class="col-12 ">
-            <label for="nama_subcriteria">Nama Subkriteria</label>
-            <input type="text" name="nama_subcriteria" id="nama_subcriteria" class="form-control @error('nama_subcriteria') is-invalid @enderror" value="{{ old('nama_subcriteria') ?? $subcriteria->nama_subcriteria ?? '' }}">
-            @error('nama_subcriteria')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-            @enderror
-        </div>
+      
       
           <div class="col-12 ">
               <div class="form-group">
