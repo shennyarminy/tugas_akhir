@@ -4,7 +4,6 @@
 <section class="section">
   <div class="section-header ">
     <h1>{{ $judul }}</h1>
-    <a href="{{ url('value/create') }}" title="Tambah Penilaian" class="btn btn-success ml-auto">Tambah Penilaian</a>
   </div>
 
   <div class="card">
@@ -22,7 +21,7 @@
                 @foreach ($criterias as $c)
                 <th>{{$c->kode}}</th>
                 @endforeach
-                <th>Aksi</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -34,23 +33,8 @@
                  $scr = $perhitungans->where('siswa_id', $a->id)->sortBy('criteria_id');
                 @endphp
                 @foreach ($scr as $s)
-                
                   <td>{{$s->subcriteria->nama_subcriteria}}</td>
                 @endforeach
-                <td>
-                  <a href="{{ url('value/'.$a->id.'/edit') }}" title="Ubah Subkriteria" 
-                    class="btn btn-primary btn-sm">
-                    <i class="fas fa-pen"></i>
-                  </a>
-                  {{-- HAPUS SUBKRITERIA --}}
-                  <a href="#" data-id = "{{ $a->id }}" data-nama="{{ $a->nama_siswa }}"  class="btn btn-danger btn-sm delete">
-                    <form action="{{ route('value.destroy',$a->id)  }}" id="delete{{ $a->id }}" method="POST">
-                      @csrf
-                      @method('DELETE')
-                    </form>
-                      <i class="fas fa-trash" ></i>
-                    </a>
-                </td>
             </tr>
             @endforeach
         </tbody>

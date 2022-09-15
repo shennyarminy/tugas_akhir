@@ -14,7 +14,6 @@ use App\Http\Controllers\siswaController;
 use App\Http\Controllers\ValueController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\CriteriaController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SubcriteriaController;
 
 /*
@@ -54,10 +53,18 @@ Route::resource('criteria', CriteriaController::class);
 Route::resource('subcriteria', SubcriteriaController::class);
 
 // siswa
-Route::resource('siswa', SiswaController::class);
+// Route::resource('siswa', SiswaController::class);
+Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index');
+Route::get('/value.index', [SiswaController::class, 'value'])->name('penilaian.value');
+
+Route::get('/siswa/create', [SiswaController::class, 'create'])->name('siswa.create');
+Route::post('/siswa', [SiswaController::class, 'store'])->name('siswa.store');
+Route::get('siswa/{siswa}/edit', [SiswaController::class, 'edit'])->name('siswa.edit');
+Route::put('/siswa/{siswa}', [SiswaController::class, 'update'])->name('siswa.update');
+Route::delete('/siswa/{siswa}', [SiswaController::class, 'destroy'])->name('siswa.destroy');
 
 // VALUE
-Route::resource('value', ValueController::class);
+// Route::resource('value', ValueController::class);
 // USER
 Route::resource('user', UserController::class);
 
@@ -67,10 +74,11 @@ Route::get('count.normalization', [CountController::class, 'normalization']);
 Route::get('count.optimization', [CountController::class, 'optimization']);
 
 
+
+
 // RESULT
 Route::get('result.hasil', [ResultController::class, 'ranking']);
 Route::get('result.cetak', [ResultController::class, 'cetak']);
 
 
-Route::get('/list_subcriteria/{criteria_id}', [SubcriteriaController::class, 'listSubcriteria']);
-Route::get('/list_item/{subcriteria_id}', [SubcriteriaController::class, 'listItem']);
+

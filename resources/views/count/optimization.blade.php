@@ -33,6 +33,10 @@
         </tbody>
         </table>
       </div>
+
+      <a href=" {{ url('hasil/create') }}" title="Hasil Perhitungan" class="btn btn-success ml-auto"> Hasil Perhitungan</a>
+
+      
     </div>
   </div>
 </section>

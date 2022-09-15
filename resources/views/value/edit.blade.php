@@ -23,6 +23,41 @@
                  value="{{ $siswa->nama_siswa }}">
             </div>
           </div>
+          <div class="col-12">
+            <div class="form-group">
+                <label for="nis">NIS</label>
+                <input type="text" name="nis" id="nis" class="form-control"
+                 value="{{ $siswa->nis }}">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+                <label for="nisn">NISN</label>
+                <input type="text" name="nisn" id="nisn" class="form-control"
+                 value="{{ $siswa->nisn }}">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+                <label for="nama_ayah">Nama Ayah</label>
+                <input type="text" name="nama_ayah" id="nama_ayah" class="form-control"
+                 value="{{ $siswa->nama_ayah }}">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+                <label for="nama_ibu">Nama Ibu</label>
+                <input type="text" name="nama_ibu" id="nama_ibu" class="form-control"
+                 value="{{ $siswa->nama_ibu }}">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <input type="text" name="alamat" id="alamat" class="form-control"
+                 value="{{ $siswa->alamat }}">
+            </div>
+          </div>
           {{-- LOOPING UNTUK CRITERIA DAN SUBCRITERIA --}}
           
           @foreach ($criterias as $key => $cri)

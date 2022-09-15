@@ -64,11 +64,24 @@ class ValueController extends Controller
   {
     $request->validate([
       "nama_siswa" => "required",
+      "nis" => "required", 
+      "nisn" => "required",
+      "nama_ayah" => "required", 
+      "nama_ibu" => "required", 
+      "alamat" => "required",
+
 
     ]);
+
+
     //  save siswa
     $alt = new siswa;
     $alt->nama_siswa = $request->nama_siswa;
+    $alt->nis = $request->nis;
+    $alt->nisn = $request->nisn;
+    $alt->nama_ayah = $request->nama_ayah;
+    $alt->nama_ibu = $request->nama_ibu;
+    $alt->alamat = $request->alamat;
     $alt->save();
 
     // save detail
@@ -84,7 +97,9 @@ class ValueController extends Controller
     Toastr::success("Anda berhasil menambahkan $request->nama_siswa");
 
     return redirect()->route('value.index');
-  }
+    }
+
+  
 
   /**
    * Display the specified resource.
@@ -127,24 +142,37 @@ class ValueController extends Controller
   public function update(Request $request, siswa $siswa, $id)
   {
     $siswa = siswa::find($id);
-    $detail = perhitungan::where('siswa_id', $siswa->id)->get();
-    $criteria = Criteria::get();
-
-
-    $request->validate([
+    $data = $request->validate([
       "nama_siswa" => "required",
+      "nis" => "required", 
+      "nisn" => "required",
+      "nama_ayah" => "required", 
+      "nama_ibu" => "required", 
+      "alamat" => "required",
+      "subcriteria_id" => "required",
     ]);
+
+
     $siswa->update([
       $siswa->update($request->only(['nama_siswa'])),
+      $siswa->update($request->only(['nis'])),
+      $siswa->update($request->only(['nisn'])),
+      $siswa->update($request->only(['nama_ayah'])),
+      $siswa->update($request->only(['nama_ibu'])),
+      $siswa->update($request->only(['alamat'])),
+
+      $siswa->subcriterias()->sync($request->subcriteria_id),
     ]);
 
-    foreach ($criteria as $key => $cri) {
-      $detail[$key]->subcriteria_id = $request->input('criteria')[$cri->id];
-      $detail[$key]->save();
+    // UNTUK CRITERIA
+    foreach ($siswa->perhitungans as $detail) {
+      $detail->update([
+        'criteria_id' => $detail->subcriteria->criteria_id
+      ]);
     }
 
     Toastr::success("Anda Berhasil mengubah $siswa->nama_siswa");
-    return redirect()->route('value.index')->with('Penilaian updated');
+    return redirect()->route('value.index');
   }
 
   /**

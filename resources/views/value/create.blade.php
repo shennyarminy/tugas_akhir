@@ -27,6 +27,69 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="nis">NIS</label>
+                            <input type="text" name="nis" id="nis" class="form-control @error('nis') is-invalid @enderror" value="{{ old('nis') }}">
+
+                            @error('nis')
+                            {{ $message }}
+                            <div class="invalid-feedback"> 
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="nisn">NISN</label>
+                            <input type="text" name="nisn" id="nisn" class="form-control @error('nisn') is-invalid @enderror" value="{{ old('nisn') }}">
+
+                            @error('nisn')
+                            {{ $message }}
+                            <div class="invalid-feedback"> 
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="nama_ayah">Nama Ayah</label>
+                            <input type="text" name="nama_ayah" id="nama_ayah" class="form-control @error('nama_ayah') is-invalid @enderror" value="{{ old('nama_ayah') }}">
+
+                            @error('nama_ayah')
+                            {{ $message }}
+                            <div class="invalid-feedback"> 
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="nama_ibu">Nama Ibu</label>
+                            <input type="text" name="nama_ibu" id="nama_ibu" class="form-control @error('nama_ibu') is-invalid @enderror" value="{{ old('nama_ibu') }}">
+
+                            @error('nama_ibu')
+                            {{ $message }}
+                            <div class="invalid-feedback"> 
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}">
+
+                            @error('alamat')
+                            {{ $message }}
+                            <div class="invalid-feedback"> 
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+
+
+
                     {{-- LOOPING UNTUK CRITERIA DAN SUBCRITERIA --}}
                     
                     @foreach ($criterias as $criteria)

@@ -35,6 +35,23 @@ class siswaController extends Controller
     ]);
   }
 
+  public function value()
+  {
+    $siswa = siswa::get();
+    $criterias = Criteria::get();
+    $perhitungans = perhitungan::get();
+    
+    return view('value.index', compact('siswa', 'criterias', 'perhitungans'), [
+      "aktif" => "value",
+      "judul" => "Data Penilaian",
+      "title" => "Data Penilaian",
+
+      "subcriteria" => Subcriteria::all(),
+    ]);
+
+
+  }
+
   /**
    * Show the form for creating a new resource.
    *
@@ -64,6 +81,12 @@ class siswaController extends Controller
   {
     $request->validate([
       "nama_siswa" => "required",
+      "nis" => "required", 
+      "nisn" => "required",
+      "nama_ayah" => "required", 
+      "nama_ibu" => "required", 
+      "alamat" => "required",
+
 
     ]);
 
@@ -71,6 +94,11 @@ class siswaController extends Controller
     //  save siswa
     $alt = new siswa;
     $alt->nama_siswa = $request->nama_siswa;
+    $alt->nis = $request->nis;
+    $alt->nisn = $request->nisn;
+    $alt->nama_ayah = $request->nama_ayah;
+    $alt->nama_ibu = $request->nama_ibu;
+    $alt->alamat = $request->alamat;
     $alt->save();
 
     // save detail
@@ -122,12 +150,23 @@ class siswaController extends Controller
     $siswa = siswa::find($id);
     $data = $request->validate([
       "nama_siswa" => "required",
+      "nis" => "required", 
+      "nisn" => "required",
+      "nama_ayah" => "required", 
+      "nama_ibu" => "required", 
+      "alamat" => "required",
       "subcriteria_id" => "required",
     ]);
 
 
     $siswa->update([
       $siswa->update($request->only(['nama_siswa'])),
+      $siswa->update($request->only(['nis'])),
+      $siswa->update($request->only(['nisn'])),
+      $siswa->update($request->only(['nama_ayah'])),
+      $siswa->update($request->only(['nama_ibu'])),
+      $siswa->update($request->only(['alamat'])),
+
       $siswa->subcriterias()->sync($request->subcriteria_id),
     ]);
 

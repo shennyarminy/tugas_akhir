@@ -24,7 +24,7 @@
                 <a href="{{ route('siswa.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Data Siswa</span></a>
               </li>
               <li class="nav-item @if($aktif == 'value') {{ 'active' }}@endif">
-                <a href="{{ route('value.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Data Penilaian</span></a>
+                <a href="{{ url('value.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Data Penilaian</span></a>
               </li>
 
 

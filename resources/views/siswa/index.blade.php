@@ -17,9 +17,14 @@
         <table id="table-1" class="table table-striped">
           <thead>
             <tr>
-              <th class="col-1">No.</th>
-              <th class="col-4">Nama siswa</th>
-              <th class="col-4">Aksi</th>
+              <th>No.</th>
+              <th>Nama siswa</th>
+              <th>NIS</th>
+              <th>NISN</th>
+              <th>Nama Ayah</th>
+              <th>Nama Ibu</th>
+              <th>Alamat</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +32,11 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $siswa->nama_siswa }}</td>
+              <td>{{ $siswa->nis }}</td>
+              <td>{{ $siswa->nisn }}</td>
+              <td>{{ $siswa->nama_ayah }}</td>
+              <td>{{ $siswa->nama_ibu }}</td>
+              <td>{{ $siswa->alamat }}</td>
               <td>
 
                 {{-- VIEW MODAL siswa --}}

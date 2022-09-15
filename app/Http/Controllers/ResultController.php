@@ -10,7 +10,9 @@ class ResultController extends Controller
   public function ranking()
   {
     $siswa = Helper::getsiswa();
+    // $siswa = $this->countSiswa();
     $optimization = Helper::optimization();
+   
 
     // mengurutkan data secara desc dengan tetap mempertahankan key/index arraynya 
     asort($optimization);

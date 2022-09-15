@@ -28,6 +28,7 @@
             <tr>
                 <td>{{ $rank++ }}</td>
                 <td>{{ $siswa[$opt][0] }}</td>
+            
                 <td>{{ number_format((float)$optimization[$opt], 4, '.', '') }}</td>
             </tr>
             @endforeach

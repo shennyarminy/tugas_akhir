@@ -31,8 +31,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CriteriaSeeder::class,
             SubcriteriaSeeder::class,
-            siswaSeeder::class,
-            perhitunganSeeder::class,
+            // siswaSeeder::class,
+            // perhitunganSeeder::class,
 
         ]);
     }

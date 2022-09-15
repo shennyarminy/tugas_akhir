@@ -35,16 +35,8 @@ class SubcriteriaController extends Controller
         ]);
     }
 
-    public function listSubcriteria($criteria_id){
-        $data = Subcriteria::where('criteria_id', $criteria_id)->get();
-      
-        return response()->json($data);
-    }
-
-    // public function listItem($subcriteria_id){
-    //     $data = Subcriteria::where('subcriteria_id', $subcriteria_id)->get();
-    //      return response()->json($data);
-    // }
+  
+    
 
     /**
      * Show the form for creating a new resource.
@@ -135,7 +127,7 @@ class SubcriteriaController extends Controller
     public function update(UpdateSubcriteriaRequest $request, Subcriteria $subcriteria, $id)
     {
         $subcriteria = Subcriteria::find($id);
-        $data       = $request->validate([
+        $request->validate([
             "nama_subcriteria" => "required",
             "nilai_subcriteria" => "required",
 
