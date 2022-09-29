@@ -4,6 +4,10 @@
   <div id="app">
     
     <section class="wrapper fadeInDown">
+      <div class="judul mt-6 text-center">   
+        <h3 style="color: aliceblue">Sistem Pendukung Keputusan Beasiswa PIP</h3>
+        <h4 style="color: aliceblue">(SPKBP)</h4>
+      </div>
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-6 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
@@ -50,9 +54,9 @@
                 </form>
               </div>
                    
-            <div class="mt-5 text-muted text-center">
+            {{-- <div class="text-muted text-center">
               Don't have an account? <a href="/register">Register Now!</a>
-            </div>
+            </div> --}}
             <div class="simple-footer">  
             </div>
           </div>
