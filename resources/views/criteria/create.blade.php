@@ -13,7 +13,6 @@
   <div class="card-body">
     <form action="{{ url('criteria') }}" method="POST">
     @csrf
-    
     <div class="row">
       <div class="col-12 col-lg-6">
           <div class="form-group">
@@ -40,7 +39,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-lg-6">
+      {{-- <div class="col-12 col-lg-6">
         <div class="form-group">
             <label for="bobot_criteria">Bobot Kriteria</label>
             <input type="number" name="bobot_criteria" id="bobot_criteria" class="form-control @error('bobot_criteria') is-invalid @enderror" value="{{ old('bobot_criteria')}}" >       
@@ -66,7 +65,7 @@
             </div>
             @enderror
         </div>
-      </div>
+      </div> --}}
 
     </div>
     <div class="card-footer text-right">

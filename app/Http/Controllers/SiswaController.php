@@ -35,7 +35,7 @@ class siswaController extends Controller
     ]);
   }
 
-  public function value()
+  public function penilaian()
   {
     $siswa = siswa::get();
     $criterias = Criteria::get();
@@ -88,7 +88,15 @@ class siswaController extends Controller
       "alamat" => "required",
 
 
-    ]);
+    ], 
+  [
+    "nama_siswa.required" => "Nama Siswa tidak boleh kosong", 
+    "nis.required" => "NIS tidak boleh kosong", 
+    "nisn.required" => "NISN tidak boleh kosong", 
+    "nama_ayah.required" => "Nama Ayah tidak boleh kosong", 
+    "nama_ibu.required" => "Nama Ibu tidak boleh kosong", 
+    "alamat.required" => "Alamat tidak boleh kosong", 
+  ]);
 
 
     //  save siswa

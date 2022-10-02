@@ -35,12 +35,10 @@
             @php
             // mengubahnya menjadi collection
             $scr = $perhitungans->where('siswa_id', $a->id)->sortBy('criteria_id'); 
-            
             @endphp
 
             @foreach ($scr as $s)
               <td>{{$s->subcriteria->nama_subcriteria}}</td>
-            
             @endforeach
               
           </tr>
@@ -65,8 +63,8 @@
         <table id="table-1" class="table table-striped display">
           <thead>
             <tr>
+                <th>No</th>
                 <th>siswa</th>
-                {{-- <th>Name</th> --}}
                 @foreach (array_keys(current($matrix)) as $indexCriteria )
                
                 <th>C{{$indexCriteria}}</th>
@@ -81,8 +79,9 @@
             @foreach (array_keys($matrix) as $indexsiswa)
             
             <tr>
+                <td>{{ $loop->iteration }}</td>
                 <td>A{{$indexsiswa}}</td>
-              
+                
                 @foreach (array_keys($matrix[$indexsiswa]) as $indexCriteria)
                   <td>{{$matrix[$indexsiswa][$indexCriteria]}}</td>
                 @endforeach

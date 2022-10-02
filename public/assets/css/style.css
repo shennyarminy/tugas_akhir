@@ -3000,6 +3000,9 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 #toast-container > .toast:before {
 
   margin-left: -2em;
-  
+}
 
+.swal-title {
+  font-size: 20px !important;
+  
 }

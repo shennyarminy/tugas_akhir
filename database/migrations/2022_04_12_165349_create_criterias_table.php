@@ -17,8 +17,8 @@ class CreateCriteriasTable extends Migration
             $table->id();
             $table->string('kode');
             $table->string('nama_criteria');
-            $table->float('bobot_criteria');
-            $table->string('tipe');
+            $table->float('bobot_criteria')->nullable();
+            $table->enum('tipe', ['benefit', 'cost'])->nullable();
             
             $table->timestamps();
         });

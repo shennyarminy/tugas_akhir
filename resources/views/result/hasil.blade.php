@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 <th>Rank</th>
-                                <th>siswa</th>
+                                <th>Siswa</th>
                                 <th>Ranking</th>
 
                             </tr>

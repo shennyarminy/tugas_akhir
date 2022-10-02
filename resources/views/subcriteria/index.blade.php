@@ -83,7 +83,8 @@
   var id= $(this).attr('data-id');
   var nama_subcriteria = $(this).attr('data-nama');
   swal({
-    title: 'Hapus Data Subkriteria '+nama_subcriteria,
+    title: 'Hapus Data Subkriteria',
+    text: "Apakah anda benar ingin menghapus "+nama_subcriteria, 
     icon: 'warning', 
     buttons: true,
     dangerMode: true,

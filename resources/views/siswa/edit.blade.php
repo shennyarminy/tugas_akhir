@@ -31,7 +31,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="nis">NIS</label>
-                            <input type="text" name="nis" id="nis" class="form-control @error('nis') is-invalid @enderror" value="{{ old('nis') }}">
+                            <input type="number" name="nis" id="nis" class="form-control @error('nis') is-invalid @enderror" value="{{ old('nis') }}">
 
                             @error('nis')
                             {{ $message }}
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="nisn">NISN</label>
+                            <label for="number">NISN</label>
                             <input type="text" name="nisn" id="nisn" class="form-control @error('nisn') is-invalid @enderror" value="{{ old('nisn') }}">
 
                             @error('nisn')

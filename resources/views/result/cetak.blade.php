@@ -14,12 +14,12 @@
 </head>
 <body>
   <div class="form-group">
-    <p  align="center"><b> Penerima Beasiswa PIP </b></p>
+    <p  align="center"><b> Penerima Beasiswa PIP SD Negeri 11 Sandai </b></p>
     <table class="static" align="center" rules="all" border="1px" style="width: 95%;">
       <thead>
         <tr >
             <th>Rank</th>
-            <th>siswa</th>
+            <th>Siswa</th>
             <th>Hasil</th>
            
         </tr>

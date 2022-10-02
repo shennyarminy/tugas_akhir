@@ -4,13 +4,14 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Criteria;
+use App\Models\perhitungan;
 use App\Models\Subcriteria;
 use Illuminate\Database\Seeder;
-use App\Models\perhitungan;
-use Database\Seeders\CriteriaSeeder;
+use Database\Seeders\UserSeeder;
 use Database\Seeders\siswaSeeder;
-use Database\Seeders\SubcriteriaSeeder;
+use Database\Seeders\CriteriaSeeder;
 use Database\Seeders\perhitunganSeeder;
+use Database\Seeders\SubcriteriaSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,8 +32,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CriteriaSeeder::class,
             SubcriteriaSeeder::class,
-            // siswaSeeder::class,
-            // perhitunganSeeder::class,
+            SiswaSeeder::class,
+            PerhitunganSeeder::class,
 
         ]);
     }
