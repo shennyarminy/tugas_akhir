@@ -62,38 +62,48 @@
                           <div class="tab-pane fade show active" id="exampleModal{{ $siswa->subcriteria_id }}" role="tabpanel" aria-labelledby="exampleModal{{ $siswa->subcriteria_id }}">
                             <div class="card">
                               <div class="card-body">
-                                <div class="row">
-                                  <div class="col-12">
-                                    <div class="form-group">
-                                      <label for="nama_siswa">NAMA siswa</label>
-                                      <input type="text" name="nama_siswa" id="nama_siswa"
-                                        class="form-control"
-                                        value="{{ $siswa->nama_siswa }}">
-                                    </div>
+                                <div class="row text-left">
+                                  <div class="col-6">
+                                    <p>Nama Siswa</p>
                                   </div>
-    
-                                  @foreach ($criterias as $criteria)
-                                  <div class="col-12 ">
-                                    <div class="form-group">
-                                      <label for="">{{ $criteria->nama_criteria }}</label>
-                                      <select class="form-control"
-                                        name="subcriteria_id[]">
-                                        @foreach ($criteria->subcriterias as $subcriteria)
-                                          <option
-                                            value="{{ $subcriteria->id }}" 
-                                            {{-- untuk membuat subcriteria mempunyai dropdown --}}
-                                            <?php
-                                                $cek = $siswa->perhitungans()->where('subcriteria_id', $subcriteria->id)->first();
-                                                if ($cek) echo "selected";
-                                            ?>
-
-                                            >{{ $subcriteria->nama_subcriteria }}
-                                          </option>
-                                        @endforeach
-                                      </select>
-                                    </div>
+                                  <div class="col-6">
+                                    <p class="card-text">
+                                      : &nbsp; {{ $siswa->nama_siswa }}
+                                    </p>
                                   </div>
-                                @endforeach
+                                  <div class="col-6">
+                                    <p>NIS</p>
+                                  </div>
+                                  <div class="col-6">
+                                    <p class="card-text">
+                                      : &nbsp; {{ $siswa->nis }}
+                                    </p>
+                                  </div>
+                                  <div class="col-6">
+                                    <p>NISN</p>
+                                  </div>
+                                  <div class="col-6">
+                                    <p class="card-text">
+                                      : &nbsp; {{ $siswa->nisn }}
+                                    </p>
+                                  </div>
+                                  <div class="col-6">
+                                    <p>Nama Ayah</p>
+                                  </div>
+                                  <div class="col-6">
+                                    <p class="card-text">
+                                      : &nbsp; {{ $siswa->nama_ayah }}
+                                    </p>
+                                  </div>
+                                  <div class="col-6">
+                                    <p>Nama Ibu</p>
+                                  </div>
+                                  <div class="col-6">
+                                    <p class="card-text">
+                                      : &nbsp; {{ $siswa->nama_ibu }}
+                                    </p>
+                                  </div>
+                               
                                 </div>
                                 </div>
                               </div>
@@ -110,76 +120,12 @@
                 {{-- BATAS VIEW MODAL siswa --}}
 
                 {{-- AWAL EDIT MODAL siswa --}}
-                  <button type="button" title="Edit siswa" class="d-inline btn btn-primary btn-sm" data-toggle="modal" data-target="#Modal{{ $siswa->id }}">
-                    <i class="fas fa-edit"></i>
-                  </button>
-
-                  <div class="modal fade" id="Modal{{ $siswa->id }}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="ModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title  w-100 text-center" id="ModalLabel">{{ $siswa->nama_siswa }}</h4>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fadde show active" id="Modal{{ $siswa->id }}" role="tabpanel" aria-labelledby="Modal{{ $siswa->id }}">
-
-                              <form action="{{ url('siswa/'.$siswa->id) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                  <input type="hidden" name="method" value="PATCH">
-                                  <div class="row">
-                                      <div class="col-12">
-                                        <div class="form-group">
-                                          <label for="nama_siswa">Nama siswa</label>
-                                          <input type="text" name="nama_siswa" id="nama_siswa"
-                                            class="form-control @error  ('nama_siswa') is-invalid @enderror"
-                                            value="{{ $siswa->nama_siswa }}">
-                                          @error('nama_siswa')
-                                            <div class="invalid-feedback">
-                                              {{ $message }}
-                                            </div>
-                                          @enderror
-                                        </div>
-                                      </div>
-
-                                      @foreach ($criterias as $criteria)
-                                        <div class="col-12">
-                                          <div class="form-group">
-                                            <label for="">{{ $criteria->nama_criteria }}</label>
-                                            <select class="form-control @error('subcriteria_id') is-invalid @enderror"
-                                              name="subcriteria_id[]">
-                                              @foreach ($criteria->subcriterias as $subcriteria)
-                                                <option
-                                                  value="{{ $subcriteria->id }}"
-                                                  <?php
-                                                  $cek = $siswa->perhitungans()->where('subcriteria_id', $subcriteria->id)->first();
-                                                  if ($cek) echo "selected";
-                                                  ?>
-                                                 >{{ $subcriteria->nama_subcriteria }}
-                                                </option>
-                                              @endforeach
-                                            </select>
-                                          </div>
-                                        </div>
-                                      @endforeach
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                  </div>     
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                <a href="{{url('siswa/'.$siswa->id.'/edit')}}" title="Ubah Kriteria"
+                  class=" btn btn-primary btn-sm ">
+                  <i class="fas fa-pen"></i>
+                </a>
                   {{-- AKHIR EDIT MODAL siswa --}}
+
                   {{-- AWAL HAPUS siswa --}}
                   <a href="#" data-id = "{{ $siswa->id }}" data-nama="{{ $siswa->nama_siswa }}"  class="btn btn-danger btn-sm delete">
                     <form action="{{ url('siswa/'.$siswa->id) }}" id="delete{{ $siswa->id }}" method="POST">

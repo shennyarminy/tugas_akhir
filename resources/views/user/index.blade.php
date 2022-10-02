@@ -67,7 +67,7 @@
     var nama = $(this).attr('data-nama');
     swal({
         title: 'Hapus Data User '+nama,
-        // text: 'Once deleted, you will not be able to recover this imaginary file! ',
+        text: "Apakah anda benar ingin menghapus "+nama+"?", 
         icon: 'warning',
         buttons: true,
         dangerMode: true,

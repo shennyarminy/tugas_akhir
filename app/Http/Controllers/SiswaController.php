@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Siswa;
 use App\Models\Criteria;
-use App\Models\siswa;
-use App\Models\Subcriteria;
 use App\Models\perhitungan;
+use App\Models\Subcriteria;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
-use phpDocumentor\Reflection\Types\Nullable;
 use App\Http\Requests\StoresiswaRequest;
 use App\Http\Requests\UpdatesiswaRequest;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class siswaController extends Controller
 {
@@ -23,7 +24,7 @@ class siswaController extends Controller
   public function index()
 
   {
-    $siswas = siswa::get();
+    $siswas = Siswa::get();
     $criterias = Criteria::get();
     $perhitungans = perhitungan::get();
 
@@ -37,7 +38,7 @@ class siswaController extends Controller
 
   public function penilaian()
   {
-    $siswa = siswa::get();
+    $siswa = Siswa::get();
     $criterias = Criteria::get();
     $perhitungans = perhitungan::get();
     
@@ -66,7 +67,7 @@ class siswaController extends Controller
       "title" => "Tambah siswa",
       "criterias" => Criteria::get(),
       "subcriterias" => Subcriteria::get(),
-      "siswas" => siswa::get(),
+      "siswas" => Siswa::get(),
 
     ]);
   }
@@ -141,9 +142,19 @@ class siswaController extends Controller
    * @param  \App\Models\siswa  $siswa
    * @return \Illuminate\Http\Response
    */
-  public function edit(siswa $siswa)
+  public function edit($id)
   {
-    //
+    
+      $siswa = Siswa::find($id);
+      $criterias = Criteria::get();
+      $subcriterias = Subcriteria::get();
+      $perhitungans = perhitungan::get();
+      return view('siswa.edit', compact('siswa', 'criterias', 'perhitungans', 'subcriterias'), [
+        "aktif" => "criteria",
+        "judul" => "Ubah Kriteria", 
+        "title" => "Ubah Kriteria",
+      ]);
+    
   }
 
   /**
@@ -155,7 +166,7 @@ class siswaController extends Controller
    */
   public function update(UpdatesiswaRequest $request,  $id)
   {
-    $siswa = siswa::find($id);
+    $siswa = Siswa::find($id);
     $data = $request->validate([
       "nama_siswa" => "required",
       "nis" => "required", 
@@ -197,7 +208,7 @@ class siswaController extends Controller
    */
   public function destroy($id)
   {
-    $siswa = siswa::find($id);
+    $siswa = Siswa::find($id);
     $siswa->delete();
     return redirect()->route('siswa.index')->withSuccess("Berhasil menghapus siswa: $id");
   }

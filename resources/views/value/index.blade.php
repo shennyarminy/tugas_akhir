@@ -53,36 +53,6 @@
       } );
   } );
   </script>
-  
-  <script>
-  
-  $(".delete").click(function() {
-  
-    var id = $(this).attr('data-id');
-    var nama_siswa = $(this).attr('data-nama');
-    swal({
-        title: 'Hapus Data Penilaian '+nama_siswa,
-        // text: 'Once deleted, you will not be able to recover this imaginary file! ',
-        icon: 'warning',
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-          if (willDelete) {
-          swal('Berhasil dihapus', {
-            icon: 'success',
-          });
-          $(`#delete${id}`).submit();
-  
-        } 
-      });
-  });
-  
-  </script>
-
-
-
-
 @endsection
 
 

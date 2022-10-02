@@ -1,125 +1,95 @@
 @extends('layouts.main')
 @section('content')
-
-<section class="section">
+  <section class="section">
     <div class="section-header">
-        <h1>{{ $judul }}</h1>
-    </div>
-    <div class="card">
-        {{-- CARD HEADER --}}
-        <div class="card-header">
-            <i class="fas fa-plus-circle"></i><h4>Tambah Data siswa</h4>
-        </div>
-
-        <div class="card-body"> 
-            <form action="{{ url('siswa/'.$siswa->id) }}" method="POST">
-            @csrf
-            <div class="row">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="nama_siswa">Nama Siswa</label>
-                            <input type="text" name="nama_siswa" id="nama_siswa" class="form-control @error('nama_siswa') is-invalid @enderror" value="{{ old('nama_siswa') }}">
-
-                            @error('nama_siswa')
-                            {{ $message }}
-                            <div class="invalid-feedback"> 
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="nis">NIS</label>
-                            <input type="number" name="nis" id="nis" class="form-control @error('nis') is-invalid @enderror" value="{{ old('nis') }}">
-
-                            @error('nis')
-                            {{ $message }}
-                            <div class="invalid-feedback"> 
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="number">NISN</label>
-                            <input type="text" name="nisn" id="nisn" class="form-control @error('nisn') is-invalid @enderror" value="{{ old('nisn') }}">
-
-                            @error('nisn')
-                            {{ $message }}
-                            <div class="invalid-feedback"> 
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="nama_ayah">Nama Ayah</label>
-                            <input type="text" name="nama_ayah" id="nama_ayah" class="form-control @error('nama_ayah') is-invalid @enderror" value="{{ old('nama_ayah') }}">
-
-                            @error('nama_ayah')
-                            {{ $message }}
-                            <div class="invalid-feedback"> 
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="nama_ibu">Nama Ibu</label>
-                            <input type="text" name="nama_ibu" id="nama_ibu" class="form-control @error('nama_ibu') is-invalid @enderror" value="{{ old('nama_ibu') }}">
-
-                            @error('nama_ibu')
-                            {{ $message }}
-                            <div class="invalid-feedback"> 
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}">
-
-                            @error('alamat')
-                            {{ $message }}
-                            <div class="invalid-feedback"> 
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-
-
-
-
-
-                {{-- LOOPING UNTUK CRITERIA DAN SUBCRITERIA --}}
-
-                @foreach ($criterias as $criteria)
-                <div class="col-12 col-lg-6">
-                    <div class="form-group">
-                        <label for="criteria_id" name="criteria_id" >{{ $criteria->nama }}</label>
-
-                        <select class="form-control @error('subcriteria_id') is-invalid @enderror"
-                        name="subcriteria_id[]">
-                        <option value="">--Pilih--</option>
-                        @foreach ($criteria->subcriterias as $subcriteria)
-                        <option value="{{ $subcriteria->id }}">{{ $subcriteria->namas }}</option>
-                        @endforeach
-                    </select>
-                    </div>
+      <h1>{{ $judul }}</h1>
+  </div>
+  <div class="card">
+      <div class="card-header">
+        <i class="fas fa-plus-circle"></i><h4>Ubah Data Subriteria</h4>
+      </div>
+      <div class="card-body">
+        <form action="{{ url('siswa/'. $siswa->id) }}" method="POST">
+          @csrf
+          @method('PUT')
+          <input type="hidden" name="method" value="PATCH">
+          <div class="row">
+            <div class="col-12 ">
+                <div class="form-group">
+                    <label for="nama_siswa">Nama Siswa</label>
+                    <input type="text" name="nama_siswa" id="nama_siswa" class="form-control" value="{{ $siswa->nama_siswa }}">
                 </div>
-                @endforeach
+            </div>
 
-                {{-- CARD FOOTER SUBMIT --}}
+            <div class="col-12 ">
+              <div class="form-group">
+                <label for="nis">NIS</label>
+                <input type="number" name="nis" id="nis" class="form-control" value="{{ $siswa->nis }}">
+              </div>
+            </div>
+            <div class="col-12 ">
+              <div class="form-group">
+                <label for="nis">NIS</label>
+                <input type="number" name="nis" id="nis" class="form-control" value="{{ $siswa->nis }}">
+              </div>
+            </div>
+            <div class="col-12 ">
+              <div class="form-group">
+                <label for="number">NISN</label>
+                <input type="text" name="nisn" id="nisn" class="form-control" value="{{ $siswa->nisn }}">
+              </div>
+            </div>
+            <div class="col-12 ">
+              <div class="form-group">
+                <label for="nama_ayah">Nama Ayah</label>
+                <input type="text" name="nama_ayah" id="nama_ayah" class="form-control" value="{{ $siswa->nama_ayah }}">
+              </div>
+            </div>
+            <div class="col-12 ">
+              <div class="form-group">
+                <label for="nama_ibu">Nama Ibu</label>
+                <input type="text" name="nama_ibu" id="nama_ibu" class="form-control" value="{{ $siswa->nama_ibu }}">
+              </div>
+            </div>
+            <div class="col-12 ">
+              <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <input type="text" name="alamat" id="alamat" class="form-control" value="{{ $siswa->alamat}}">
+              </div>
+            </div>
 
-                <div class="card-footer text-right ml-auto">
-                    <a href="{{ url('siswa') }}" class="btn btn-danger float">Batal</a>
-                    <button type="submit" class="btn btn-primary float success"> Submit</button>
-
+              {{-- LOOPING UNTUK CRITERIA  --}}             
+              @foreach ($criterias as $criteria)
+              <div class="col-12 col-lg-6">
+                <div class="form-group">
+                  <label for="">{{ $criteria->nama_criteria }}</label>
+                  <select class="form-control @error('subcriteria_id') is-invalid @enderror"
+                    name="subcriteria_id[]">
+                    @foreach ($criteria->subcriterias as $subcriteria)
+                      <option
+                        value="{{ $subcriteria->id }}"
+                        <?php
+                        $cek = $siswa->perhitungans()->where('subcriteria_id', $subcriteria->id)->first();
+                        if ($cek) echo "selected";
+                        ?>
+                       >{{ $subcriteria->nama_subcriteria }}
+                      </option>
+                    @endforeach
+                  </select>
                 </div>
-            </form>
-        </div>
-    </div>
+              </div>
+            @endforeach
 
-</section>
+            
+          </div>
+
+          {{-- CARD-FOOTER --}}
+          <div class="card-footer text-right">
+            <a href="{{ url('subcriteria') }}" class="btn btn-danger float">Batal</a>
+            <button type="submit" class="btn btn-primary float success"> Submit</button>
+          </div>
+        </form>
+      </div>
+  </div>
+  </section>
+@endsection
