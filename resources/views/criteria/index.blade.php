@@ -10,6 +10,8 @@
   </div>
 
   {{-- FILTER NILAI AWAL--}}
+
+@if (auth()->user()->roles == "DM")
   {{-- PEMBERIAN JUMLAH BOBOT --}}
   @if ($nilai > 1.00)
 <div class="alert alert-danger alert-dismissible " role="alert">
@@ -34,7 +36,10 @@
   <strong>Penghitungan boleh dilanjutkan, bobot kriteria sama dengan 1.</strong>
 </div>
 @endif
-{{-- FILTER NILAI AKHIR --}}
+{{-- FILTER NILAI AKHIR --}} 
+@endif
+
+{{-- AWAL CARD --}}
 <div class="card">   
   <div class="card-header">
     <i class="fas fa-plus"></i><h4>Daftar Data Kriteria</h4>
