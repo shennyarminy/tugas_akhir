@@ -20,8 +20,7 @@ class ResultController extends Controller
     $arrayCriteria = json_decode(json_encode($getCriteria), true);
     $criteria = array();
 
-    foreach ($arrayCriteria as $row) 
-    {
+    foreach ($arrayCriteria as $row) {
       $criteria[$row['id']] = array($row['nama_criteria'], $row['tipe'], $row['bobot_criteria']);
     }
 
@@ -121,9 +120,9 @@ class ResultController extends Controller
     }
     return $optimization;
   }
-// BATAS PRIVATE FUNCTION
+  // BATAS PRIVATE FUNCTION
 
-// PUBLIC FUNCTION 
+  // PUBLIC FUNCTION 
   public function matrix()
   {
     $siswa = Siswa::get();
@@ -168,9 +167,9 @@ class ResultController extends Controller
   {
     $siswa = $this->countSiswa();
     $optimization = $this->countOpti();
-    
+
     // mengurutkan data secara desc dengan tetap mempertahankan key/index arraynya 
-    asort($optimization);
+    arsort($optimization);
     // mendapatkan key/index item array yang pertama
     $index = key($optimization);
     $rank = 1;
@@ -187,7 +186,7 @@ class ResultController extends Controller
     $optimization = $this->countOpti();
 
     // mengurutkan data secara desc dengan tetap mempertahankan key/index arraynya 
-    asort($optimization);
+    arsort($optimization);
     // mendapatkan key/index item array yang pertama
     $index = key($optimization);
     $rank = 1;

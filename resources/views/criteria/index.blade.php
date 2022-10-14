@@ -41,9 +41,16 @@
 
 {{-- AWAL CARD --}}
 <div class="card">   
+  
+  @if (auth()->user()->roles == "DM")
+  <div class="card-header">
+    <i class="fas fa-plus"></i><h4>Daftar Penilaian Bobot</h4>
+  </div>
+  @else
   <div class="card-header">
     <i class="fas fa-plus"></i><h4>Daftar Data Kriteria</h4>
   </div>
+  @endif
   <div class="card-body">
     <div class="table-responsive">
       <table id="table-1" class="table table-striped">
@@ -191,7 +198,7 @@ $(".delete").click(function() {
   var id = $(this).attr('data-id');
   var nama_criteria = $(this).attr('data-nama');
   swal({
-      title: 'Hapus Data Kriteria '+nama_criteria,
+      title: 'Hapus '+nama_criteria,
       text: "Apakah anda benar ingin menghapus "+nama_criteria+"?", 
       icon: 'warning',
       buttons: true,

@@ -27,12 +27,21 @@ class CriteriaController extends Controller
 		// $criterias = DB::table('criterias')->sum('bobot_criteria');
 		$nilai = Criteria::sum('bobot_criteria');
 		
+		if (auth()->user()->roles == "DM") {
 		return view('criteria.index',compact('criterias', 'nilai'),[
-		"aktif" => "criteria",
-		"judul" => "Data Kriteria",
-		"title" => "Kriteria",
-		
+			"aktif" => "criteria",
+			"judul" => "Penilaian Bobot",
+			"title" => "Penilaian Bobot",
 		]);
+	}
+
+	else{
+		return view('criteria.index',compact('criterias', 'nilai'),[
+				"aktif" => "criteria",
+				"judul" => "Data Kriteria",
+				"title" => "Data Kriteria",
+			]);
+	}
 	}
 
 	/**
@@ -98,11 +107,23 @@ class CriteriaController extends Controller
 	public function edit($id)
 	{
 		$criteria = Criteria::find($id);
-		return view('criteria.edit', compact('criteria'), [
-			"aktif" => "criteria",
-			"judul" => "Ubah Kriteria", 
-			"title" => "Ubah Kriteria",
-		]);
+		// yuhuu
+		if (auth()->user()->roles == "DM") {
+			return view('criteria.edit', compact('criteria'),[
+				"aktif" => "criteria",
+				"judul" => "Penilaian Bobot",
+				"title" => "Penilaian Bobot",
+			]);
+		}
+	
+		else{
+			return view('criteria.edit', compact('criteria'),[
+					"aktif" => "criteria",
+					"judul" => "Data Kriteria",
+					"title" => "Data Kriteria",
+				]);
+	
+		}
 	}
 
 	/**

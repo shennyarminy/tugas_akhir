@@ -9,7 +9,7 @@
 
   <div class="card">
     <div class="card-header">
-      <i class="fas fa-table"></i><h4>Daftar Data siswa</h4>
+      <i class="fas fa-table"></i><h4>Daftar Data Siswa</h4>
     </div>
 
     <div class="card-body">

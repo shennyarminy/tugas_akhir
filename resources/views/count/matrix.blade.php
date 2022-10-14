@@ -20,10 +20,8 @@
                 <th>No</th>
                 <th>Nama siswa</th>
                 @foreach (array_keys(current($matrix)) as $indexCriteria )
-                <th>C{{$indexCriteria}}</th>
-                
+                <th>C{{$indexCriteria}}</th>    
                 @endforeach
-               
             </tr>
         </thead>
         <tbody>
@@ -65,13 +63,9 @@
             <tr>
                 <th>No</th>
                 <th>siswa</th>
-                @foreach (array_keys(current($matrix)) as $indexCriteria )
-               
+                @foreach (array_keys(current($matrix)) as $indexCriteria )       
                 <th>C{{$indexCriteria}}</th>
-                
-                
-                @endforeach
-               
+                @endforeach      
             </tr>
         </thead>
         <tbody>
@@ -83,7 +77,7 @@
                 <td>A{{$indexsiswa}}</td>
                 
                 @foreach (array_keys($matrix[$indexsiswa]) as $indexCriteria)
-                  <td>{{$matrix[$indexsiswa][$indexCriteria]}}</td>
+                  <td>{{number_format((float)$matrix[$indexsiswa][$indexCriteria])}}</td>
                 @endforeach
             </tr>
             @endforeach

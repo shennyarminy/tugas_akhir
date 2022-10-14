@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Criteria;
 use Illuminate\Http\Request;
-use GuzzleHttp\Promise\Create;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -35,11 +33,10 @@ class UserController extends Controller
     {
         $user = new User;
         return view('user.create', compact('user'), [
-             "aktif" => "user",
-             "judul" => "Data User",
-             "title" => "Data User",
-         ]);
-           
+            "aktif" => "user",
+            "judul" => "Data User",
+            "title" => "Data User",
+        ]);
     }
 
     /**
@@ -51,24 +48,25 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nama' => 'required|max:255', 
+            'nama' => 'required|max:255',
             'username' => 'required|min:3|max:255|unique:users',
-            'email' => 'required|email|unique:users', 
-            'password' => 'required|min:5|max:255'
-       ]);
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:5|max:255',
+            'roles' => 'required'
+        ]);
 
-       User::create($data);
-       Toastr::success("Anda berhasil menambahkan $request->nama");
-       return redirect()->route('user.index');
+        User::create($data);
+        Toastr::success("Anda berhasil menambahkan $request->nama");
+        return redirect()->route('user.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
     }
@@ -76,7 +74,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -84,7 +82,7 @@ class UserController extends Controller
         $user = User::find($id);
         return view('user.edit', compact('user'), [
             "aktif" => "user",
-            "judul" => "Ubah User", 
+            "judul" => "Ubah User",
             "title" => "Ubah User"
         ]);
     }
@@ -93,33 +91,33 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::find($id);
-        $data = $request->validate([
-            'nama' => 'required|max:255', 
-            'username' => 'required|min:3|max:255|unique:users',
-            'email' => 'required|email|unique:users', 
-            'password' => 'required|min:5|max:255'
-       ]);
-       $user->update([
-        'nama' => 'required|max:255', 
-        'username' => 'required|min:3|max:255|unique:users',
-        'email' => 'required|email|unique:users', 
-        'password' => 'required|min:5|max:255'
-       ]);
-
-       Toastr::success("Anda berhasil mengubah $user->nama");
-       return redirect()->route('user.index');
+        $request->validate([
+            'nama' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'roles' => 'required'
+            // 'password' => 'required|min:5|max:255'
+        ]);
+        $user->update([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+            'roles' => $request->roles,
+            // 'password' => bcrypt($request->password),
+        ]);
+        Toastr::success("Anda berhasil mengubah $user->nama");
+        return redirect()->route('user.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

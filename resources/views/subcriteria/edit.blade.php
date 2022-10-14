@@ -9,7 +9,7 @@
         <i class="fas fa-plus-circle"></i><h4>Ubah Data Subriteria</h4>
       </div>
       <div class="card-body">
-        <form action="{{ url('subcriteria/'. $subcriteria->id) }}" method="POST">
+        <form action="{{ url('subcriteria/'.$subcriteria->id) }}" method="POST">
           @csrf
           @method('PUT')
           <input type="hidden" name="method" value="PATCH">
@@ -24,7 +24,7 @@
             <div class="col-12 col-lg-6">
               <div class="form-group">
                 <label for="nilai_subcriteria">Nilai Subkriteria</label>
-                <input type="number" name="nilai_subcriteria" id="nilai_subcriteria" class="form-control" value="{{ $subcriteria->nilai_subcriteria }}">
+                <input type="number" name="nilai_subcriteria" id="nilai_subcriteria" class="form-control" value="{{number_format((float)$subcriteria->nilai_subcriteria)  }}">
               </div>
             </div>
           </div>

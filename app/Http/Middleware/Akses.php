@@ -4,10 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-
-class HakAkses
+class Akses
 {
     /**
      * Handle an incoming request.
@@ -18,12 +16,12 @@ class HakAkses
      */
     public function handle(Request $request, Closure $next, ...$role)
     {
-     
-        if (in_array($request->user()->roles, $role)) {
+        if(in_array($request->user()->roles, $role)){
 
             return $next($request);
         }
 
         return redirect('/');
+
     }
 }

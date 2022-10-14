@@ -64,6 +64,26 @@
               @enderror
         </div>
       </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <label for="roles" class="form-label">Level</label>
+            <select name="roles" class="form-control">
+                <option value="" disabled selected>-- Pilih --</option>
+                <option value="ADMIN" {{ old('roles') == 'ADMIN'? 'selected' : '' }}
+                    >ADMIN
+                </option>
+                <option value="DM" {{ old('roles') == 'DM' ? 'selected' : '' }}
+                    >DM
+                </option>
+                @error('role')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+                @enderror
+            </select>
+        </div>
+      </div>
     </div>
 
     <div class="card-footer text-right">

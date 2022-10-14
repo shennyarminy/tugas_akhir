@@ -115,6 +115,7 @@ class SubcriteriaController extends Controller
             "title" => "Ubah Subkriteria",
             "criterias" => Criteria::all(),
         ]);
+
     }
 
     /**

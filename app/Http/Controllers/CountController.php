@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use App\Helpers\Helper;
+
 use App\Models\Criteria;
-use App\Models\siswa;
+use App\Models\Perhitungan;
 use App\Models\Subcriteria;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\perhitungan;
+
 
 class CountController extends Controller
 {
@@ -18,7 +20,7 @@ class CountController extends Controller
     // supaya menghindari divinder from zero dan memberikan nilai satu saat di dd 
     // membuat nilai criteria menjadi satu, memfilter data menggunakan array
     $getCriteria = Criteria::all();
-    $arrayCriteria = json_decode(json_encode($getCriteria), true);
+    $arrayCriteria = $getCriteria;
     $criteria = array();
 
     foreach ($arrayCriteria as $row) 
@@ -31,8 +33,8 @@ class CountController extends Controller
 
   private function countSiswa()
   {
-    $getsiswa = siswa::all();
-    $arraysiswa = json_decode(json_encode($getsiswa), true);
+    $getsiswa = Siswa::all();
+    $arraysiswa = $getsiswa;
     $siswa = array();
 
     foreach ($arraysiswa as $row) {
@@ -45,7 +47,7 @@ class CountController extends Controller
   private function countMatrix()
   {
 
-    $detail = perhitungan::select(
+    $detail = Perhitungan::select(
       'perhitungans.id as id',
       'siswas.id as alt',
       'criterias.id as cri',
@@ -60,7 +62,7 @@ class CountController extends Controller
       ->get();
 
     $criteria = Criteria::get();
-    $siswa = siswa::get();
+    $siswa = Siswa::get();
     //  berguna untuk memberikan nilai unk result 
     $result = $detail;
     //membuat matrix menjadi array  
@@ -127,21 +129,21 @@ class CountController extends Controller
 // PUBLIC FUNCTION 
   public function matrix()
   {
-    $siswa = siswa::get();
+    $siswa = Siswa::get();
     $criterias = Criteria::get();
-    $perhitungans = perhitungan::get();
+    $perhitungans = Perhitungan::get();
     $matrix = $this->countMatrix();
     return view('count.matrix', compact('perhitungans', 'siswa', 'criterias', 'matrix'), [
       "aktif" => "matrix",
-      "judul" => "Data matrix",
-      "title" => "matrix",
+      "judul" => "Data Matrix",
+      "title" => "Matrix",
     ]);
   }
 
   public function normalization()
   {
 
-    $siswas = siswa::get();
+    $siswas = Siswa::get();
     $criterias = Criteria::get();
 
     $matrix = $this->countMatrix();
@@ -149,8 +151,8 @@ class CountController extends Controller
 
     return view('count.normalization', compact('normalization', 'criterias', 'siswas', 'matrix'), [
       "aktif" => "normalisasi",
-      "judul" => "normalization",
-      "title" => "normalization",
+      "judul" => "Normalisasi",
+      "title" => "Normalisasi",
     ]);
   }
 
@@ -161,8 +163,8 @@ class CountController extends Controller
 
     return view('count.optimization', compact('siswa', 'optimization'), [
       "aktif" => "optimasi",
-      "judul" => "optimization",
-      "title" => "optimization",
+      "judul" => "Optimasi",
+      "title" => "Optimasi",
     ]);
   }
 }

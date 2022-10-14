@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             CriteriaSeeder::class,
             SubcriteriaSeeder::class,
             SiswaSeeder::class,
-            PerhitunganSeeder::class,
+            // PerhitunganSeeder::class,
 
         ]);
     }

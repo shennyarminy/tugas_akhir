@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-header">
                 <i class="fas fa-table"></i>
-                <h4>DATA HASIL AKHIR</h4>
+                <h4>Data Hasil Akhir</h4>
             </div>
 
             <div class="card-body">
@@ -30,7 +30,7 @@
                                     <td>{{ $rank++ }}</td>
                                     <td>{{ $siswa[$opt][0] }}</td>
 
-                                    <td>{{ number_format((float) $optimization[$opt], 4, '.', '') }}</td>
+                                    <td>{{ abs(number_format((float) $optimization[$opt], 4, '.', '')) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

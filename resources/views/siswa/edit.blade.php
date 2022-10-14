@@ -6,7 +6,7 @@
   </div>
   <div class="card">
       <div class="card-header">
-        <i class="fas fa-plus-circle"></i><h4>Ubah Data Subriteria</h4>
+        <i class="fas fa-plus-circle"></i><h4>Ubah Data Siswa</h4>
       </div>
       <div class="card-body">
         <form action="{{ url('siswa/'. $siswa->id) }}" method="POST">
@@ -24,19 +24,13 @@
             <div class="col-12 ">
               <div class="form-group">
                 <label for="nis">NIS</label>
-                <input type="number" name="nis" id="nis" class="form-control" value="{{ $siswa->nis }}">
-              </div>
-            </div>
-            <div class="col-12 ">
-              <div class="form-group">
-                <label for="nis">NIS</label>
-                <input type="number" name="nis" id="nis" class="form-control" value="{{ $siswa->nis }}">
+                <input type="text" name="nis" id="nis" class="form-control" value="{{ $siswa->nis }}">
               </div>
             </div>
             <div class="col-12 ">
               <div class="form-group">
                 <label for="number">NISN</label>
-                <input type="text" name="nisn" id="nisn" class="form-control" value="{{ $siswa->nisn }}">
+                <input type="text" name="nisn" id="nisn" class="form-control" value="{{ $siswa->nisn  }}">
               </div>
             </div>
             <div class="col-12 ">

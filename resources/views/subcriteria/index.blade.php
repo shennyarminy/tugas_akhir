@@ -37,7 +37,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $subcriteria->criteria->kode }}</td>
                 <td>{{ $subcriteria->nama_subcriteria}}</td>
-                <td>{{ $subcriteria->nilai_subcriteria }}</td>
+                <td>{{ $subcriteria->nilai_subcriteria  }}</td>
                 <td >
                   {{-- EDIT SUBKRITERIA --}}
                   <a href="{{ url('subcriteria/'.$subcriteria->id.'/edit') }}" title="Ubah Subkriteria" 

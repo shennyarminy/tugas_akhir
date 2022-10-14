@@ -18,7 +18,7 @@ class CreateSubcriteriasTable extends Migration
             $table->id(); 
             $table->foreignId('criteria_id')->references('id')->on('criterias')->onDelete('cascade');
             $table->string('nama_subcriteria');
-            $table->float('nilai_subcriteria');
+            $table->integer('nilai_subcriteria');
             $table->timestamps();
         });
     }

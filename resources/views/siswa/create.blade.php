@@ -8,7 +8,7 @@
     <div class="card">
         {{-- CARD HEADER --}}
         <div class="card-header">
-            <i class="fas fa-plus-circle"></i><h4>Tambah Data siswa</h4>
+            <i class="fas fa-plus-circle"></i><h4>Tambah Data Siswa</h4>
         </div>
 
         <div class="card-body">
@@ -34,7 +34,6 @@
                         <div class="form-group">
                             <label for="nis">NIS</label>
                             <input type="number" name="nis" id="nis" class="form-control @error('nis') is-invalid @enderror" value="{{ old('nis') }}">
-
                             @error('nis')
                             {{ $message }}
                             <div class="invalid-feedback"> 

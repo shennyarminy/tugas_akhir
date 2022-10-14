@@ -15,11 +15,12 @@
         <table  id="table-1"  class="table table-striped">
           <thead>
             <tr>
-              <th class="col-1">No.</th>
-              <th class="col-3">Nama</th>
-              <th class="col-3"> Username</th>
-              <th class="col-3"> Email</th>
-              <th class="col-2">Aksi</th>            
+              <th>No.</th>
+              <th>Nama</th>
+              <th> Username</th>
+             <th> Email</th>
+             <th> Level</th>
+              <th>Aksi</th>            
             </tr>
           </thead>
           <tbody >          
@@ -29,6 +30,7 @@
               <td>{{ $user->nama}}</td>
               <td>{{ $user->username }}</td>
               <td>{{ $user->email }}</td>
+              <td>{{ $user->roles }}</td>
               <td >
                 {{-- EDIT USER --}}
                 <a href="{{ url('user/'.$user->id.'/edit') }}" title="Ubah User" class="btn btn-primary btn-sm">

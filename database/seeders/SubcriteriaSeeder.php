@@ -19,15 +19,23 @@ class SubcriteriaSeeder extends Seeder
             [
                 'criteria_id' => 1,
                 'nama_subcriteria' => 'TIDAK BEKERJA',
-                'nilai_subcriteria' => 50,
+                'nilai_subcriteria' => 5,
             ],
 
         );
         Subcriteria::create(
             [
                 'criteria_id' => 1,
-                'nama_subcriteria' => 'BURUH',
-                'nilai_subcriteria' => 40,
+                'nama_subcriteria' => 'PETANI',
+                'nilai_subcriteria' => 4,
+            ],
+
+        );
+        Subcriteria::create(
+            [
+                'criteria_id' => 1,
+                'nama_subcriteria' => 'WIRASWASTA',
+                'nilai_subcriteria' => 3,
             ],
 
         );
@@ -35,15 +43,7 @@ class SubcriteriaSeeder extends Seeder
             [
                 'criteria_id' => 1,
                 'nama_subcriteria' => 'SWASTA',
-                'nilai_subcriteria' => 30,
-            ],
-
-        );
-        Subcriteria::create(
-            [
-                'criteria_id' => 1,
-                'nama_subcriteria' => 'PEDAGANG',
-                'nilai_subcriteria' => 20,
+                'nilai_subcriteria' => 2,
             ],
 
         );
@@ -51,7 +51,7 @@ class SubcriteriaSeeder extends Seeder
             [
                 'criteria_id' => 1,
                 'nama_subcriteria' => 'PNS',
-                'nilai_subcriteria' => 10,
+                'nilai_subcriteria' => 1,
             ],
 
         );
@@ -60,173 +60,142 @@ class SubcriteriaSeeder extends Seeder
         // C2
         Subcriteria::create([
             'criteria_id' => 2,
-            'nama_subcriteria' => 'IRT',
-            'nilai_subcriteria' => 50,
+            'nama_subcriteria' => 'IRT (IBU RUMAH TANGGA)',
+            'nilai_subcriteria' => 5,
         ]);
         Subcriteria::create([
             'criteria_id' => 2,
-            'nama_subcriteria' => 'BURUH',
-            'nilai_subcriteria' => 40,
+            'nama_subcriteria' => 'PETANI',
+            'nilai_subcriteria' => 4,
+        ]);
+        Subcriteria::create([
+            'criteria_id' => 2,
+            'nama_subcriteria' => 'WIRASWASTA',
+            'nilai_subcriteria' => 3,
         ]);
         Subcriteria::create([
             'criteria_id' => 2,
             'nama_subcriteria' => 'SWASTA',
-            'nilai_subcriteria' => 30,
-        ]);
-        Subcriteria::create([
-            'criteria_id' => 2,
-            'nama_subcriteria' => 'PEDAGANG',
-            'nilai_subcriteria' => 20,
+            'nilai_subcriteria' => 2,
         ]);
         Subcriteria::create([
             'criteria_id' => 2,
             'nama_subcriteria' => 'PNS',
-            'nilai_subcriteria' => 10,
+            'nilai_subcriteria' => 1,
         ]);
         
         // C3
 
         Subcriteria::create([
             'criteria_id' => 3,
-            'nama_subcriteria' => 'tidak berpenghasilan',
-            'nilai_subcriteria' => 50,
+            'nama_subcriteria' => 'KURANG DARI 1.000.000',
+            'nilai_subcriteria' => 5,
         ]);
         Subcriteria::create([
             'criteria_id' => 3,
-            'nama_subcriteria' => '<500rb',
-            'nilai_subcriteria' => 40,
+            'nama_subcriteria' => '1.000.000-2.000.000',
+            'nilai_subcriteria' => 3,
         ]);
         Subcriteria::create([
             'criteria_id' => 3,
-            'nama_subcriteria' => '600k-1juta',
-            'nilai_subcriteria' => 30,
+            'nama_subcriteria' => 'LEBIH DARI 2.000.000',
+            'nilai_subcriteria' => 1,
         ]);
-        Subcriteria::create([
-            'criteria_id' => 3,
-            'nama_subcriteria' => '1.1juta-2jt',
-            'nilai_subcriteria' => 20,
-        ]);
-        Subcriteria::create([
-            'criteria_id' => 3,
-            'nama_subcriteria' => '>2.1jt',
-            'nilai_subcriteria' => 10,
-        ]);
+      
+      
 
         // C4
 
         Subcriteria::create([
             'criteria_id' => 4,
-            'nama_subcriteria' => 'tidak berpenghasilan',
-            'nilai_subcriteria' => 50,
+            'nama_subcriteria' => 'LEBIH DARI 5',
+            'nilai_subcriteria' => 5,
         ]);
         Subcriteria::create([
             'criteria_id' => 4,
-            'nama_subcriteria' => '<500rb',
-            'nilai_subcriteria' => 40,
+            'nama_subcriteria' => '3-4',
+            'nilai_subcriteria' => 3,
         ]);
         Subcriteria::create([
             'criteria_id' => 4,
-            'nama_subcriteria' => '600k-1juta',
-            'nilai_subcriteria' => 30,
+            'nama_subcriteria' => 'KURANG DARI 2',
+            'nilai_subcriteria' => 1,
         ]);
-        Subcriteria::create([
-            'criteria_id' => 4,
-            'nama_subcriteria' => '1.1juta-2jt',
-            'nilai_subcriteria' => 20,
-        ]);
-        Subcriteria::create([
-            'criteria_id' => 4,
-            'nama_subcriteria' => '>2.1jt',
-            'nilai_subcriteria' => 10,
-        ]);
-
+       
         // C5
 
         Subcriteria::create([
             'criteria_id' => 5,
-            'nama_subcriteria' => '>5',
-            'nilai_subcriteria' => 50,
+            'nama_subcriteria' => '90-100',
+            'nilai_subcriteria' => 5,
         ]);
         Subcriteria::create([
             'criteria_id' => 5,
-            'nama_subcriteria' => '4',
-            'nilai_subcriteria' => 40,
+            'nama_subcriteria' => '80-89',
+            'nilai_subcriteria' => 3,
         ]);
         Subcriteria::create([
             'criteria_id' => 5,
-            'nama_subcriteria' => '3',
-            'nilai_subcriteria' => 30,
+            'nama_subcriteria' => '70-79',
+            'nilai_subcriteria' => 1,
         ]);
-        Subcriteria::create([
-            'criteria_id' => 5,
-            'nama_subcriteria' => '2',
-            'nilai_subcriteria' => 20,
-        ]);
-        Subcriteria::create([
-            'criteria_id' => 5,
-            'nama_subcriteria' => '1',
-            'nilai_subcriteria' => 10,
-        ]);
+      
         
         // C6
         Subcriteria::create([
             'criteria_id' => 6,
-            'nama_subcriteria' => 'AKADEMIK',
-            'nilai_subcriteria' => 30,
+            'nama_subcriteria' => '1-3',
+            'nilai_subcriteria' => 5,
         ]);
         Subcriteria::create([
             'criteria_id' => 6,
-            'nama_subcriteria' => 'NONAKADEMIK',
-            'nilai_subcriteria' => 20,
+            'nama_subcriteria' => '4-10',
+            'nilai_subcriteria' => 3,
         ]);
         Subcriteria::create([
             'criteria_id' => 6,
-            'nama_subcriteria' => 'TIDAK ADA',
-            'nilai_subcriteria' => 10,
+            'nama_subcriteria' => '11-15',
+            'nilai_subcriteria' => 1,
         ]);
        
         // C7
 
         Subcriteria::create([
             'criteria_id' => 7,
-            'nama_subcriteria' => 'YATIM PIATU',
-            'nilai_subcriteria' => 40,
+            'nama_subcriteria' => 'LEBIH DARI 21 MENIT',
+            'nilai_subcriteria' => 5,
         ]);
 
         Subcriteria::create([
             'criteria_id' => 7,
-            'nama_subcriteria' => 'YATIM',
-            'nilai_subcriteria' => 30,
+            'nama_subcriteria' => '11-20 MENIT',
+            'nilai_subcriteria' => 3,
         ]);
 
         Subcriteria::create([
             'criteria_id' => 7,
-            'nama_subcriteria' => 'PIATU',
-            'nilai_subcriteria' => 20,
+            'nama_subcriteria' => '1-10 MENIT',
+            'nilai_subcriteria' => 1,
         ]);
 
-        Subcriteria::create([
-            'criteria_id' => 7,
-            'nama_subcriteria' => 'NON YATIM PIATU',
-            'nilai_subcriteria' => 10,
-        ]);
+      
 
         // C8
 
         Subcriteria::create([
             'criteria_id' => 8,
-            'nama_subcriteria' => 'KEBAKARAN',
-            'nilai_subcriteria' => 30,
+            'nama_subcriteria' => 'YATIM PIATU',
+            'nilai_subcriteria' => 5,
         ]);
         Subcriteria::create([
             'criteria_id' => 8,
-            'nama_subcriteria' => 'PHK',
-            'nilai_subcriteria' => 20,
+            'nama_subcriteria' => 'YATIM/PIATU',
+            'nilai_subcriteria' => 3,
         ]);
         Subcriteria::create([
             'criteria_id' => 8,
-            'nama_subcriteria' => 'TIDAK ADA',
-            'nilai_subcriteria' => 10,
+            'nama_subcriteria' => 'LENGKAP',
+            'nilai_subcriteria' => 1,
         ]);
     }
 

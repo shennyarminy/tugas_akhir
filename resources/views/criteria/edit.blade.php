@@ -5,9 +5,15 @@
     <h1>{{ $judul }}</h1>
   </div>
   <div class="card">
+    @if (auth()->user()->roles == "DM")
     <div class="card-header">
-      <i class="fas fa-plus-circle"></i><h4>Ubah Data Kriteria</h4>
+      <i class="fas fa-plus"></i><h4>Ubah Penilaian Bobot</h4>
     </div>
+    @else
+    <div class="card-header">
+      <i class="fas fa-plus"></i><h4>Ubah Data Kriteria</h4>
+    </div>
+    @endif
 
   <div class="card-body">
     <form action="{{ url('criteria/'.$criteria->id) }}" method="POST">

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function login(){
-        return view('auth.login2', [
+        return view('auth.login', [
             "title" => "Login"
            
         ]);

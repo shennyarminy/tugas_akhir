@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Criteria;
-use App\Models\perhitungan;
+use App\Models\Perhitungan;
 use App\Models\Subcriteria;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
-use App\Http\Requests\StoresiswaRequest;
-use App\Http\Requests\UpdatesiswaRequest;
+use App\Http\Requests\StoreSiswaRequest;
+use App\Http\Requests\UpdateSiswaRequest;
 use phpDocumentor\Reflection\Types\Nullable;
 
 class siswaController extends Controller
@@ -26,12 +26,12 @@ class siswaController extends Controller
   {
     $siswas = Siswa::get();
     $criterias = Criteria::get();
-    $perhitungans = perhitungan::get();
+    $perhitungans = Perhitungan::get();
 
     return view('siswa.index', compact('siswas', 'criterias', 'perhitungans'), [
-      "aktif" => "siswa",
-      "judul" => "Data siswa",
-      "title" => "siswa",
+      "aktif" => "Siswa",
+      "judul" => "Data Siswa",
+      "title" => "Siswa",
 
     ]);
   }
@@ -40,8 +40,8 @@ class siswaController extends Controller
   {
     $siswa = Siswa::get();
     $criterias = Criteria::get();
-    $perhitungans = perhitungan::get();
-    
+    $perhitungans = Perhitungan::get();
+
     return view('value.index', compact('siswa', 'criterias', 'perhitungans'), [
       "aktif" => "value",
       "judul" => "Data Penilaian",
@@ -49,8 +49,6 @@ class siswaController extends Controller
 
       "subcriteria" => Subcriteria::all(),
     ]);
-
-
   }
 
   /**
@@ -60,11 +58,11 @@ class siswaController extends Controller
    */
   public function create()
   {
-    $siswa = new siswa;
+    $siswa = new Siswa;
     return view('siswa.create', compact('siswa'), [
-      "aktif" => "siswa",
-      "judul" => "Data siswa",
-      "title" => "Tambah siswa",
+      "aktif" => "Siswa",
+      "judul" => "Data Siswa",
+      "title" => "Tambah Siswa",
       "criterias" => Criteria::get(),
       "subcriterias" => Subcriteria::get(),
       "siswas" => Siswa::get(),
@@ -80,24 +78,26 @@ class siswaController extends Controller
    */
   public function store(StoresiswaRequest $request)
   {
-    $request->validate([
-      "nama_siswa" => "required",
-      "nis" => "required", 
-      "nisn" => "required",
-      "nama_ayah" => "required", 
-      "nama_ibu" => "required", 
-      "alamat" => "required",
+    $request->validate(
+      [
+        "nama_siswa" => "required",
+        "nis" => "required",
+        "nisn" => "required",
+        "nama_ayah" => "required",
+        "nama_ibu" => "required",
+        "alamat" => "required",
 
 
-    ], 
-  [
-    "nama_siswa.required" => "Nama Siswa tidak boleh kosong", 
-    "nis.required" => "NIS tidak boleh kosong", 
-    "nisn.required" => "NISN tidak boleh kosong", 
-    "nama_ayah.required" => "Nama Ayah tidak boleh kosong", 
-    "nama_ibu.required" => "Nama Ibu tidak boleh kosong", 
-    "alamat.required" => "Alamat tidak boleh kosong", 
-  ]);
+      ],
+      [
+        "nama_siswa.required" => "Nama Siswa tidak boleh kosong",
+        "nis.required" => "NIS tidak boleh kosong",
+        "nisn.required" => "NISN tidak boleh kosong",
+        "nama_ayah.required" => "Nama Ayah tidak boleh kosong",
+        "nama_ibu.required" => "Nama Ibu tidak boleh kosong",
+        "alamat.required" => "Alamat tidak boleh kosong",
+      ]
+    );
 
 
     //  save siswa
@@ -113,7 +113,7 @@ class siswaController extends Controller
     // save detail
     $criterias = Criteria::get();
     foreach ($criterias as $criteria) {
-      $detail = new perhitungan();
+      $detail = new Perhitungan();
       $detail->siswa_id = $alt->id;
       $detail->criteria_id = $criteria->id;
       $detail->subcriteria_id = $request->input('criteria')[$criteria->id];
@@ -144,35 +144,34 @@ class siswaController extends Controller
    */
   public function edit($id)
   {
-    
-      $siswa = Siswa::find($id);
-      $criterias = Criteria::get();
-      $subcriterias = Subcriteria::get();
-      $perhitungans = perhitungan::get();
-      return view('siswa.edit', compact('siswa', 'criterias', 'perhitungans', 'subcriterias'), [
-        "aktif" => "criteria",
-        "judul" => "Ubah Kriteria", 
-        "title" => "Ubah Kriteria",
-      ]);
-    
+
+    $siswa = Siswa::find($id);
+    $criterias = Criteria::get();
+    $subcriterias = Subcriteria::get();
+    $perhitungans = Perhitungan::get();
+    return view('siswa.edit', compact('siswa', 'criterias', 'perhitungans', 'subcriterias'), [
+      "aktif" => "criteria",
+      "judul" => "Ubah Data Siswa",
+      "title" => "Ubah Data Siswa",
+    ]);
   }
 
   /**
    * Update the specified resource in storage.
    *
-   * @param  \App\Http\Requests\UpdatesiswaRequest  $request
+   * @param  \App\Http\Requests\UpdateSiswaRequest  $request
    * @param  \App\Models\siswa  $siswa
    * @return \Illuminate\Http\Response
    */
-  public function update(UpdatesiswaRequest $request,  $id)
+  public function update(UpdateSiswaRequest $request,  $id)
   {
     $siswa = Siswa::find($id);
     $data = $request->validate([
       "nama_siswa" => "required",
-      "nis" => "required", 
+      "nis" => "required",
       "nisn" => "required",
-      "nama_ayah" => "required", 
-      "nama_ibu" => "required", 
+      "nama_ayah" => "required",
+      "nama_ibu" => "required",
       "alamat" => "required",
       "subcriteria_id" => "required",
     ]);

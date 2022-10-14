@@ -9,8 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\siswaController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ValueController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\CriteriaController;
@@ -37,7 +36,7 @@ Route::post('/register',  [AuthController::class, 'store']);
 
 
 // middleware admin dan dm bersama
-Route::group(['middleware' => ['auth', 'hakakses:ADMIN, DM']], function(){
+Route::group(['middleware' => ['auth', 'hakakses:ADMIN,DM']], function(){
 // HOME (DASHBOARD)
 // Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/home', [HomeController::class, 'home'])->name('home');

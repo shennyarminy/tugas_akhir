@@ -4,7 +4,7 @@
             <a href="index.html">SPKBP</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">SPKBP</a>
+            <a href="index.html">SB</a>
         </div>
         <ul class="sidebar-menu">
             <li class="nav-item @if ($aktif == 'home') {{ 'active' }} @endif">
