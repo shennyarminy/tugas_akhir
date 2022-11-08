@@ -14,7 +14,7 @@ use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
 use phpDocumentor\Reflection\Types\Nullable;
 
-class siswaController extends Controller
+class SiswaController extends Controller
 {
   /**
    * Display a listing of the resource.

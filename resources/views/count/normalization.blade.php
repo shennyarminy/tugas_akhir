@@ -33,7 +33,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>A{{$indexsiswa}}</td>
                 @foreach (array_keys($matrix[$indexsiswa]) as $indexCriteria)
-                  <td>{{ number_format((float)$normalization[$indexsiswa][$indexCriteria], 4, '.', '') }}</td>
+                  <td>{{ abs(number_format((float)$normalization[$indexsiswa][$indexCriteria], 4, '.', '')) }}</td>
                 @endforeach
             </tr>
             @endforeach

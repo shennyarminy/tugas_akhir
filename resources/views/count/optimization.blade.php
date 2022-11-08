@@ -27,7 +27,7 @@
             <tr>
                 <td>{{ $opt }}</td>
                 <td>{{ $siswa[$opt][0] }}</td>
-                <td>{{ number_format((float)$optimization[$opt], 4, '.', '') }}</td>
+                <td>{{ abs(number_format((float)$optimization[$opt], 4, '.', '')) }}</td>
             </tr>
             @endforeach
         </tbody>

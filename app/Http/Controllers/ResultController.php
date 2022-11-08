@@ -169,7 +169,7 @@ class ResultController extends Controller
     $optimization = $this->countOpti();
 
     // mengurutkan data secara desc dengan tetap mempertahankan key/index arraynya 
-    arsort($optimization);
+    asort($optimization);
     // mendapatkan key/index item array yang pertama
     $index = key($optimization);
     $rank = 1;
@@ -186,7 +186,7 @@ class ResultController extends Controller
     $optimization = $this->countOpti();
 
     // mengurutkan data secara desc dengan tetap mempertahankan key/index arraynya 
-    arsort($optimization);
+    asort($optimization);
     // mendapatkan key/index item array yang pertama
     $index = key($optimization);
     $rank = 1;

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\perhitungan;
+use App\Models\Perhitungan;
 use Illuminate\Database\Seeder;
 
-class perhitunganSeeder extends Seeder
+class PerhitunganSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,21 +14,21 @@ class perhitunganSeeder extends Seeder
      */
     public function run()
     {
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 1,
             'criteria_id' => 1,
             'subcriteria_id' => 2,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 1,
             'criteria_id' => 2,
             'subcriteria_id' => 6,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 1,
             'criteria_id' => 3,
@@ -37,35 +37,35 @@ class perhitunganSeeder extends Seeder
         ]);
 
 
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 1,
             'criteria_id' => 4,
             'subcriteria_id' => 16,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 1,
             'criteria_id' => 5,
             'subcriteria_id' => 22,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 1,
             'criteria_id' => 6,
             'subcriteria_id' => 28,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 1,
             'criteria_id' => 7,
             'subcriteria_id' => 32,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 1,
             'criteria_id' => 8,
@@ -73,56 +73,56 @@ class perhitunganSeeder extends Seeder
 
         ]);
         // Seeder nomer 1 
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 2,
             'criteria_id' => 1,
             'subcriteria_id' => 3,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 2,
             'criteria_id' => 2,
             'subcriteria_id' => 6,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 2,
             'criteria_id' => 3,
             'subcriteria_id' => 12,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 2,
             'criteria_id' => 4,
             'subcriteria_id' => 16,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 2,
             'criteria_id' => 5,
             'subcriteria_id' => 22,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 2,
             'criteria_id' => 6,
             'subcriteria_id' => 26,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 2,
             'criteria_id' => 7,
             'subcriteria_id' => 32,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 2,
             'criteria_id' => 8,
@@ -130,56 +130,56 @@ class perhitunganSeeder extends Seeder
 
         ]);
         // seeder 2 
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 3,
             'criteria_id' => 1,
             'subcriteria_id' => 2,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 3,
             'criteria_id' => 2,
             'subcriteria_id' => 6,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 3,
             'criteria_id' => 3,
             'subcriteria_id' => 12,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 3,
             'criteria_id' => 4,
             'subcriteria_id' => 16,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 3,
             'criteria_id' => 5,
             'subcriteria_id' => 24,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 3,
             'criteria_id' => 6,
             'subcriteria_id' => 26,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 3,
             'criteria_id' => 7,
             'subcriteria_id' => 32,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 3,
             'criteria_id' => 8,
@@ -187,56 +187,56 @@ class perhitunganSeeder extends Seeder
 
         ]);
         // seeder 3
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 4,
             'criteria_id' => 1,
             'subcriteria_id' => 1,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 4,
             'criteria_id' => 2,
             'subcriteria_id' => 8,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 4,
             'criteria_id' => 3,
             'subcriteria_id' => 11,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 4,
             'criteria_id' => 4,
             'subcriteria_id' => 17,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 4,
             'criteria_id' => 5,
             'subcriteria_id' => 24,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 4,
             'criteria_id' => 6,
             'subcriteria_id' => 28,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 4,
             'criteria_id' => 7,
             'subcriteria_id' => 30,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 4,
             'criteria_id' => 8,
@@ -244,56 +244,56 @@ class perhitunganSeeder extends Seeder
 
         ]);
         // seeder 4
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 5,
             'criteria_id' => 1,
             'subcriteria_id' => 3,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 5,
             'criteria_id' => 2,
             'subcriteria_id' => 6,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 5,
             'criteria_id' => 3,
             'subcriteria_id' => 13,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 5,
             'criteria_id' => 4,
             'subcriteria_id' => 16,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 5,
             'criteria_id' => 5,
             'subcriteria_id' => 24,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 5,
             'criteria_id' => 6,
             'subcriteria_id' => 26,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 5,
             'criteria_id' => 7,
             'subcriteria_id' => 32,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 5,
             'criteria_id' => 8,
@@ -301,56 +301,56 @@ class perhitunganSeeder extends Seeder
 
         ]);
         // seeder 5 
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 6,
             'criteria_id' => 1,
             'subcriteria_id' => 3,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 6,
             'criteria_id' => 2,
             'subcriteria_id' => 6,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 6,
             'criteria_id' => 3,
             'subcriteria_id' => 15,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 6,
             'criteria_id' => 4,
             'subcriteria_id' => 16,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 6,
             'criteria_id' => 5,
             'subcriteria_id' => 24,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 6,
             'criteria_id' => 6,
             'subcriteria_id' => 28,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 6,
             'criteria_id' => 7,
             'subcriteria_id' => 32,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 6,
             'criteria_id' => 8,
@@ -358,56 +358,56 @@ class perhitunganSeeder extends Seeder
 
         ]);
         // seeder 6 
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 7,
             'criteria_id' => 1,
             'subcriteria_id' => 3,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 7,
             'criteria_id' => 2,
             'subcriteria_id' => 6,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 7,
             'criteria_id' => 3,
             'subcriteria_id' => 12,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 7,
             'criteria_id' => 4,
             'subcriteria_id' => 16,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 7,
             'criteria_id' => 5,
             'subcriteria_id' => 22,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 7,
             'criteria_id' => 6,
             'subcriteria_id' => 28,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 7,
             'criteria_id' => 7,
             'subcriteria_id' => 32,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 7,
             'criteria_id' => 8,
@@ -418,56 +418,56 @@ class perhitunganSeeder extends Seeder
 
 
 
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 8,
             'criteria_id' => 1,
             'subcriteria_id' => 3,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 8,
             'criteria_id' => 2,
             'subcriteria_id' => 6,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 8,
             'criteria_id' => 3,
             'subcriteria_id' => 12,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 8,
             'criteria_id' => 4,
             'subcriteria_id' => 16,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 8,
             'criteria_id' => 5,
             'subcriteria_id' => 23,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 8,
             'criteria_id' => 6,
             'subcriteria_id' => 28,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 8,
             'criteria_id' => 7,
             'subcriteria_id' => 32,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 8,
             'criteria_id' => 8,
@@ -476,56 +476,56 @@ class perhitunganSeeder extends Seeder
         ]);
         // seeder 8
 
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 9,
             'criteria_id' => 1,
             'subcriteria_id' => 3,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 9,
             'criteria_id' => 2,
             'subcriteria_id' => 7,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 9,
             'criteria_id' => 3,
             'subcriteria_id' => 15,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 9,
             'criteria_id' => 4,
             'subcriteria_id' => 18,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 9,
             'criteria_id' => 5,
             'subcriteria_id' => 21,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 9,
             'criteria_id' => 6,
             'subcriteria_id' => 28,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 9,
             'criteria_id' => 7,
             'subcriteria_id' => 32,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 9,
             'criteria_id' => 8,
@@ -533,56 +533,56 @@ class perhitunganSeeder extends Seeder
 
         ]);
         // seeder 9 
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 10,
             'criteria_id' => 1,
             'subcriteria_id' => 3,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 10,
             'criteria_id' => 2,
             'subcriteria_id' => 6,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 10,
             'criteria_id' => 3,
             'subcriteria_id' => 12,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 10,
             'criteria_id' => 4,
             'subcriteria_id' => 16,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 10,
             'criteria_id' => 5,
             'subcriteria_id' => 22,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 10,
             'criteria_id' => 6,
             'subcriteria_id' => 28,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 10,
             'criteria_id' => 7,
             'subcriteria_id' => 32,
 
         ]);
-        perhitungan::create([
+        Perhitungan::create([
 
             'siswa_id' => 10,
             'criteria_id' => 8,
