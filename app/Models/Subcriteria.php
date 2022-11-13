@@ -17,10 +17,6 @@ class Subcriteria extends Model
     }
 
 
-    // public function siswas(){
-    //     return $this->belongsToMany(siswa::class, 'perhitungans', 'siswa_id', 'subcriteria_id');
-    // }
-
     public function siswas()
     {
         return $this->belongsToMany(Siswa::class, 'perhitungans', 'siswa_id', 'subcriteria_id');

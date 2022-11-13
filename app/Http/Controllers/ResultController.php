@@ -17,10 +17,11 @@ class ResultController extends Controller
     // supaya menghindari divinder from zero dan memberikan nilai satu saat di dd 
     // membuat nilai criteria menjadi satu, memfilter data menggunakan array
     $getCriteria = Criteria::all();
-    $arrayCriteria = json_decode(json_encode($getCriteria), true);
+    $arrayCriteria = $getCriteria;
     $criteria = array();
 
-    foreach ($arrayCriteria as $row) {
+    foreach ($arrayCriteria as $row) 
+    {
       $criteria[$row['id']] = array($row['nama_criteria'], $row['tipe'], $row['bobot_criteria']);
     }
 
@@ -29,8 +30,8 @@ class ResultController extends Controller
 
   private function countSiswa()
   {
-    $getsiswa = siswa::all();
-    $arraysiswa = json_decode(json_encode($getsiswa), true);
+    $getsiswa = Siswa::all();
+    $arraysiswa = $getsiswa;
     $siswa = array();
 
     foreach ($arraysiswa as $row) {
@@ -43,7 +44,7 @@ class ResultController extends Controller
   private function countMatrix()
   {
 
-    $detail = perhitungan::select(
+    $detail = Perhitungan::select(
       'perhitungans.id as id',
       'siswas.id as alt',
       'criterias.id as cri',
@@ -58,13 +59,13 @@ class ResultController extends Controller
       ->get();
 
     $criteria = Criteria::get();
-    $siswa = siswa::get();
+    $siswa = Siswa::get();
     //  berguna untuk memberikan nilai unk result 
-    $result = $detail;
+    // $result = $detail;
     //membuat matrix menjadi array  
     $matrix = array();
 
-    foreach ($result as $score) {
+    foreach ($detail as $score) {
       // memasukkan nilai siswa ke dalam alt array assosiatif yg sudah di masukkan ke variabel detail 
       $siswa = $score['alt'];
       $criteria = $score['cri'];
@@ -83,7 +84,7 @@ class ResultController extends Controller
     $siswa = $this->countSiswa();
     $criteria = $this->countCriteria();
     $matrix = $this->countMatrix();
-    $normalization = $matrix;
+    // $normalization = $matrix;
     foreach ($criteria as $cri => $c) {
 
       $divider = 0;
@@ -94,12 +95,12 @@ class ResultController extends Controller
       }
 
       foreach ($siswa as $alt => $a) {
-        $normalization[$alt][$cri] /= sqrt($divider);
+        $matrix[$alt][$cri] /= sqrt($divider);
         // nilai akar
       }
     }
 
-    return $normalization;
+    return $matrix;
   }
 
   private function countOpti()
@@ -120,9 +121,9 @@ class ResultController extends Controller
     }
     return $optimization;
   }
-  // BATAS PRIVATE FUNCTION
+// BATAS PRIVATE FUNCTION
 
-  // PUBLIC FUNCTION 
+// PUBLIC FUNCTION 
   public function matrix()
   {
     $siswa = Siswa::get();
@@ -131,8 +132,8 @@ class ResultController extends Controller
     $matrix = $this->countMatrix();
     return view('count.matrix', compact('perhitungans', 'siswa', 'criterias', 'matrix'), [
       "aktif" => "matrix",
-      "judul" => "Data matrix",
-      "title" => "matrix",
+      "judul" => "Data Matrix",
+      "title" => "Matrix",
     ]);
   }
 
@@ -147,8 +148,8 @@ class ResultController extends Controller
 
     return view('count.normalization', compact('normalization', 'criterias', 'siswas', 'matrix'), [
       "aktif" => "normalisasi",
-      "judul" => "normalization",
-      "title" => "normalization",
+      "judul" => "Normalisasi",
+      "title" => "Normalisasi",
     ]);
   }
 
@@ -171,7 +172,8 @@ class ResultController extends Controller
     // mengurutkan data secara desc dengan tetap mempertahankan key/index arraynya 
     asort($optimization);
     // mendapatkan key/index item array yang pertama
-    $index = key($optimization);
+  
+    // hapus
     $rank = 1;
     return view('result.hasil', compact('siswa', 'optimization', 'rank'), [
       "aktif" => "ranking",
@@ -184,11 +186,9 @@ class ResultController extends Controller
   {
     $siswa = $this->countSiswa();
     $optimization = $this->countOpti();
-
     // mengurutkan data secara desc dengan tetap mempertahankan key/index arraynya 
     asort($optimization);
     // mendapatkan key/index item array yang pertama
-    $index = key($optimization);
     $rank = 1;
     view()->share('siswa', 'optimization', 'rank', $siswa, $optimization, $rank);
     $pdf = PDF::loadView('result.cetak', compact('siswa', 'optimization', 'rank'));

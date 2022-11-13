@@ -17,7 +17,7 @@
           <thead>
             <tr>
                 <th>No</th>
-                <th>siswa</th>
+                <th>Siswa</th>
                 <th>Optimasi</th>
                
             </tr>

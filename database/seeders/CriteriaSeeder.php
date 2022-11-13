@@ -71,7 +71,7 @@ class CriteriaSeeder extends Seeder
             'kode' => 'C8',
             'nama_criteria' => 'STATUS ORANGTUA',
             'bobot_criteria' => 0.15,
-            'tipe' => 'benefit',
+            'tipe' => 'cost',
         ]);
     }
 }

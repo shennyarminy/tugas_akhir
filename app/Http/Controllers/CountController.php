@@ -64,11 +64,11 @@ class CountController extends Controller
     $criteria = Criteria::get();
     $siswa = Siswa::get();
     //  berguna untuk memberikan nilai unk result 
-    $result = $detail;
+    // $result = $detail;
     //membuat matrix menjadi array  
     $matrix = array();
 
-    foreach ($result as $score) {
+    foreach ($detail as $score) {
       // memasukkan nilai siswa ke dalam alt array assosiatif yg sudah di masukkan ke variabel detail 
       $siswa = $score['alt'];
       $criteria = $score['cri'];
@@ -87,7 +87,7 @@ class CountController extends Controller
     $siswa = $this->countSiswa();
     $criteria = $this->countCriteria();
     $matrix = $this->countMatrix();
-    $normalization = $matrix;
+    // $normalization = $matrix;
     foreach ($criteria as $cri => $c) {
 
       $divider = 0;
@@ -98,12 +98,12 @@ class CountController extends Controller
       }
 
       foreach ($siswa as $alt => $a) {
-        $normalization[$alt][$cri] /= sqrt($divider);
+        $matrix[$alt][$cri] /= sqrt($divider);
         // nilai akar
       }
     }
 
-    return $normalization;
+    return $matrix;
   }
 
   private function countOpti()
